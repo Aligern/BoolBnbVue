@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <footer class="py-5">
+    <div class="">
+        <footer class="py-5 p-3">
           <div class="row">
             <div class="col-6 col-md-2 mb-3">
               <h5>Assistenza</h5>
@@ -48,7 +48,8 @@
             </div>
           </div>
       
-          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+          <div class="ls-line"></div>
+          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4">
             <p>© 2024 Team 3 Company, Inc. All rights reserved.</p>
             <ul class="list-unstyled d-flex">
               <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
@@ -68,4 +69,12 @@
 
 <style lang="scss" scoped>
 
+footer  {
+  color: #F8F9FE;
+  background: linear-gradient(#29C1E6, #0c7e97)
+}
+
+.ls-line {
+    border-top: 1px solid #F8F9FE;
+}
 </style>
