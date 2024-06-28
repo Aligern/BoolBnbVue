@@ -1,7 +1,51 @@
 <template>
-     <div class="d-flex flex-wrap justify-content-between">
-        <div class="ls-card">
-            <div class="box">
+     <div class=" d-flex flex-wrap justify-content-between row">
+        <div class="ls-card col-3 col-sm-12 col-md-12 col-lg-4 ">
+            <div class="box ls-glass">
+                <div class="d-flex justify-content-center">
+                    <img id="ls-img" src="/src/assets/img/cover-12.jpg" alt="babilon">
+                </div>
+                <div class="ls-line"></div>
+                <div class="p-2">
+                    <h1 class="text-center">Bool 'n' bubbles</h1>
+                    <p class="card-text">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi pariatur praesentium recusandae tempora voluptate impedit nemo vitae. Nulla, enim sed.
+                    </p>
+                </div>
+            </div>
+        </div> 
+
+        <div class="ls-card col-3 col-sm-12 col-md-12 col-lg-4">
+            <div class="box ls-glass">
+                <div class="d-flex justify-content-center">
+                    <img id="ls-img" src="/src/assets/img/cover-12.jpg" alt="babilon">
+                </div>
+                <div class="ls-line"></div>
+                <div class="p-2">
+                    <h1 class="text-center">Bool 'n' bubbles</h1>
+                    <p class="card-text">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi pariatur praesentium recusandae tempora voluptate impedit nemo vitae. Nulla, enim sed.
+                    </p>
+                </div>
+            </div>
+        </div> 
+
+        <div class="ls-card col-3 col-sm-12 col-md-12 col-lg-4">
+            <div class="box ls-glass">
+                <div class="d-flex justify-content-center">
+                    <img id="ls-img" src="/src/assets/img/cover-12.jpg" alt="babilon">
+                </div>
+                <div class="ls-line"></div>
+                <div class="p-2">
+                    <h1 class="text-center">Bool 'n' bubbles</h1>
+                    <p class="card-text">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi pariatur praesentium recusandae tempora voluptate impedit nemo vitae. Nulla, enim sed.
+                    </p>
+                </div>
+            </div>
+        </div> 
+        <div class="ls-card col-3 col-sm-12 col-md-12 col-lg-4">
+            <div class="box ls-glass">
                 <div class="d-flex justify-content-center">
                     <img id="ls-img" src="/src/assets/img/cover-12.jpg" alt="babilon">
                 </div>
@@ -32,16 +76,14 @@ img {
 
 .box {
   color: #F8F9FE;
-  margin-top: 20px;
   position: relative;
-  border: 1px solid #FBBF4F;
   border-radius: 15px;
-  background: linear-gradient(#FA8A42, #FBBF4F);
+  background: linear-gradient(#FA8A42, #29c0e6);
 }
 
 .ls-line {
   margin: 0 auto;
-  border-top: 1px solid #109FBF;
+  border-top: 1px solid #FBBF4F;
   width: 90%;
   margin-top: 20px;
 }
@@ -60,10 +102,11 @@ img {
 }
 
 .ls-card {
-  margin-bottom: 120px;
-  max-width: 320px;
-  max-height: 400px;
+  margin-bottom: 30px;
+  min-width: 320px;
+  min-height: 400px;
   padding: 5px;
+  cursor: pointer;
 }
 
 /* bubble animation */

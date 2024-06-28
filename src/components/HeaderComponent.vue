@@ -11,8 +11,8 @@
             </div>
 
             <div class="text-center">
-                <p>
-                    <a href="#">Register</a> <br> or <br> <a href="#">Login</a>
+                <p class="p-1">
+                    <a class="btn" href="#"> <i class="fs-4 fa-regular fa-id-card"></i>Register </a> <br> or <br> <a class="btn" href="#"><i class="fs-4 fa-solid fa-unlock-keyhole"></i> Login</a>
                 </p>
             </div>
         </nav>
@@ -42,13 +42,6 @@ nav {
     min-height: 90px;
 }
 
-.ls-glass {
-  background-color: hsla(0, 0%, 100%, 0.2);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  border-radius: 15px;
-  box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
-}
 
 p, a {
     color: #FBBF4F;

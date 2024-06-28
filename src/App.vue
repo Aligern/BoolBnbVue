@@ -2,7 +2,7 @@
   <HeaderComponent />
 
   
-  <main class="container mt-4">
+  <main class="container mt-4 ls-glass mb-2">
     <div id="content">
       <h1 class="text-center">ciao</h1>
       <p class="text-center">Io sono il main</p>

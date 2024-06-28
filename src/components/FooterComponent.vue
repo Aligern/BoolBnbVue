@@ -71,6 +71,7 @@
 <style lang="scss" scoped>
 
 footer  {
+  border-top: 1px solid;
   color: #F8F9FE;
   background: linear-gradient(#29C1E6, #0c7e97)
 }
