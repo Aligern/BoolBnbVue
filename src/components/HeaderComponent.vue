@@ -1,21 +1,28 @@
 <template>
     <header class="container">
-        <nav class="d-flex justify-content-between align-items-center">
-            <div  class="logo">
-                <img src="/src/assets/img/Immagine_2024-06-26_160710-removebg-preview.png" alt="">
-            </div>    
-            <div >menu</div>
+        <nav class="d-flex justify-content-between align-items-center p-">
+
+                <div class="logo">
+                    <img src="/src/assets/img/Immagine_2024-06-26_160710-removebg-preview.png" alt="">
+                </div>
+
+            <div class="text-center">
+                <h1>Bool <br> 'n' <br> Bubbles</h1>
+            </div>
+
+            <div class="text-center">
+                <p>
+                    <a href="#">Registrati</a> <br> o <br> <a href="#">Accedi</a>
+                </p>
+            </div>
         </nav>
         <br>
         <div class="ls-line"></div>
     </header>
-    <div>
-        <form id="search-form" action="">
-            <input type="search" required>
-            <i class="fa fa-search"></i>
-        </form>
-    </div>
 
+    <div>
+        
+    </div>
 </template>
 
 <script>
@@ -27,17 +34,21 @@
 <style lang="scss" scoped>
 
 header {
-    height: 90px;
+    min-height: 100px;
+}
+nav {
+    min-height: 90px;
 }
 
 form {
-    transform: translate(-50%, -50%);
+    transform: translate(0%, 130%);
     transition: all 1s;
     width: 50px;
     height: 50px;
     background: white;
     border-radius: 25px;
     padding: 5px;
+    border: 1px solid black;
 }
 
 input {
@@ -58,8 +69,8 @@ input {
         width: 42.5px;
         height: 42.5px;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 3.5px;
+        right: 2px;
         border-radius: 50%;
         color: #07051a;
         text-align: center;
