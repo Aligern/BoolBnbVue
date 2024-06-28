@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <footer class="py-5 p-3">
+        <footer class="p-3">
           <div class="row">
             <div class="col-6 col-md-2 mb-3">
               <h5>Assistenza</h5>
@@ -52,9 +52,10 @@
           <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4">
             <p>© 2024 Team 3 Company, Inc. All rights reserved.</p>
             <ul class="list-unstyled d-flex">
-              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-              <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-twitter text-light"></i></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-instagram text-light"></i></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-facebook text-light"></i></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-linkedin text-light"></i></a></li>
             </ul>
           </div>
         </footer>

@@ -3,15 +3,13 @@
 
   
   <main class="container mt-4">
-    
-    <h1 class="text-center">ciao</h1>
-    <p class="text-center">Io sono il main</p>
     <div id="content">
+      <h1 class="text-center">ciao</h1>
+      <p class="text-center">Io sono il main</p>
       <CardComponent />
     </div>
   </main>
   <FooterComponent />
-  
 </template>
 
 <script>

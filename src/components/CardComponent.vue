@@ -25,7 +25,6 @@
 
 <style lang="scss" scoped>
 
-
 img {
   width: 100%;
   object-fit: cover;

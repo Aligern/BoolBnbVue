@@ -6,13 +6,13 @@
                     <img src="/src/assets/img/Immagine_2024-06-26_160710-removebg-preview.png" alt="">
                 </div>
 
-            <div class="text-center">
+            <div class="text-center text-light">
                 <h1>Bool <br> 'n' <br> Bubbles</h1>
             </div>
 
             <div class="text-center">
                 <p>
-                    <a href="#">Registrati</a> <br> o <br> <a href="#">Accedi</a>
+                    <a href="#">Register</a> <br> or <br> <a href="#">Login</a>
                 </p>
             </div>
         </nav>
@@ -34,10 +34,6 @@
 <style lang="scss" scoped>
 
 header {
-    z-index: 9999;
-    top: 0;
-    right: 15%;
-    position: fixed;
     margin-top: 10px;
     min-height: 100px;
     
@@ -54,5 +50,9 @@ nav {
   box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+p, a {
+    color: #FBBF4F;
+    text-decoration: none;
+}
 
 </style>
