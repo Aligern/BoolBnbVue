@@ -8,6 +8,7 @@
       <p class="text-center">Io sono il main</p>
       <CardComponent />
     </div>
+    <div class="ls-line"></div>
   </main>
   <FooterComponent />
 </template>

@@ -44,7 +44,7 @@ nav {
 
 
 p, a {
-    color: #FBBF4F;
+    color: #29C1E6;
     text-decoration: none;
 }
 
