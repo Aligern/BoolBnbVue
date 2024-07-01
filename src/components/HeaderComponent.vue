@@ -2,7 +2,7 @@
     <header class="container ls-glass">
         <nav class="d-flex justify-content-between align-items-center p-">
             <div class="logo">
-                
+                <img src="/src/assets/img/Immagine_2024-06-26_160710-removebg-preview.png" alt="" />
             </div>
 
             <div class="text-center">
@@ -25,7 +25,7 @@
         <div class="ls-line"></div>
     </header>
 
-    <div id="search-bar">
+    <div id="search-bar" class="absolute">
         <div class="d-flex gap-2">
             <select class="form-select" aria-label="Default select example">
                 <option selected>Open this select menu</option>
@@ -45,7 +45,7 @@
 
     </div>
 
-    <div></div>
+   
 </template>
 
 <script>
@@ -70,15 +70,9 @@
                     searchBar.style.width = '20%';
                     searchBar.className = 'fixed';
                    
-                    nav.style.height = '70px';
-
-
                 } else {
                     searchBar.style.width = '50%';
                     searchBar.className = 'absolute';
-
-                    nav.style.height = '100px';
-
 
                 }
 
@@ -89,10 +83,8 @@
 
 <style lang="scss" scoped>
     header {
-        //position: fixed;
-        //z-index: 2000;
-        //margin-left: 300px;
-        margin-top: 50px;
+       
+        margin-top: 10px;
         min-height: 100px;
     }
 
@@ -116,14 +108,15 @@
 
     #search-bar {
         height: 50px;
-        transform: translateY(-50%);
+        
         transform: translateX(-50%);
-        width: 300px;
+        width: 50%;
+
         transition: width 1.2s ease;
-        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-        background-color: white;
+        //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+   
         border-radius: 25px;
-        z-index: 3000;
+        
     }
 
     .absolute {
@@ -136,6 +129,7 @@
         position: fixed;
         top: 3px;
         left: 50%;
+        z-index: 2000;
     }
 
 
