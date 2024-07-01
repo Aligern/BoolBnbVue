@@ -52,6 +52,7 @@
           <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4">
             <p>© 2024 Team 3 Company, Inc. All rights reserved.</p>
             <ul class="list-unstyled d-flex">
+              <li><h5>Segui Bool'n Bubbles</h5></li>
               <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-twitter text-light"></i></a></li>
               <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-instagram text-light"></i></a></li>
               <li class="ms-3"><a class="link-body-emphasis" href="#"><i class="fa-brands fa-facebook text-light"></i></a></li>

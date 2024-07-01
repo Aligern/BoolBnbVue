@@ -2,7 +2,7 @@
   <HeaderComponent />
 
   
-  <main class="container mt-4 ls-glass mb-2">
+  <main class="container ls-glass mb-2">
     <div id="content">
       <h1 class="text-center">ciao</h1>
       <p class="text-center">Io sono il main</p>
@@ -38,6 +38,10 @@ import FooterComponent from './components/FooterComponent.vue';
 </script>
 
 <style lang="scss" scoped>
+
+main{
+   margin-top: 300px;
+}
 
 
 </style>
