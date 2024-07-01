@@ -78,7 +78,12 @@ img {
   color: #F8F9FE;
   position: relative;
   border-radius: 15px;
-  background: linear-gradient(#FA8A42, #29c0e6);
+  border: 1px solid #FBBF4F;
+
+  p {
+    text-wrap: balance;
+    text-align: center;
+  }
 }
 
 .ls-line {
@@ -105,7 +110,6 @@ img {
   margin-bottom: 30px;
   min-width: 320px;
   min-height: 400px;
-  padding: 5px;
   cursor: pointer;
 }
 

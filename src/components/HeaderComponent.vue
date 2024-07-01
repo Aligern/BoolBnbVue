@@ -1,14 +1,19 @@
 <template>
     <header class="container ls-glass">
         <nav class="d-flex justify-content-between align-items-center p-">
-            <div class="logo">
-                <img src="/src/assets/img/Immagine_2024-06-26_160710-removebg-preview.png" alt="" />
+            <div class="p-2 position-relative">
+                <div class="logo-container">
+                    <p><i class="fs-2 fa-solid fa-house-flood-water"></i></p>
+                </div>
+                <div class="bubbles">
+                    <div></div>
+                </div>
             </div>
 
             <div class="text-center">
                 <h1>
-                    Bool <br />
-                    'n' <br />
+                    Bool 
+                    'n' 
                     Bubbles
                 </h1>
                 <br />
@@ -83,13 +88,13 @@
 
 <style lang="scss" scoped>
     header {
-       
         margin-top: 10px;
         min-height: 100px;
     }
 
     nav {
         min-height: 90px;
+        padding: 10px;
     }
 
     .ls-glass {
@@ -137,6 +142,66 @@
         border-radius: 25px;
         height: 50px;
     }
+
+    .logo-container {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    
+    i {
+        background: linear-gradient(#fbdb4f,#FA8A42 );
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}
+
+.bubbles {
+    position:relative;
+    border-radius:100%;
+    width: 60px;
+    aspect-ratio: 1;
+    background: linear-gradient(#29C1E6, #109FBF);
+
+    animation: bubbles-rotation 5s linear infinite;
+   
+    
+    div,div::before,div::after{
+        position: absolute;
+        width: 10px;
+        left: -5px;
+        aspect-ratio: 1;
+        border-radius: 100%;
+        background-color: #29C1E6;
+    }
+
+    div::before {
+        content: '';
+        display: block;
+        width: 16px;
+        left: -18px;
+        top: 20px;
+        background-color: #0d839e;
+    }
+
+    div::after {
+        content: '';
+        display: block;
+        width: 6px;
+        left: 25px;
+        top: -9px;
+        background-color: #0d839e;
+    }
+    @keyframes bubbles-rotation  {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+        }
+    }
+}
 
 
 

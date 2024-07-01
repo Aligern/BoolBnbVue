@@ -40,7 +40,7 @@ import FooterComponent from './components/FooterComponent.vue';
 <style lang="scss" scoped>
 
 main{
-   margin-top: 300px;
+   margin-top: 50px;
 }
 
 
