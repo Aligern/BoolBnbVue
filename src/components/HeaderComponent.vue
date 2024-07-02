@@ -1,9 +1,9 @@
 <template>
-    <header class="">
+    <header class="container ls-glass">
         <nav class="d-flex justify-content-between align-items-center p-">
-            <div class="ms-3 p-2 position-relative">
+            <div class="p-2 position-relative">
                 <div class="logo-container">
-                    <i class="fs-2 fa-solid fa-home"></i><br>
+                    <p><i class="fs-2 fa-solid fa-house-flood-water"></i></p>
                 </div>
                 <div class="bubbles">
                     <div></div>
@@ -12,8 +12,8 @@
 
             <div class="text-center">
                 <h1>
-                    Bool 
-                    'n' 
+                    Bool
+                    'n'
                     Bubbles
                 </h1>
                 <br />
@@ -21,8 +21,8 @@
 
             <div class="text-center">
                 <p class="p-1">
-                    <a class="btn" href="#"> <i class="fs-4 fa-regular fa-id-card"></i>Register </a> <br> or <br> <a
-                        class="btn" href="#"><i class="fs-4 fa-solid fa-unlock-keyhole"></i> Login</a>
+                    <a class="btn draw-border" href="#"> <i class="fs-4 fa-regular fa-id-card"></i>Register </a> <br> or <br> <a
+                        class="btn draw-border" href="#"><i class="fs-4 fa-solid fa-unlock-keyhole"></i> Login</a>
                 </p>
             </div>
         </nav>
@@ -31,33 +31,30 @@
     </header>
 
     <div id="search-bar" class="absolute">
-        <div class="d-flex gap-2">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+        <div class="d-flex justify-content-center gap-2">
+            <button class="btn draw-border w-50"
+                @click="this.store.openModalChange = !this.store.openModalChange">Search</button>
 
         </div>
-
-
+       
     </div>
+    
 
-   
 </template>
 
 <script>
+    import ModalSearchComponent from './ModalSearchComponent.vue';
+    import { store } from '../store';
+
+
     export default {
         name: "HeaderComponent",
+       
+           
         data() {
-            return {};
+            return {
+                store,
+            };
         },
         mounted() {
             window.addEventListener('scroll', this.handleScroll);
@@ -66,19 +63,20 @@
             handleScroll() {
                 const scrollPosition = window.pageYOffset;
                 const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
-                const nav = document.querySelector('nav'); // Seleziona la barra di ricerca
-                const title = document.querySelector('h1');
+                const modale = document.querySelector('#modal'); // Seleziona la barra di ricerca
 
 
-                if (scrollPosition > 147) {
+
+                if (scrollPosition > 152) {
 
                     searchBar.style.width = '20%';
                     searchBar.className = 'fixed';
                    
+
                 } else {
                     searchBar.style.width = '50%';
                     searchBar.className = 'absolute';
-
+                    
                 }
 
             }
@@ -88,34 +86,17 @@
 
 <style lang="scss" scoped>
     header {
-        
+        margin-top: 10px;
         min-height: 100px;
-        background-color: hsla(0, 0%, 80%, 0.3);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     }
 
     nav {
         min-height: 90px;
         padding: 10px;
-        h1 {
-            padding: 5px;
-            border: 5px solid #29C1E6;
-            border-radius: 20px;
-        font-size: 47px;
-        font-weight: 500;
-        font-family: fantasy;
-        background-image: linear-gradient(45deg, #29C1E6, #109FBF);
-        color: transparent;
-        background-clip: text;
-        -webkit-background-clip: text;
-    }
-        
     }
 
     .ls-glass {
-        background-color: hsla(0, 0%, 80%, 0.3);
+        background-color: hsla(0, 0%, 100%, 0.2);
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
         border-radius: 15px;
@@ -129,26 +110,24 @@
     }
 
     #search-bar {
-        height: 50px;
-        
-        transform: translateX(-50%) translateY(10%);
-    
+        height: 400px;
+
+        transform: translateY(-50%);
+        transform: translateX(-50%);
         width: 50%;
 
-        transition: width 1.3s ease;
+        transition: width 1.2s ease;
         //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-   
+
         border-radius: 25px;
-        
-        select {
-            border: 1px solid #29C1E6;
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-        }
+
+       
+
     }
 
     .absolute {
         position: absolute;
-        top: 150px;
+        top: 155px;
         left: 50%;
     }
 
@@ -166,60 +145,135 @@
     }
 
     .logo-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    
-    img {
-        width: 50px;
-    }
-}
-
-.bubbles {
-    position:relative;
-    border-radius:100%;
-    width: 70px;
-    aspect-ratio: 1;
-    background: linear-gradient(#29C1E6, #109FBF);
-    animation: bubbles-rotation 30s linear infinite;
-   
-    div,div::before,div::after{
         position: absolute;
-        width: 13px;
-        left: -5px;
-        aspect-ratio: 1;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+
+        i {
+            background: linear-gradient(#fbdb4f, #FA8A42);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    }
+
+    .bubbles {
+        position: relative;
         border-radius: 100%;
+        width: 60px;
+        aspect-ratio: 1;
         background: linear-gradient(#29C1E6, #109FBF);
+
+        animation: bubbles-rotation 5s linear infinite;
+
+
+        div,
+        div::before,
+        div::after {
+            position: absolute;
+            width: 10px;
+            left: -5px;
+            aspect-ratio: 1;
+            border-radius: 100%;
+            background-color: #29C1E6;
+        }
+
+        div::before {
+            content: '';
+            display: block;
+            width: 16px;
+            left: -18px;
+            top: 20px;
+            background-color: #0d839e;
+        }
+
+        div::after {
+            content: '';
+            display: block;
+            width: 6px;
+            left: 25px;
+            top: -9px;
+            background-color: #0d839e;
+        }
+
+        @keyframes bubbles-rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
     }
 
-    div::before {
-        content: '';
-        display: block;
-        width: 18px;
-        left: -15px;
-        top: 20px;
-        background: linear-gradient(#29C1E6, #109FBF);
-    }
+    .draw-border {
+        box-shadow: inset 0 0 0 4px #29C1E6;
+        color: #29C1E6;
+        transition: color 0.25s 0.0833333333s;
+        position: relative;
+       }
+       
+       .draw-border::before, .draw-border::after {
+        border: 0 solid transparent;
+        box-sizing: border-box;
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        bottom: 0;
+        right: 0;
+       }
+       
+       .draw-border::before {
+        border-bottom-width: 4px;
+        border-left-width: 4px;
+       }
+       
+       .draw-border::after {
+        border-top-width: 4px;
+        border-right-width: 4px;
+       }
+       
+       .draw-border:hover {
+        color: #fbbf4f;
+       }
+       
+       .draw-border:hover::before, .draw-border:hover::after {
+        border-color: #fbbf4f;
+        transition: border-color 0s, width 0.25s, height 0.25s;
+        width: 100%;
+        height: 100%;
+       }
+       
+       .draw-border:hover::before {
+        transition-delay: 0s, 0s, 0.25s;
+       }
+       
+       .draw-border:hover::after {
+        transition-delay: 0s, 0.25s, 0s;
+       }
+       
+       .btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        line-height: 1.5;
+        font: 700 17px "Roboto Slab", sans-serif;
+        padding: 1em 2em;
+        letter-spacing: 0.05rem;
+       }
+       
+       .btn:focus {
+        outline: 2px dotted #29C1E6;
+       }
+       
+       
 
-    div::after {
-        content: '';
-        display: block;
-        width: 8px;
-        left: 20px;
-        top: -9px;
-        background: linear-gradient(#29C1E6, #109FBF);
-    }
-    @keyframes bubbles-rotation  {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(-360deg);
-        }
-    }
-}
+
+
 
 
 
