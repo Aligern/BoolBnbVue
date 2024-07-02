@@ -13,12 +13,10 @@ $fa-font-path: '../fonts/webfonts';
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-body {
-    background-color: #cecece4d;
-}
+
 
 .ls-line {
-    border-top: 1px solid #FBBF4F;
+    border-top: 1px solid #29C1E6;
     width: 90%;
     margin: 0 auto;
 }
@@ -42,4 +40,5 @@ img {
     backdrop-filter: blur(5px);
     border-radius: 15px;
     box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
+    background-color: hsla(0, 0%, 80%, 0.3);
   }

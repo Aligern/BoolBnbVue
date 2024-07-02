@@ -1,9 +1,9 @@
 <template>
-    <header class="container ls-glass">
+    <header class="">
         <nav class="d-flex justify-content-between align-items-center p-">
-            <div class="p-2 position-relative">
+            <div class="ms-3 p-2 position-relative">
                 <div class="logo-container">
-                    <p><i class="fs-2 fa-solid fa-house-flood-water"></i></p>
+                    <i class="fs-2 fa-solid fa-home"></i><br>
                 </div>
                 <div class="bubbles">
                     <div></div>
@@ -88,17 +88,34 @@
 
 <style lang="scss" scoped>
     header {
-        margin-top: 10px;
+        
         min-height: 100px;
+        background-color: hsla(0, 0%, 80%, 0.3);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     }
 
     nav {
         min-height: 90px;
         padding: 10px;
+        h1 {
+            padding: 5px;
+            border: 5px solid #29C1E6;
+            border-radius: 20px;
+        font-size: 47px;
+        font-weight: 500;
+        font-family: fantasy;
+        background-image: linear-gradient(45deg, #29C1E6, #109FBF);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+    }
+        
     }
 
     .ls-glass {
-        background-color: hsla(0, 0%, 100%, 0.2);
+        background-color: hsla(0, 0%, 80%, 0.3);
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
         border-radius: 15px;
@@ -114,14 +131,19 @@
     #search-bar {
         height: 50px;
         
-        transform: translateX(-50%);
+        transform: translateX(-50%) translateY(10%);
+    
         width: 50%;
 
-        transition: width 1.2s ease;
+        transition: width 1.3s ease;
         //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
    
         border-radius: 25px;
         
+        select {
+            border: 1px solid #29C1E6;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
     }
 
     .absolute {
@@ -145,53 +167,49 @@
 
     .logo-container {
     position: absolute;
-    top: 55%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
     
-    i {
-        background: linear-gradient(#fbdb4f,#FA8A42 );
-        -webkit-background-clip: text;
-        color: transparent;
+    img {
+        width: 50px;
     }
 }
 
 .bubbles {
     position:relative;
     border-radius:100%;
-    width: 60px;
+    width: 70px;
     aspect-ratio: 1;
     background: linear-gradient(#29C1E6, #109FBF);
-
-    animation: bubbles-rotation 5s linear infinite;
+    animation: bubbles-rotation 30s linear infinite;
    
-    
     div,div::before,div::after{
         position: absolute;
-        width: 10px;
+        width: 13px;
         left: -5px;
         aspect-ratio: 1;
         border-radius: 100%;
-        background-color: #29C1E6;
+        background: linear-gradient(#29C1E6, #109FBF);
     }
 
     div::before {
         content: '';
         display: block;
-        width: 16px;
-        left: -18px;
+        width: 18px;
+        left: -15px;
         top: 20px;
-        background-color: #0d839e;
+        background: linear-gradient(#29C1E6, #109FBF);
     }
 
     div::after {
         content: '';
         display: block;
-        width: 6px;
-        left: 25px;
+        width: 8px;
+        left: 20px;
         top: -9px;
-        background-color: #0d839e;
+        background: linear-gradient(#29C1E6, #109FBF);
     }
     @keyframes bubbles-rotation  {
         0% {
