@@ -5,7 +5,7 @@
     <ModalSearchComponent />
 
   </div>
-  <main class="container ls-glass mb-2">
+  <main>
 
 
     <router-view></router-view>

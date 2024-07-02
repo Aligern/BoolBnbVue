@@ -1,6 +1,6 @@
 <template>
-    <header class="container ls-glass">
-        <nav class="d-flex justify-content-between align-items-center p-">
+    <header class="ls-glass">
+        <nav class="d-flex justify-content-between align-items-center ">
             <div class="p-2 position-relative">
                 <div class="logo-container">
                     <p><i class="fs-2 fa-solid fa-house-flood-water"></i></p>
@@ -99,7 +99,6 @@
         background-color: hsla(0, 0%, 100%, 0.2);
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
-        border-radius: 15px;
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     }
 
