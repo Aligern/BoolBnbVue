@@ -8,12 +8,10 @@
   <main class="container ls-glass mb-2">
 
 
-    <div id="content">
-      <h1 class="text-center">ciao</h1>
-      <p class="text-center">Io sono il main</p>
-      <CardComponent />
-    </div>
+    <router-view></router-view>
+    
     <div class="ls-line"></div>
+    
   </main>
   <FooterComponent />
 </template>
