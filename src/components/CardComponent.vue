@@ -1,12 +1,15 @@
 <template>
      <div class="container d-flex overflow-y-hidden">
-
+        <!-- card -->
         <div id="ls-card-container" class="">
-            <div class="card">
+            <RouterLink class="ls-card">
+                <!-- image -->
                 <img src="../assets/img/cover-12.jpg" alt="">
+                <!-- content -->
                 <div class="card-content">
                     <h2>card heading</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
+                    <!-- button -->
                     <a href="#" class="button">
                         More informations 
                         <span>
@@ -14,54 +17,9 @@
                         </span>
                     </a>
                 </div>
-            </div>
+            </RouterLink>
         </div>
-        <div id="ls-card-container" class="">
-            <div class="card">
-                <img src="../assets/img/cover-12.jpg" alt="">
-                <div class="card-content">
-                    <h2>card heading</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                    <a href="#" class="button">
-                        More informations 
-                        <span>
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div id="ls-card-container" class="">
-            <div class="card">
-                <img src="../assets/img/cover-12.jpg" alt="">
-                <div class="card-content">
-                    <h2>card heading</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                    <a href="#" class="button">
-                        More informations 
-                        <span>
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div id="ls-card-container" class="">
-            <div class="card">
-                <img src="../assets/img/cover-12.jpg" alt="">
-                <div class="card-content">
-                    <h2>card heading</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                    <a href="#" class="button">
-                        More informations 
-                        <span>
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        </div> 
+    </div> 
 </template>
 
 <script>
@@ -80,11 +38,11 @@
   align-items: center;
   font-family: 'Roboto', sans-serif;
 
-  .card {
+  .ls-card {
   position: relative;
   width: 24rem;
   height: 36rem;
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
   color: rgb(240, 240, 240);
@@ -140,7 +98,11 @@
   
   &:hover img {
     transition: opacity .3s ease-in;
-    opacity: 1;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    box-shadow: 10px 10px 13px rgba(0, 0, 0, 0.2);
   }
 
 }

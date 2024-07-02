@@ -1,14 +1,7 @@
 <template>
-  <HeaderComponent />
-
-  
-  <main class="container ls-glass mb-2">
-    <div id="content">
-      <h1 class="text-center">ciao</h1>
-      <p class="text-center">Io sono il main</p>
-      <CardComponent />
-    </div>
-    <div class="ls-line"></div>
+<HeaderComponent />
+  <main>
+    <router-view></router-view>
   </main>
   <FooterComponent />
 </template>
