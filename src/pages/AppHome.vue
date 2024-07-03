@@ -1,5 +1,9 @@
 <template>
     <JumbotronComponent />
+
+    <div class="ls-glass container d-flex overflow-y-hidden mt-3">
+        <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment" />
+
     <div >
         <!-- these are the promoted cards -->
         <div ref="CardScrollContainer" class="ls-glass container d-flex overflow-x-scroll mt-3">
@@ -16,14 +20,15 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
+
     </div>
 </template>
 
 <script>
-import CardComponent from '@/components/CardComponent.vue';
-import JumbotronComponent from '@/components/JumbotronComponent.vue';
-import { store } from '../store';
-import axios from 'axios';
+    import CardComponent from '@/components/CardComponent.vue';
+    import JumbotronComponent from '@/components/JumbotronComponent.vue';
+    import { store } from '../store';
+    import axios from 'axios';
     export default {
         name: 'AppHome',
         components: {
@@ -33,30 +38,21 @@ import axios from 'axios';
         data() {
             return {
                 apartments: [],
-                services: [],
+               
             }
         },
         methods: {
             getAllApartments() {
                 axios.get(store.apiBaseUrl + '/apartments').then((res) => {
                     console.log('Response data:', res.data);
-                    this.apartments =  res.data.results;
+                    this.apartments = res.data.results;
                     // console.log(this.apartments);
                 }).catch(error => {
                     console.error('An error has occurred:', error);
                     console.log('Response data:', error.response.data);
                 });
             },
-            getAllServices() {
-                axios.get(store.apiBaseUrl + '/services').then((res) => {
-                    console.log('Response data:', res.data);
-                    this.services =  res.data.results;
-                    // console.log(this.apartments);
-                }).catch(error => {
-                    console.error('An error has occurred:', error);
-                    console.log('Response data:', error.response.data);
-                });
-            },
+
             scroll(distance, id) {
             //console.log('entrato'),
             //console.log(distance),
@@ -66,13 +62,17 @@ import axios from 'axios';
                 behavior: 'smooth',
             })
         }
+
         },
         mounted() {
             this.getAllApartments();
-            this. getAllServices();
+
         }
     }
 </script>
+
+
+
 
 
 <style lang="scss" scoped>
@@ -101,4 +101,4 @@ import axios from 'axios';
 
 
 
-<!-- , { params: this.params } -->
+

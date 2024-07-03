@@ -9,65 +9,23 @@
     <div class="d-flex gap-3">
       <div id="services">
         <h2 class="text-center">Services</h2>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Parking</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">WiFi</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Kitchen</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Swimming Pool</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Air Conditioning</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Heating</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Dryer</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Gym</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Elevator</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Pet Friendly</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Smoke Detector</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Laptop-friendly Workspace</label>
-        </div>
-        <div class="d-flex">
-          <input type="checkbox" class="form-check-input me-2 ">
-          <label for="">Cable TV</label>
+       
+        <div class="d-flex" v-for="service in services" :key="service.id">
+          <input type="checkbox" class="form-check-input me-2 " :value="service.id"  >
+          <label for="">{{ service.name }}</label>
         </div>
       </div>
-      <div id="filter"></div>
+      <div id="filter" class="d-flex justify-content-center align-items-center"><h1 class="display-1 ">?</h1></div>
     </div>
     <div class="filter-distance">
       <label for="distance-range">Distanza (km):</label>
       <input class="w-75" type="range" id="distance-range" min="0" max="50" value="25">
       <span id="distance-value">25 km</span>
+    </div>
+
+    <div id="results">
+      <h1 class="text-black text-center text-uppercase ">Results</h1>
+     <CardComponent />
     </div>
 
 
@@ -79,6 +37,8 @@
 <script>
   import HeaderComponent from '@/components/HeaderComponent.vue';
 import { store } from '../store';
+import axios from 'axios';
+import CardComponent from '@/components/CardComponent.vue';
   export default {
     name: 'Filters',
     components: {
@@ -89,10 +49,21 @@ import { store } from '../store';
     data() {
       return {
         store,
+        services: [],
         distanceRange: 50,
       }
     },
     methods: {
+      getAllServices() {
+                axios.get(store.apiBaseUrl + '/services').then((res) => {
+                    console.log('Response data:', res.data);
+                    this.services =  res.data.results;
+                    // console.log(this.apartments);
+                }).catch(error => {
+                    console.error('An error has occurred:', error);
+                    console.log('Response data:', error.response.data);
+                });
+            },
 
 
       rangeFunction() {
@@ -108,9 +79,11 @@ import { store } from '../store';
 
     },
     mounted() {
-      this.rangeFunction()
+      this.rangeFunction();
+      this. getAllServices();
+        }
     }
-  }
+ 
 </script>
 
 <style lang="scss" scoped>
@@ -136,6 +109,16 @@ import { store } from '../store';
     display: flex;
     justify-content: space-between;
     margin: 15px 0px;
+  }
+
+  #results {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 10px;
+    border: 1px solid #29C1E6;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   }
 
 
