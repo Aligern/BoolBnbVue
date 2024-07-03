@@ -1,20 +1,11 @@
 <template>
-  <div id="jumbotron">
-    <HeaderComponent />
-    <h2 class="p-2 text-light">Titolo1</h2>
-    <h2 class="p-2 text-light d-flex justify-content-end">Titolo2</h2>
-    </div>
 
-  <div id="modal" class="absolute" >
-    <ModalSearchComponent />
+<div id="modal" class="absolute" >
+  <ModalSearchComponent />
     
   </div>
   <main>
-
-
     <router-view></router-view>
-    
-
     <div class="ls-line"></div>
     
   </main>
@@ -29,6 +20,7 @@
   import CardComponent from './components/CardComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
   import ModalSearchComponent from './components/ModalSearchComponent.vue';
+  import JumbotronComponent from './components/JumbotronComponent.vue';
 
   export default {
     name: 'App',
@@ -37,10 +29,11 @@
       FooterComponent,
       CardComponent,
       ModalSearchComponent,
+      JumbotronComponent
     },
     data() {
       return {
-        store
+        store,
       }
     },
     mounted() {
@@ -69,18 +62,7 @@
 
 <style lang="scss" scoped>
 
-  main {
-    margin-top: 50px;
-  }
 
-  #jumbotron {    
-    height: 700px;
-    width: 100%;
-    background-image: url('./assets/img/cover-12.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
   .absolute {
     position: absolute;
@@ -96,6 +78,8 @@
   }
 
 
-
+  HeaderComponent {
+    z-index: 1000;
+  }
 
 </style>
