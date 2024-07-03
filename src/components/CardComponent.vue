@@ -1,93 +1,47 @@
 <template>
-     <div class="container d-flex overflow-y-hidden mt-3">
+
         <!-- card -->
 <div id="ls-card-container" class="">
         <RouterLink class="ls-card">
             <!-- image -->
-              <img src="../assets/img/cover-12.jpg" alt="">
+              <img :src="store.imgBasePath + item.image_cover" :alt="item.name">
                 <!-- content -->
                   <div class="card-content">
-                    <h2>card heading</h2>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
+                    <h2>{{item.name}}</h2>
+                      <p>
+                        {{item.description}}
+                      </p>
                         <!-- button -->
-                        <a href="#" class="button">
+                        <a :href="item.slug" class="button">
                           More informations 
                           <span>
                               <i class="fas fa-chevron-right"></i>
                           </span>
                         </a>
                  </div>
-        </RouterLink>
-
-        
+        </RouterLink>       
     </div>
-
-    <div id="ls-card-container" class="">
-        <RouterLink class="ls-card">
-            <!-- image -->
-              <img src="../assets/img/cover-12.jpg" alt="">
-                <!-- content -->
-                  <div class="card-content">
-                    <h2>card heading</h2>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                        <!-- button -->
-                        <a href="#" class="button">
-                          More informations 
-                          <span>
-                              <i class="fas fa-chevron-right"></i>
-                          </span>
-                        </a>
-                 </div>
-        </RouterLink>
-
-        
-    </div>
-    <div id="ls-card-container" class="">
-        <RouterLink class="ls-card">
-            <!-- image -->
-              <img src="../assets/img/cover-12.jpg" alt="">
-                <!-- content -->
-                  <div class="card-content">
-                    <h2>card heading</h2>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                        <!-- button -->
-                        <a href="#" class="button">
-                          More informations 
-                          <span>
-                              <i class="fas fa-chevron-right"></i>
-                          </span>
-                        </a>
-                 </div>
-        </RouterLink>
-
-        
-    </div>
-    <div id="ls-card-container" class="">
-        <RouterLink class="ls-card">
-            <!-- image -->
-              <img src="../assets/img/cover-12.jpg" alt="">
-                <!-- content -->
-                  <div class="card-content">
-                    <h2>card heading</h2>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                        <!-- button -->
-                        <a href="#" class="button">
-                          More informations 
-                          <span>
-                              <i class="fas fa-chevron-right"></i>
-                          </span>
-                        </a>
-                 </div>
-        </RouterLink>
-
-        
-    </div>
-</div> 
 </template>
 
 <script>
+import { store } from '../store';
     export default {
         name: 'CardComponent',
+        props: [
+            'item',
+        ],
+        data() {
+            return {
+                store
+            }
+        },
+        computed: {
+
+        },
+        methods: {
+
+        },
+
     }
 </script>
 
@@ -108,7 +62,7 @@
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
-  color: rgb(240, 240, 240);
+  color: rgb(0, 0, 0);
   box-shadow: 0 10px 10px 3px rgba(0, 0, 0, 0.2);
  
   img {
@@ -150,7 +104,7 @@
   }
   
   &:hover h2 {
-    inset: auto auto 300px 30px;
+    inset: auto auto 180px 30px;
     transition: inset .3s ease-out;
   }
   

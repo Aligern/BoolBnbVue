@@ -3,7 +3,7 @@
         <nav class="d-flex justify-content-between align-items-center ">
             <div class="ms-3 p-2 position-relative">
                 <div class="logo-container">
-                    <p><i class="fs-2 fa-solid fa-house-flood-water"></i></p>
+                    <p><i class="fs-5 fa-solid fa-house-flood-water"></i></p>
                 </div>
                 <div class="bubbles">
                     <div></div>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="text-center">
-                <p class="p-1">
+                <p class="">
                     <a class="btn draw-border" href="#"> <i class="fa-regular fa-id-card"></i>Register </a> <br> or <br> <a
                         class="btn draw-border" href="#"><i class="fa-solid fa-unlock-keyhole"></i> Login</a>
                 </p>
@@ -86,7 +86,7 @@
 
 <style lang="scss" scoped>
     header {
-        min-height: 230px;
+        min-height: 180px;
     }
 
     nav {
@@ -143,7 +143,7 @@
 
     .logo-container {
         position: absolute;
-        top: 55%;
+        top: 62%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;
@@ -158,18 +158,18 @@
     .bubbles {
         position: relative;
         border-radius: 100%;
-        width: 60px;
+        width: 40px;
         aspect-ratio: 1;
         background: linear-gradient(#29C1E6, #109FBF);
 
-        animation: bubbles-rotation 5s linear infinite;
+        animation: bubbles-rotation 25s linear infinite;
 
 
         div,
         div::before,
         div::after {
             position: absolute;
-            width: 10px;
+            width: 9px;
             left: -5px;
             aspect-ratio: 1;
             border-radius: 100%;
@@ -180,7 +180,7 @@
             content: '';
             display: block;
             width: 16px;
-            left: -18px;
+            left: -12px;
             top: 20px;
             background-color: #0d839e;
         }
@@ -189,8 +189,8 @@
             content: '';
             display: block;
             width: 6px;
-            left: 25px;
-            top: -9px;
+            left: 22px;
+            top: -7px;
             background-color: #0d839e;
         }
 

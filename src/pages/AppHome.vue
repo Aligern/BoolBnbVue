@@ -1,9 +1,7 @@
 <template>
-
     <JumbotronComponent />
-
-    <div class="mb-3 container ls-glass">
-        <CardComponent />
+    <div class="ls-glass container d-flex overflow-y-hidden mt-3">
+        <CardComponent  v-for="apartment in apartments" :key="apartment.id" :item="apartment"/>
     </div>
 </template>
 
@@ -17,7 +15,6 @@ import axios from 'axios';
         components: {
             CardComponent,
             JumbotronComponent,
-
         },
         data() {
             return {
@@ -51,11 +48,7 @@ import axios from 'axios';
             this.getAllApartments();
             this. getAllServices();
         }
-        
-
-
     }
-   
 </script>
 
 
