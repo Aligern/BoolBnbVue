@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <footer class="p-3">
+        <footer class="p-3 ls-footer-glass">
           <div class="row">
             <div class="col-6 col-md-2 mb-3">
               <h5>Assistenza</h5>
@@ -64,9 +64,10 @@
 <style lang="scss" scoped>
 
 footer  {
-  border-top: 1px solid;
-  color: #F8F9FE;
-  background: linear-gradient(#29C1E6, #0c7e97)
+  background-color: hsla(0, 0%, 100%, 0.2);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .ls-line {

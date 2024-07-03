@@ -1,5 +1,6 @@
 <template>
-    <div class="container m-0-auto">
+    <HeaderComponent id="ls-header" />
+    <div class="container m-0-auto mt-3">
             <!-- button go back -->
             <div class="pb-3">
                     <RouterLink :to="{ name: 'home' }">
@@ -209,5 +210,10 @@ import FooterComponent from '@/components/FooterComponent.vue';
     border-bottom: 1px solid #29C1E6;
     width: 90%;
 }
+
+#ls-header {
+    
+}
+
 
 </style>

@@ -1,4 +1,7 @@
 <template>
+
+    <JumbotronComponent />
+
     <div class="mb-3 container ls-glass">
         <CardComponent />
     </div>
@@ -6,12 +9,14 @@
 
 <script>
 import CardComponent from '@/components/CardComponent.vue';
+import JumbotronComponent from '@/components/JumbotronComponent.vue';
 import { store } from '../store';
 import axios from 'axios';
     export default {
         name: 'AppHome',
         components: {
             CardComponent,
+            JumbotronComponent,
 
         },
         data() {
