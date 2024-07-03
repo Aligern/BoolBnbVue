@@ -1,26 +1,15 @@
 <template>
-  <div>
-    <div id="modal" :class="{ 'd-none': !this.store.openModalChange }">
-      <div id="info">
-        <div class=" d-flex justify-content-between flex-column">
-          <h1 class="text-black text-center ">content</h1>
-          <input type="checkbox" class="form-check-input ">
-          <label for=""></label>
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
 
-        </div>
-      </div>
-    </div>
+  <div id="modal" :class="{ 'd-none': !this.store.openModalChange }">
+
+    <h1 class="text-black text-center ">content</h1>
+
+
+
   </div>
+
+
+
 </template>
 
 <script>
@@ -29,20 +18,34 @@
     name: 'ModalSearchComponent',
     data() {
       return {
-        store
+        store,
+        distanceRange: 50,
       }
     },
+    methods: {
+
+
+      rangeFunction() {
+        const distanceRange = document.getElementById('distance-range');
+        const distanceValue = document.getElementById('distance-value');
+
+        distanceRange.addEventListener('input', function () {
+          const selectedDistance = distanceRange.value;
+          distanceValue.textContent = selectedDistance + ' km';
+        });
+      },
+
+
+    },
+    mounted() {
+      this.rangeFunction()
+    }
 
 
   }
 </script>
 
 <style lang="scss" scoped>
-
-  //stars of the vote
-  .stars {
-    color: gold;
-  }
 
   //modal component
   #modal {
@@ -51,66 +54,27 @@
     background-color: rgb(253, 253, 253);
     position: absolute;
     top: 10px;
-    left: 712px;
     border-radius: 10px;
     border: 1px solid #29C1E6;
     box-shadow: 15px 10px 13px rgba(0, 0, 0, 0.2);
     z-index: 4001;
-    display: flex;
-    justify-content: center;
+    padding: 10px;
+   
 
+    animation: modal-comparsa 0.5s ease-in-out forwards;
 
-
-
-
-    #info {
-      height: 100%;
-      width: 100%;
-
-      color: rgb(0, 0, 0);
-      position: relative;
-      top: 0;
-      animation: modal-comparsa 0.5s ease-in-out forwards;
-
-
-
-
-      //div container for close button
-      #close {
-        height: 35px;
-        width: 35px;
-        margin-left: auto;
-        cursor: pointer;
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        z-index: 2000;
-
-        //close button
-        #closed {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 30px;
-          width: 30px;
-        }
-
-
-
-      }
-    }
   }
 
   @keyframes modal-comparsa {
-    from {
+    0% {
       opacity: 0;
-      transform: scale(0.5);
+      transform: translateY(-100);
       /* Riduce il modale all'inizio dell'animazione */
     }
 
-    to {
+    100% {
       opacity: 1;
-      transform: scale(1);
+      transform: translateY(0);
     }
   }
 
@@ -118,17 +82,8 @@
     #modal {
       overflow-y: auto;
 
-      #info {
-        height: 800px;
-        width: 500px;
-        background-color: black;
-        color: white;
-        overflow: hidden;
-        position: relative;
-        top: 50px;
-        animation: modal-comparsa 0.5s ease-in-out forwards;
-      }
     }
   }
 
+  
 </style>
