@@ -1,6 +1,7 @@
 <template>
   <HeaderComponent />
 
+
   <div id="modal" class="absolute" >
     <ModalSearchComponent />
 
@@ -10,6 +11,7 @@
 
     <router-view></router-view>
     
+
     <div class="ls-line"></div>
     
   </main>
@@ -17,16 +19,19 @@
 </template>
 
 <script>
+
   import axios from 'axios';
   import { store } from './store';
   import HeaderComponent from './components/HeaderComponent.vue';
   import CardComponent from './components/CardComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
   import ModalSearchComponent from './components/ModalSearchComponent.vue';
+
   export default {
     name: 'App',
     components: {
       HeaderComponent,
+
       FooterComponent,
       CardComponent,
       ModalSearchComponent,
