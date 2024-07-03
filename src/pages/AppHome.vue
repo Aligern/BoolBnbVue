@@ -1,7 +1,17 @@
 <template>
     <JumbotronComponent />
-    <div class="ls-glass container d-flex overflow-y-hidden mt-3">
-        <CardComponent  v-for="apartment in apartments" :key="apartment.id" :item="apartment"/>
+    <div >
+        <div id="CardScrollContainer"  class="ls-glass container d-flex overflow-y-hidden mt-3">
+            <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment"/>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button class="ls-btn-left"  id="scrollLeftCard" @click="scroll(-600, 'CardScrollContainer')">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="ls-btn-right" id="scrollRightCard" @click="scroll(600, 'CardScrollContainer')">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
     </div>
 </template>
 
@@ -43,6 +53,15 @@ import axios from 'axios';
                     console.log('Response data:', error.response.data);
                 });
             },
+            scroll(distance, id) {
+            //console.log('entrato'),
+            //console.log(distance),
+            //console.log(id),
+            this.$refs[id].scrollBy({
+                left: distance,
+                behavior: 'smooth',
+            })
+        }
         },
         mounted() {
             this.getAllApartments();
@@ -53,7 +72,22 @@ import axios from 'axios';
 
 
 <style lang="scss" scoped>
-
+.ls-btn-left {
+    background-color: #0000005d;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 30px 10px;
+    transform: translate(275px, -330px);
+}
+.ls-btn-right {
+    background-color: #0000005d;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 30px 10px;
+    transform: translate(-275px, -330px);
+}
 
 
 </style>
