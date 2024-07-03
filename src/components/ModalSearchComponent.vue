@@ -1,26 +1,77 @@
 <template>
-  <div>
-    <div id="modal" :class="{ 'd-none': !this.store.openModalChange }">
-      <div id="info">
-        <div class=" d-flex justify-content-between flex-column">
-          <h1 class="text-black text-center ">content</h1>
-          <input type="checkbox" class="form-check-input ">
-          <label for=""></label>
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
-          <input type="checkbox" class="form-check-input ">
 
+  <div id="modal" :class="{ 'd-none': !this.store.openModalChange }">
+
+    <h1 class="text-black text-center ">content</h1>
+
+    <div class="d-flex gap-3">
+      <div id="services">
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Parking</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">WiFi</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Kitchen</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Swimming Pool</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Air Conditioning</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Heating</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Dryer</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Gym</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Elevator</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Pet Friendly</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Smoke Detector</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Laptop-friendly Workspace</label>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" class="form-check-input me-2 ">
+          <label for="">Cable TV</label>
         </div>
       </div>
+      <div id="filter"></div>
     </div>
+    <div class="filter-distance">
+      <label for="distance-range">Distanza (km):</label>
+      <input class="w-75" type="range" id="distance-range" min="0" max="50" value="25">
+      <span id="distance-value">25 km</span>
+    </div>
+
+
   </div>
+
+
+
 </template>
 
 <script>
@@ -29,9 +80,28 @@
     name: 'ModalSearchComponent',
     data() {
       return {
-        store
+        store,
+        distanceRange: 50,
       }
     },
+    methods: {
+
+
+      rangeFunction() {
+        const distanceRange = document.getElementById('distance-range');
+        const distanceValue = document.getElementById('distance-value');
+
+        distanceRange.addEventListener('input', function () {
+          const selectedDistance = distanceRange.value;
+          distanceValue.textContent = selectedDistance + ' km';
+        });
+      },
+
+
+    },
+    mounted() {
+      this.rangeFunction()
+    }
 
 
   }
@@ -51,66 +121,29 @@
     background-color: rgb(253, 253, 253);
     position: absolute;
     top: 10px;
-    left: 712px;
     border-radius: 10px;
     border: 1px solid #29C1E6;
     box-shadow: 15px 10px 13px rgba(0, 0, 0, 0.2);
     z-index: 4001;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
 
+    animation: modal-comparsa 0.5s ease-in-out forwards;
 
-
-
-
-    #info {
-      height: 100%;
-      width: 100%;
-
-      color: rgb(0, 0, 0);
-      position: relative;
-      top: 0;
-      animation: modal-comparsa 0.5s ease-in-out forwards;
-
-
-
-
-      //div container for close button
-      #close {
-        height: 35px;
-        width: 35px;
-        margin-left: auto;
-        cursor: pointer;
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        z-index: 2000;
-
-        //close button
-        #closed {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 30px;
-          width: 30px;
-        }
-
-
-
-      }
-    }
   }
 
   @keyframes modal-comparsa {
-    from {
+    0% {
       opacity: 0;
-      transform: scale(0.5);
+      transform: translateY(-100);
       /* Riduce il modale all'inizio dell'animazione */
     }
 
-    to {
+    100% {
       opacity: 1;
-      transform: scale(1);
+      transform: translateY(0);
     }
   }
 
@@ -118,17 +151,29 @@
     #modal {
       overflow-y: auto;
 
-      #info {
-        height: 800px;
-        width: 500px;
-        background-color: black;
-        color: white;
-        overflow: hidden;
-        position: relative;
-        top: 50px;
-        animation: modal-comparsa 0.5s ease-in-out forwards;
-      }
     }
+  }
+
+  #services,
+  #filter,
+  .filter-distance {
+    border: 1px solid #29C1E6;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  #services {
+    width: 35%;
+  }
+
+  #filter {
+    width: 65%;
+  }
+
+  .filter-distance {
+    display: flex;
+    justify-content: space-between;
   }
 
 </style>
