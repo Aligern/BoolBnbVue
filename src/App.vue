@@ -1,10 +1,13 @@
 <template>
-  <HeaderComponent />
-
+  <div id="jumbotron">
+    <HeaderComponent />
+    <h2 class="p-2 text-light">Titolo1</h2>
+    <h2 class="p-2 text-light d-flex justify-content-end">Titolo2</h2>
+    </div>
 
   <div id="modal" class="absolute" >
     <ModalSearchComponent />
-
+    
   </div>
   <main>
 
@@ -31,7 +34,6 @@
     name: 'App',
     components: {
       HeaderComponent,
-
       FooterComponent,
       CardComponent,
       ModalSearchComponent,
@@ -69,11 +71,17 @@
 
   main {
     margin-top: 50px;
-
   }
 
+  #jumbotron {    
+    height: 700px;
+    width: 100%;
+    background-image: url('./assets/img/cover-12.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
- 
   .absolute {
     position: absolute;
     top: 200px;

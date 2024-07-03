@@ -1,28 +1,17 @@
 <template>
-
-    <div>
-        ciao ciao
-        <ul>
-            <li v-for="apartment in apartments" :key="apartment.id">
-                {{ apartment.name }}
-            </li>
-        </ul>
-        <div>ciaociao</div>
-        <ul>
-            <li v-for="service in services" :key="service.id">
-                {{ service.name }}
-            </li>
-        </ul>
+    <div class="mb-3 container ls-glass">
+        <CardComponent />
     </div>
-    
 </template>
 
 <script>
+import CardComponent from '@/components/CardComponent.vue';
 import { store } from '../store';
 import axios from 'axios';
     export default {
         name: 'AppHome',
         components: {
+            CardComponent,
 
         },
         data() {
@@ -66,6 +55,8 @@ import axios from 'axios';
 
 
 <style lang="scss" scoped>
+
+
 
 </style>
 
