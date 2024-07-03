@@ -6,6 +6,7 @@
 
 
 
+
   </div>
 
 
@@ -58,8 +59,6 @@
     border: 1px solid #29C1E6;
     box-shadow: 15px 10px 13px rgba(0, 0, 0, 0.2);
     z-index: 4001;
-    padding: 10px;
-   
 
     animation: modal-comparsa 0.5s ease-in-out forwards;
 
@@ -85,5 +84,4 @@
     }
   }
 
-  
 </style>

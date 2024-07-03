@@ -1,25 +1,88 @@
 <template>
      <div class="container d-flex overflow-y-hidden">
         <!-- card -->
-        <div id="ls-card-container" class="">
-            <RouterLink class="ls-card">
-                <!-- image -->
-                <img src="../assets/img/cover-12.jpg" alt="">
+<div id="ls-card-container" class="">
+        <RouterLink class="ls-card">
+            <!-- image -->
+              <img src="../assets/img/cover-12.jpg" alt="">
                 <!-- content -->
-                <div class="card-content">
+                  <div class="card-content">
                     <h2>card heading</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
-                    <!-- button -->
-                    <a href="#" class="button">
-                        More informations 
-                        <span>
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
-                </div>
-            </RouterLink>
-        </div>
-    </div> 
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
+                        <!-- button -->
+                        <a href="#" class="button">
+                          More informations 
+                          <span>
+                              <i class="fas fa-chevron-right"></i>
+                          </span>
+                        </a>
+                 </div>
+        </RouterLink>
+
+        
+    </div>
+
+    <div id="ls-card-container" class="">
+        <RouterLink class="ls-card">
+            <!-- image -->
+              <img src="../assets/img/cover-12.jpg" alt="">
+                <!-- content -->
+                  <div class="card-content">
+                    <h2>card heading</h2>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
+                        <!-- button -->
+                        <a href="#" class="button">
+                          More informations 
+                          <span>
+                              <i class="fas fa-chevron-right"></i>
+                          </span>
+                        </a>
+                 </div>
+        </RouterLink>
+
+        
+    </div>
+    <div id="ls-card-container" class="">
+        <RouterLink class="ls-card">
+            <!-- image -->
+              <img src="../assets/img/cover-12.jpg" alt="">
+                <!-- content -->
+                  <div class="card-content">
+                    <h2>card heading</h2>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
+                        <!-- button -->
+                        <a href="#" class="button">
+                          More informations 
+                          <span>
+                              <i class="fas fa-chevron-right"></i>
+                          </span>
+                        </a>
+                 </div>
+        </RouterLink>
+
+        
+    </div>
+    <div id="ls-card-container" class="">
+        <RouterLink class="ls-card">
+            <!-- image -->
+              <img src="../assets/img/cover-12.jpg" alt="">
+                <!-- content -->
+                  <div class="card-content">
+                    <h2>card heading</h2>
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae error veritatis corporis aut rerum consequatur soluta est dolores sequi dolorum nisi ullam aspernatur maxime eligendi aliquam, dolore hic illo rem neque. Doloribus, magnam. Iusto tempore distinctio possimus eveniet. Laboriosam, dolorem?</p>
+                        <!-- button -->
+                        <a href="#" class="button">
+                          More informations 
+                          <span>
+                              <i class="fas fa-chevron-right"></i>
+                          </span>
+                        </a>
+                 </div>
+        </RouterLink>
+
+        
+    </div>
+</div> 
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
-    <header class="ls-glass">
+    <header class="ls-header-glass">
         <nav class="d-flex justify-content-between align-items-center ">
-            <div class="p-2 position-relative">
+            <div class="ms-3 p-2 position-relative">
                 <div class="logo-container">
                     <p><i class="fs-2 fa-solid fa-house-flood-water"></i></p>
                 </div>
@@ -21,14 +21,14 @@
 
             <div class="text-center">
                 <p class="p-1">
-                    <a class="btn draw-border" href="#"> <i class="fs-4 fa-regular fa-id-card"></i>Register </a> <br> or <br> <a
-                        class="btn draw-border" href="#"><i class="fs-4 fa-solid fa-unlock-keyhole"></i> Login</a>
+                    <a class="btn draw-border" href="#"> <i class="fa-regular fa-id-card"></i>Register </a> <br> or <br> <a
+                        class="btn draw-border" href="#"><i class="fa-solid fa-unlock-keyhole"></i> Login</a>
                 </p>
             </div>
         </nav>
         <br />
-        <div class="ls-line"></div>
     </header>
+    <div class="ls-line"></div>
 
     <div id="search-bar" class="absolute">
         <div class="d-flex justify-content-center gap-2">
@@ -86,8 +86,7 @@
 
 <style lang="scss" scoped>
     header {
-        margin-top: 10px;
-        min-height: 100px;
+        min-height: 230px;
     }
 
     nav {
@@ -95,7 +94,7 @@
         padding: 10px;
     }
 
-    .ls-glass {
+    .ls-header-glass {
         background-color: hsla(0, 0%, 100%, 0.2);
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
@@ -109,7 +108,6 @@
     }
 
     #search-bar {
-        height: 400px;
 
         transform: translateY(-50%);
         transform: translateX(-50%);
@@ -260,7 +258,7 @@
         border: none;
         cursor: pointer;
         line-height: 1.5;
-        font: 700 17px "Roboto Slab", sans-serif;
+        font: 700 14px "Roboto Slab", sans-serif;
         padding: 1em 2em;
         letter-spacing: 0.05rem;
        }
