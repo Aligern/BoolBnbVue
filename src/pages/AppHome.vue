@@ -1,17 +1,12 @@
 <template>
     <JumbotronComponent />
-
-    <div class="ls-glass container d-flex overflow-y-hidden mt-3">
-        <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment" />
-
-    <div >
+    <div>
         <!-- these are the promoted cards -->
         <div ref="CardScrollContainer" class="ls-glass container d-flex overflow-x-scroll mt-3">
             <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment"/>
         </div>
-        <!-- these are the scroll buttons -->
     </div>
-</div>
+    <!-- these are the scroll buttons -->
 <div class="d-flex justify-content-between">
     <!-- scroll left btn -->
     <button class="ls-btn-left" id="scrollLeftCard" @click="scroll(-600, 'CardScrollContainer')">
