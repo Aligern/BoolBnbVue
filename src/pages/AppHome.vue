@@ -10,18 +10,18 @@
             <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment"/>
         </div>
         <!-- these are the scroll buttons -->
-        <div class="d-flex justify-content-between">
-            <!-- scroll left btn -->
-            <button class="ls-btn-left" id="scrollLeftCard" @click="scroll(-600, 'CardScrollContainer')">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <!-- scroll right btn -->
-            <button class="ls-btn-right" id="scrollRightCard" @click="scroll(600, 'CardScrollContainer')">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-        </div>
-
     </div>
+</div>
+<div class="d-flex justify-content-between">
+    <!-- scroll left btn -->
+    <button class="ls-btn-left" id="scrollLeftCard" @click="scroll(-600, 'CardScrollContainer')">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <!-- scroll right btn -->
+    <button class="ls-btn-right" id="scrollRightCard" @click="scroll(600, 'CardScrollContainer')">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+</div>
 </template>
 
 <script>
