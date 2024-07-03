@@ -23,24 +23,7 @@
         distanceRange: 50,
       }
     },
-    methods: {
-
-
-      rangeFunction() {
-        const distanceRange = document.getElementById('distance-range');
-        const distanceValue = document.getElementById('distance-value');
-
-        distanceRange.addEventListener('input', function () {
-          const selectedDistance = distanceRange.value;
-          distanceValue.textContent = selectedDistance + ' km';
-        });
-      },
-
-
-    },
-    mounted() {
-      this.rangeFunction()
-    }
+   
 
 
   }

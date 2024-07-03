@@ -1,11 +1,14 @@
 <template>
-    
+
+  <HeaderComponent />
+
   <div id="pageFilter" class="container">
 
-    <h1 class="text-black text-center ">content</h1>
+    <h1 class="text-black text-center text-uppercase ">filter</h1>
 
     <div class="d-flex gap-3">
       <div id="services">
+        <h2 class="text-center">Services</h2>
         <div class="d-flex">
           <input type="checkbox" class="form-check-input me-2 ">
           <label for="">Parking</label>
@@ -69,17 +72,50 @@
 
 
   </div>
+
+
 </template>
 
 <script>
-    export default {
-        name: 'Filters',
+  import HeaderComponent from '@/components/HeaderComponent.vue';
+import { store } from '../store';
+  export default {
+    name: 'Filters',
+    components: {
+
+      HeaderComponent,
+     
+    },
+    data() {
+      return {
+        store,
+        distanceRange: 50,
+      }
+    },
+    methods: {
+
+
+      rangeFunction() {
+        const distanceRange = document.getElementById('distance-range');
+        const distanceValue = document.getElementById('distance-value');
+
+        distanceRange.addEventListener('input', function () {
+          const selectedDistance = distanceRange.value;
+          distanceValue.textContent = selectedDistance + ' km';
+        });
+      },
+
+
+    },
+    mounted() {
+      this.rangeFunction()
     }
+  }
 </script>
 
 <style lang="scss" scoped>
 
-#services,
+  #services,
   #filter,
   .filter-distance {
     border: 1px solid #29C1E6;
@@ -99,6 +135,7 @@
   .filter-distance {
     display: flex;
     justify-content: space-between;
+    margin: 15px 0px;
   }
 
 
