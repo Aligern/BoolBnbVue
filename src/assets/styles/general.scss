@@ -16,7 +16,7 @@ $fa-font-path: '../fonts/webfonts';
 
 
 .ls-line {
-    border-top: 1px solid #29C1E6;
+    border-top: 1px solid lightgray;
     width: 90%;
     margin: 0 auto;
 }
@@ -45,4 +45,11 @@ img {
 
 body {
     background: linear-gradient(to top, #9e9e9e7e 0%, rgba(161, 161, 161, 0.023) 63%);
+}
+
+html {
+    scroll-behavior: smooth;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
