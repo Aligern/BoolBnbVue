@@ -1,42 +1,38 @@
 <template>
     <div class="">
         <footer class="p-3 ls-footer-glass">
-          <div class="row">
-            <div class="col-6 col-md-2 mb-3">
+          <div id="footer-top" class="text-center d-flex justify-content-between container">
+            <div>
               <h5>Assistenza</h5>
               <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Policy</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Help</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Home</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Features</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Policy</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Help</a></li>
               </ul>
             </div>
       
-            <div class="col-6 col-md-2 mb-3">
+            <div>
               <h5>Ospitare</h5>
               <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Apri un B&B</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Apri un B&B</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Features</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Pricing</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">FAQs</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">About</a></li>
               </ul>
             </div>
       
-            <div class="col-6 col-md-2 mb-3">
+            <div>
               <h5>Bool'n Bubbles</h5>
               <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About us</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Team</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Our story</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Review</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Contact</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">About us</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Team</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Our story</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links p-0">Review</a></li>
+                <li class="nav-item mb-2"><a href="#" class="footer-links 6p-0">Contact</a></li>
               </ul>
-            </div>
-      
-            <div class="col-md-5 offset-md-1 mb-3">
-              
             </div>
           </div>
       
@@ -64,13 +60,26 @@
 <style lang="scss" scoped>
 
 footer  {
-  background-color: hsla(0, 0%, 100%, 0.2);
+  background-color: hsl(0, 0%, 19%);
         -webkit-backdrop-filter: blur(5px);
         backdrop-filter: blur(5px);
         box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        color: lightgray;
+}
+
+.footer-links {
+    text-decoration: none;
+    color: lightgray;
+}
+
+#footer-top {
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .ls-line {
-    border-top: 1px solid #F8F9FE;
+    border-top: 1px solid lightgray;
 }
+
+
 </style>
