@@ -6,7 +6,7 @@
     <div id="content">
       <h1 class="text-center">ciao</h1>
       <p class="text-center">Io sono il main</p>
-      <CardComponent />
+      <AppHome />
     </div>
     <div class="ls-line"></div>
   </main>
@@ -17,14 +17,15 @@
 import axios from 'axios';
 import { store } from './store';
 import HeaderComponent from './components/HeaderComponent.vue';
-import CardComponent from './components/CardComponent.vue';
+import AppHome from './pages/AppHome.vue';
 import FooterComponent from './components/FooterComponent.vue';
   export default {
     name: 'App',
     components: { 
       HeaderComponent,
-      FooterComponent,
-      CardComponent
+      AppHome,
+      FooterComponent
+      
       },
       data() {
         return {
