@@ -1,9 +1,11 @@
 <template>
 <div id="jumbotron">
     <HeaderComponent />
-    <div class="p-2">
-        <h1 id="jumbo-title-1" class="text-white">Your next dreamhouse</h1>
-        <h2 id="jumbo-title-2" class="text-black text-end ">..where to dream</h2>
+    <div class=" mr-container">
+        <div id="jumbo-title-1" class="text-white">Choose your home...</div>
+    </div>
+    <div class="mr-container">
+        <div id="jumbo-title-2" class="text-white text-end ">...Choose your dream</div>
     </div>
 </div>
 </template>
@@ -32,15 +34,37 @@ import HeaderComponent from './HeaderComponent.vue';
 
 
 #jumbotron {    
-    height: 100vh;
+    height: 70vh;
     width: 100%;
-    background-image: url('../assets/img/photo-1506477331477-33d5d8b3dc85.jpg');
+    background-image: url('../assets/img/prova_jumbotron_2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    #jumbo-title-2 {
-        transform: translate(0, 200px);
+    position: relative;
+    .mr-container{
+        width: 900px;
+        margin: 0 auto;
+        #jumbo-title-1 {
+            position: absolute;
+            top: 55%;
+            left: 20%;
+            font-size: 5rem;
+            font-weight: 100;
+            font-style: italic;
+        }
+        #jumbo-title-2 {
+            position: absolute;
+            top: 75%;
+            right: 20%;
+            font-size: 5rem;
+            font-weight: 100;
+            font-style: italic;
+        }
     }
+
+    // #jumbo-title-2 {
+    //     transform: translate(0, 200px);
+    // }
+    
 }
 </style>

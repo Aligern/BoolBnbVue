@@ -63,8 +63,20 @@
                             </div>
                         </div>
                     </div>
-                    <div id="apartment-reservation">
-                        <h4>Reserve now</h4>
+                    <div id="apartment-reservation" class="d-flex flex-column justify-content-between">
+                        <div>
+                            <h4>Information</h4>
+                            <ul class="p-2">
+                                <li><i class="fa-solid fa-home"></i> Rooms: {{ apartments.rooms }}</li>
+                                <li><i class="fa-solid fa-bath"></i> Bathrooms: {{ apartments.bathrooms }}</li>
+                                <li><i class="fa-solid fa-bed"></i> Beds: {{ apartments.beds }}</li>
+                                <li><i class="fa-solid fa-ruler"></i> Square Meters: {{ apartments.square_meters }}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Address:</h4>
+                            <p>{{ apartments.address }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,7 +218,7 @@ import FooterComponent from '@/components/FooterComponent.vue';
 }
 
 .ls-line-right {
-    border-right: 2px solid #29C1E6;
+    // border-right: 2px solid #29C1E6;
     border-radius: 11px;
     box-shadow:15px 10px 13px rgba(0, 0, 0, 0.2);
 }
