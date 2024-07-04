@@ -31,11 +31,11 @@
     <div class="ls-line"></div>
 
     <div id="search-bar" class="absolute">
-        <div class="d-flex justify-content-center gap-2">
-            <button class="btn draw-border w-50"
-                @click="this.store.openModalChange = !this.store.openModalChange">Search</button>
-
-        </div>
+      
+          <input type="search" class="form-control w-75 me-3" placeholder="Search"  v-model.trim="store.searchCity">
+      
+            <RouterLink :to="{ name: 'filters' }"><button class="btn draw-border">Advanced</button></RouterLink>
+    
        
     </div>
     
@@ -108,6 +108,7 @@
     }
 
     #search-bar {
+        display: flex;
 
         transform: translateY(-50%);
         transform: translateX(-50%);
@@ -124,7 +125,7 @@
 
     .absolute {
         position: absolute;
-        top: 155px;
+        top: 130px;
         left: 50%;
     }
 
