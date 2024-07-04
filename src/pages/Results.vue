@@ -1,5 +1,6 @@
 <template>
     <HeaderComponent/>
+    <SearchBarComponent/>
     <div class="container m-0-auto mt-3">
         <div class="pb-3">
                     <RouterLink :to="{ name: 'home' }">
@@ -30,6 +31,7 @@
 import axios from 'axios';
 import { store } from '../store';
 import HeaderComponent from '../components/HeaderComponent.vue';
+import SearchBarComponent from '@/components/SearchBarComponent.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import CardComponent from '../components/CardComponent.vue';
     export default {
@@ -38,6 +40,7 @@ import CardComponent from '../components/CardComponent.vue';
             HeaderComponent,
             FooterComponent,
             CardComponent,
+            SearchBarComponent
             },
             data() {
                 return {
