@@ -4,7 +4,7 @@
   
     <div>
       <!-- these are the promoted cards -->
-      <div ref="CardScrollContainer" class="ls-glass mx-5 d-flex overflow-x-scroll">
+      <div ref="CardScrollContainer" class="ls-glass container d-flex overflow-x-scroll">
         <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment" />
       </div>
     </div>
