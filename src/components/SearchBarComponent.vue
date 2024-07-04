@@ -30,17 +30,14 @@ export default {
       apiBaseUrl: 'https://api.tomtom.com/search/2/search/'
     };
   },
-  mounted() {
-    //   this.fetchApiKey(); // Chiamata al metodo per recuperare la chiave API al montaggio del componente
-    window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
-  },
+  
   methods: {
     //funzione per l'effetto scroll
     handleScroll() {
       const scrollPosition = window.pageYOffset;
       const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
-      const modale = document.querySelector('#modal'); // Seleziona la barra di ricerca
-      if (scrollPosition > 129) {
+    
+      if (scrollPosition > 99) {
         searchBar.style.width = '20%';
         searchBar.className = 'fixed';
       } else {
@@ -134,10 +131,10 @@ export default {
 
     }
 
-
   },
   mounted() {
     store.methods.getAllApartments();
+    window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
   },
 };
 </script>
