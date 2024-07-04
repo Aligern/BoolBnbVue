@@ -8,7 +8,6 @@
         </RouterLink>
     </div>
 
-
     <div id="promoted" class="p-3 container-fluid">
         <h2 class="ms-5">Your Results</h2>
         <div ref="CardScrollContainer" class="ls-glass mx-5 d-flex overflow-x-scroll">
@@ -35,6 +34,7 @@ import HeaderComponent from '../components/HeaderComponent.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import CardComponent from '../components/CardComponent.vue';
+
     export default {
         name: 'Results',
         components: { 
@@ -46,23 +46,35 @@ import CardComponent from '../components/CardComponent.vue';
             data() {
                 return {
                     store,
+                    apartments: [],
                 }
             },
             methods: {
-
             scroll(distance, id) {
             //console.log('entrato'),
             //console.log(distance),
             //console.log(id),
+            console.log(this.apartments,'ciaooo'),
             this.$refs[id].scrollBy({
                 left: distance,
                 behavior: 'smooth',
             })
         }
-
         },
         mounted() {
-            store.methods.getAllApartments();
+            //store.methods.getAllApartments();
+            this.checkResults;
+        },
+        computed: {
+            checkResults() {
+                console.log('ciao');
+                if (store.pippo.results != null) {
+                    console.log('ciao', this.apartments);
+                    return this.apartments = store.pippo.results;
+                } else {
+                    return false
+                }
+            }
         }
     }
 </script>
