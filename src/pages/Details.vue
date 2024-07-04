@@ -6,7 +6,6 @@
                     <RouterLink :to="{ name: 'home' }">
                         <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
                     </RouterLink>
-                
             </div>
 
             <div id="apartment-container" >
