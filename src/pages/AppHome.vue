@@ -101,7 +101,7 @@
     padding: 30px 10px;
     position: absolute;
     top: 50%;
-    transform: translateY(-228%);
+    transform: translateY(-250%);
     z-index: 1000;
   }
 
@@ -125,6 +125,4 @@
     align-items: center;
     margin-top: 20px;
   }
-
-
 </style>
