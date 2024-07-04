@@ -1,6 +1,10 @@
 <template>
   <div id="search-bar" class="absolute">
-    <input type="text" class="form-control w-75" placeholder="Search" v-model="query" @input="handleInput">
+    <div class="w-75 d-flex">
+      <input type="text" class="form-control " placeholder="Search" v-model="query" @input="handleInput">
+      <button  class="btn btn-dark ms-2"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
     <div id="resultsContainer" v-if="results.length > 0">
       <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)">
         {{ result.address.freeformAddress }}
