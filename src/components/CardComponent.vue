@@ -46,7 +46,6 @@ import { store } from '../store';
 </script>
 
 <style lang="scss" scoped>
-
 #ls-card-container {
   padding: 20px;
   display: flex;
@@ -54,22 +53,24 @@ import { store } from '../store';
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif;
+}
 
-  .ls-card {
+.ls-card {
   position: relative;
   width: 24rem;
-  height: 36rem;
+  height: 15rem;
   border-radius: 15px;
   overflow: hidden;
   cursor: pointer;
   color: rgb(255, 255, 255);
   box-shadow: 0 10px 10px 3px rgba(0, 0, 0, 0.2);
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   img {
     position: absolute;
-    object-fit: cover;
     width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
     opacity: 0.9;
@@ -121,15 +122,9 @@ import { store } from '../store';
     border-radius: 15px;
     box-shadow: 10px 10px 13px rgba(0, 0, 0, 0.2);
   }
-
 }
 
 .material-symbols-outlined {
   vertical-align: middle;
 }
-
-
-}
-
-
 </style>
