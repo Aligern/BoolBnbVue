@@ -19,7 +19,8 @@ export const store = reactive({
                 const pluto = store.methods.filterApartments();
                 // console.log('provaprova:', store.apartments);
                 store.filteredApart = pluto;
-                console.log('pluto:', pluto);
+                // console.log('pluto:', pluto);
+                // console.log('pippo nello sotre:', pippo);
                 return  pluto;
             }).catch(error => {
                 console.error('An error has occurred:', error);
@@ -40,7 +41,7 @@ export const store = reactive({
                 };
             });
 
-            console.log('Filtered apartments:', filteredApartments);
+            // console.log('Filtered apartments:', filteredApartments);
             return filteredApartments;
         },
     }

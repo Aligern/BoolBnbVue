@@ -1,12 +1,14 @@
 <template>
   <div id="search-bar" class="absolute">
     <div class="w-75 d-flex">
-      <input type="text" class="form-control " placeholder="Search" v-model="query" @input="handleInput">
-      <button  class="btn btn-dark ms-2"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <input type="text" class="form-control " placeholder="Search" v-model="query" @keyup.enter = "$emit('getPippo')" @input="handleInput">
+      <router-link :to="{ name: 'results' }" class="btn btn-dark ms-2">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </router-link>
     </div>
 
     <div id="resultsContainer" v-if="results.length > 0">
-      <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)">
+      <div v-for="(result, index) in results" :key="index" @click="selectAddress(result), $emit('getPippo')">
         {{ result.address.freeformAddress }}
       </div>
     </div>
@@ -50,7 +52,7 @@ export default {
 
     async fetchAddresses(query) {
       const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
-
+      
       try {
         const response = await axios.get(url);
         if (!response.data.results) {
@@ -60,7 +62,7 @@ export default {
         // console.log('Risultati posizioni:', response.data.results[0].position);
         const fixedPoint = response.data.results[0].position;
         // console.log('fixedPoint:', fixedPoint);
-        console.log('pippo.filteredApart:', store.filteredApart)
+        // console.log('pippo.filteredApart:', store.filteredApart)
         const pippo = this.makeCircleDistance(fixedPoint, store.filteredApart, 20);
         this.researchResults = pippo;
         store.pippo = pippo;
@@ -91,6 +93,7 @@ export default {
     selectAddress(result) {
       this.query = result.address.freeformAddress;
       this.results = [];
+      this.$router.push({ name: 'results' });
     },
 
     //conversione da gradi a radianti

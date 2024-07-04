@@ -1,6 +1,6 @@
 <template>
     <HeaderComponent/>
-    <SearchBarComponent/>
+    <SearchBarComponent @getPippo = "getPippo"/>
         <!-- this is the home button -->
     <div class="pb-3">
         <RouterLink :to="{ name: 'home' }">
@@ -11,7 +11,7 @@
     <div id="promoted" class="p-3 container-fluid">
         <h2 class="ms-5">Your Results</h2>
         <div ref="CardScrollContainer" class="ls-glass mx-5 d-flex overflow-x-scroll">
-            <CardComponent v-for="apartment in apartments" :key="apartment.id" :item="apartment" />
+            <CardComponent v-for="apartment in pippo" :key="apartment.result.id" :item="apartment.result" />
         </div>
 <!-- these are the scroll buttons -->
         <div class="d-flex justify-content-between position-relative">
@@ -47,35 +47,44 @@ import CardComponent from '../components/CardComponent.vue';
                 return {
                     store,
                     apartments: [],
+                    pippo: [],
                 }
             },
             methods: {
-            scroll(distance, id) {
-            //console.log('entrato'),
-            //console.log(distance),
-            //console.log(id),
-            console.log(this.apartments,'ciaooo'),
-            this.$refs[id].scrollBy({
-                left: distance,
-                behavior: 'smooth',
-            })
-        }
-        },
-        mounted() {
-            //store.methods.getAllApartments();
-            this.checkResults;
-        },
-        computed: {
-            checkResults() {
-                console.log('ciao');
-                if (store.pippo.results != null) {
-                    console.log('ciao', this.apartments);
-                    return this.apartments = store.pippo.results;
-                } else {
-                    return false
+                scroll(distance, id) {
+                    //console.log('entrato'),
+                    //console.log(distance),
+                    //console.log(id),
+                    console.log(this.apartments,'ciaooo'),
+                    this.$refs[id].scrollBy({
+                        left: distance,
+                        behavior: 'smooth',
+                    })
+                },
+                getPippo(){
+                    this.pippo = [];
+                    this.pippo = store.pippo;
                 }
-            }
-        }
+            },
+        mounted() {
+            this.getPippo()
+        },
+        
+        // mounted() {
+        //     //store.methods.getAllApartments();
+        //     this.checkResults;
+        // },
+        // computed: {
+        //     checkResults() {
+        //         console.log('ciao:', );
+        //         if (store.pippo.results != null) {
+        //             console.log('ciao', this.apartments);
+        //             return this.apartments = store.pippo.results;
+        //         } else {
+        //             return false
+        //         }
+        //     }
+        // }
     }
 </script>
 

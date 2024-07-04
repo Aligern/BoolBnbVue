@@ -2,7 +2,10 @@
 
 <!-- card -->
 <div id="ls-card-container" class="">
-<RouterLink class="ls-card">
+<!-- <RouterLink  class="ls-card"> -->
+  <div class="ls-card">
+
+  
     <!-- image -->
       <img :src="store.imgBasePath + item.image_cover" :alt="item.name">
         <!-- content -->
@@ -19,7 +22,8 @@
                   </span>
                 </a>
          </div>
-</RouterLink>       
+<!-- </RouterLink>        -->
+</div>
 </div>
 </template>
 
