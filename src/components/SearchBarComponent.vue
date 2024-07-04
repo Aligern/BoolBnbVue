@@ -63,15 +63,16 @@ export default {
         if (!response.data.results) {
           throw new Error('Nessun risultato trovato.');
         }
-        console.log('Risultati ricevuti:', response.data.results);
-        console.log('Risultati posizioni:', response.data.results[0].position);
+        // console.log('Risultati ricevuti:', response.data.results);
+        // console.log('Risultati posizioni:', response.data.results[0].position);
         const fixedPoint = response.data.results[0].position;
-        console.log('fixedPoint:', fixedPoint);
+        // console.log('fixedPoint:', fixedPoint);
         console.log('pippo.filteredApart:', store.filteredApart)
         const pippo = this.makeCircleDistance(fixedPoint, store.filteredApart, 20);
         this.researchResults = pippo;
+        store.pippo = pippo;
 
-        console.log('pippo:', pippo);
+        console.log('pippo:', store.pippo);
         return response.data.results;
 
       } catch (error) {

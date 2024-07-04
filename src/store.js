@@ -8,6 +8,7 @@ export const store = reactive({
     apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
     apartments: [],
     filteredApart: [],
+    pippo: [],
 
 
     methods: {
@@ -15,9 +16,10 @@ export const store = reactive({
             axios.get(store.apiBaseUrl + '/apartments').then((res) => {
                 console.log('Response data:', res.data);
                 store.apartments = res.data.results;
-                const pluto = this.filterApartments();
-                //  console.log(this.apartments);
+                const pluto = store.methods.filterApartments();
+                // console.log('provaprova:', store.apartments);
                 store.filteredApart = pluto;
+                console.log('pluto:', pluto);
                 return  pluto;
             }).catch(error => {
                 console.error('An error has occurred:', error);
@@ -25,8 +27,8 @@ export const store = reactive({
             });
         },
         filterApartments() {
-            // console.log('Original apartments:', this.apartments);
-            const filteredApartments = this.apartments.map(apartment => {
+            console.log('Original apartments:', store.apartments);
+            const filteredApartments = store.apartments.map(apartment => {
 
                 const lat = apartment.latitude || (apartment.location && apartment.location.latitude);
                 const lon = apartment.longitude || (apartment.location && apartment.location.longitude);
@@ -38,7 +40,7 @@ export const store = reactive({
                 };
             });
 
-             console.log('Filtered apartments:', filteredApartments);
+            console.log('Filtered apartments:', filteredApartments);
             return filteredApartments;
         },
     }
