@@ -46,20 +46,9 @@ import CardComponent from '../components/CardComponent.vue';
             data() {
                 return {
                     store,
-                    apartments: [],
                 }
             },
             methods: {
-            getAllApartments() {
-                axios.get(store.apiBaseUrl + '/apartments').then((res) => {
-                    console.log('Response data:', res.data);
-                    this.apartments = res.data.results;
-                    // console.log(this.apartments);
-                }).catch(error => {
-                    console.error('An error has occurred:', error);
-                    console.log('Response data:', error.response.data);
-                });
-            },
 
             scroll(distance, id) {
             //console.log('entrato'),
@@ -73,7 +62,7 @@ import CardComponent from '../components/CardComponent.vue';
 
         },
         mounted() {
-            this.getAllApartments();
+            store.methods.getAllApartments();
         }
     }
 </script>
