@@ -29,7 +29,7 @@ const router = createRouter({
       component: Filters, 
     },
     {
-      path: "/Results",
+      path: "/results",
       name: "results",
       component: Results,
     }
