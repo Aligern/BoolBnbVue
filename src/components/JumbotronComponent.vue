@@ -32,9 +32,9 @@ import HeaderComponent from './HeaderComponent.vue';
 
 
 #jumbotron {    
-    height: 500px;
+    height: 100vh;
     width: 100%;
-    background-image: url('../assets/img/cover-12.jpg');
+    background-image: url('../assets/img/2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
