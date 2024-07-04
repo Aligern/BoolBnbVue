@@ -175,7 +175,7 @@ export default {
 
 .absolute {
   position: absolute;
-  top: 100px;
+  top: 25px;
   left: 50%;
 }
 

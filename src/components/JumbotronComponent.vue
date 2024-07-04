@@ -7,6 +7,7 @@
     <div class="mr-container">
         <div id="jumbo-title-2" class="text-white text-end ">...Choose your dream</div>
     </div>
+    <div class="gradient"></div>
 </div>
 </template>
 
@@ -36,28 +37,29 @@ import HeaderComponent from './HeaderComponent.vue';
 #jumbotron {    
     height: 70vh;
     width: 100%;
-    background-image: url('../assets/img/prova_jumbotron_2.jpg');
+    background-image: url('../assets/img/prova_jumbotron_4.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     position: relative;
     .mr-container{
         width: 900px;
         margin: 0 auto;
         #jumbo-title-1 {
             position: absolute;
-            top: 55%;
+            top: 59%;
             left: 20%;
             font-size: 5rem;
-            font-weight: 100;
+            font-weight: 200;
             font-style: italic;
         }
         #jumbo-title-2 {
             position: absolute;
-            top: 75%;
+            top: 69%;
             right: 20%;
             font-size: 5rem;
-            font-weight: 100;
+            font-weight: 200;
             font-style: italic;
         }
     }
