@@ -3,6 +3,7 @@ import AppHome from "./pages/AppHome.vue";
 import Details from "./pages/Details.vue";
 import NotFound from "./pages/NotFound.vue";
 import Filters from "./pages/Filters.vue";
+import Results from "./pages/Results.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,8 +28,11 @@ const router = createRouter({
       name: "filters",
       component: Filters, 
     },
-    
-   
+    {
+      path: "/Results",
+      name: "results",
+      component: Results,
+    }
   ],
 });
 
