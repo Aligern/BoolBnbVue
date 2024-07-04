@@ -119,6 +119,7 @@
       border-radius: 5px;
       padding: 10px;
       border-bottom: 0p;
+      cursor: pointer;
 
     }
 
