@@ -1,9 +1,6 @@
 <template>
 
-<div id="modal" class="absolute" >
-  <ModalSearchComponent />
-    
-  </div>
+
   <main>
     <router-view></router-view>
     <div class="ls-line"></div>
@@ -19,7 +16,6 @@
   import HeaderComponent from './components/HeaderComponent.vue';
   import CardComponent from './components/CardComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
-  import ModalSearchComponent from './components/ModalSearchComponent.vue';
   import JumbotronComponent from './components/JumbotronComponent.vue';
 
   export default {
@@ -28,7 +24,6 @@
       HeaderComponent,
       FooterComponent,
       CardComponent,
-      ModalSearchComponent,
       JumbotronComponent
     },
     data() {

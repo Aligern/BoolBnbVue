@@ -30,20 +30,14 @@
     </header>
     <div class="ls-line"></div>
 
-    <div id="search-bar" class="absolute">
-      
-          <input type="search" class="form-control w-75 me-3" placeholder="Search"  v-model.trim="store.searchCity">
-      
-            <RouterLink :to="{ name: 'filters' }"><button class="btn draw-border">Advanced</button></RouterLink>
+  
     
-       
-    </div>
+    <!-- <RouterLink :to="{ name: 'filters' }"><button class="btn draw-border">Advanced</button></RouterLink> -->
     
-
 </template>
 
 <script>
-    import ModalSearchComponent from './ModalSearchComponent.vue';
+    import ModalSearchComponent from './CanvasComponent.vue';
     import { store } from '../store';
 
 
@@ -56,31 +50,8 @@
                 store,
             };
         },
-        mounted() {
-            window.addEventListener('scroll', this.handleScroll);
-        },
-        methods: {
-            handleScroll() {
-                const scrollPosition = window.pageYOffset;
-                const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
-                const modale = document.querySelector('#modal'); // Seleziona la barra di ricerca
-
-
-
-                if (scrollPosition > 152) {
-
-                    searchBar.style.width = '20%';
-                    searchBar.className = 'fixed';
-                   
-
-                } else {
-                    searchBar.style.width = '50%';
-                    searchBar.className = 'absolute';
-                    
-                }
-
-            }
-        }
+       
+       
     };
 </script>
 
@@ -107,35 +78,7 @@
         text-decoration: none;
     }
 
-    #search-bar {
-        display: flex;
-
-        transform: translateY(-50%);
-        transform: translateX(-50%);
-        width: 50%;
-
-        transition: width 1.2s ease;
-        //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-
-        border-radius: 25px;
-
-       
-
-    }
-
-    .absolute {
-        position: absolute;
-        top: 130px;
-        left: 50%;
-    }
-
-    .fixed {
-        position: fixed;
-        top: 3px;
-        left: 50%;
-        z-index: 2000;
-    }
-
+    
 
     select {
         border-radius: 25px;
