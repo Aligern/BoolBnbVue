@@ -1,17 +1,27 @@
 <template>
-  <div id="search-bar" class="absolute">
+<div id="search-bar" class="absolute">
+
+<!-- search bar -->
     <div class="w-75 d-flex">
       <input type="text" class="form-control " placeholder="Search" v-model="query" @input="handleInput">
-      <button  class="btn btn-dark ms-2"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+      <!-- search button -->
+      <RouterLink :to="{ name: 'results' }">
+        <div  class="btn btn-dark ms-2">
+              <i class="fa-solid fa-magnifying-glass">
+              </i>
+        </div>
+      </RouterLink>
+
     </div>
 
-    <div id="resultsContainer" v-if="results.length > 0">
-      <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)">
-        {{ result.address.freeformAddress }}
-      </div>
+<!-- results -->
+<div id="resultsContainer" v-if="results.length > 0">
+    <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)">
+      {{ result.address.freeformAddress }}
     </div>
   </div>
-
+</div>
 </template>
 
 <script>
@@ -40,30 +50,17 @@ export default {
       const scrollPosition = window.pageYOffset;
       const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
       const modale = document.querySelector('#modal'); // Seleziona la barra di ricerca
-
-
-
       if (scrollPosition > 129) {
-
         searchBar.style.width = '20%';
         searchBar.className = 'fixed';
-
-
       } else {
         searchBar.style.width = '50%';
         searchBar.className = 'absolute';
-
-
       }
-
-
     },
-
     //funzione per la chiamata della chiave API
-
     async fetchAddresses(query) {
       const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
-
       try {
         const response = await axios.get(url);
         if (!response.data.results) {
@@ -95,7 +92,6 @@ export default {
       this.fetchAddresses(query)
         .then(results => {
           this.results = results;
-
         })
         .catch(error => {
           console.error('Errore durante la gestione dell\'input:', error);
@@ -105,12 +101,10 @@ export default {
       this.query = result.address.freeformAddress;
       this.results = [];
     },
-
     //conversione da gradi a radianti
     conversiontoradians(degrees) {
       return degrees * Math.PI / 180;
     },
-
     //calcolo distanza tra due punto con cordinate gps
     distanceBetweenTwoPoints(fixedPoint, movinPpoint) {
       //mi salvo le cordinate in modo separato del punto fisso 
@@ -141,17 +135,13 @@ export default {
         }
       }
       return result;
-
-    }
-
-
+    },
   },
   mounted() {
     store.methods.getAllApartments();
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 #search-bar {
@@ -178,10 +168,7 @@ export default {
     cursor: pointer;
 
   }
-
 }
-
-
 
 .absolute {
   position: absolute;
