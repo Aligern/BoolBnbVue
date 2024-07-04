@@ -129,7 +129,7 @@
 
   .absolute {
     position: absolute;
-    top: 130px;
+    top: 100px;
     left: 50%;
   }
 
