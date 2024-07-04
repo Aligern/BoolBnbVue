@@ -3,7 +3,7 @@
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
                 <div class="logo-container"> 
-                    <img src="../assets/img/B-removebg-preview.png" alt="">
+                    <img class="img-fluid h-100 w-50" src="../assets/img/B-removebg-preview.png" alt="">
                 </div>
 
                     <!-- title center -->

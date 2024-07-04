@@ -37,22 +37,7 @@ import CanvasComponent from './components/CanvasComponent.vue';
       window.addEventListener('scroll', this.handleScroll);
     },
     methods: {
-      handleScroll() {
-        const scrollPosition = window.pageYOffset;
-        const modale = document.querySelector('#modal'); // Seleziona la barra di ricerca
-
-
-
-        if (scrollPosition > 156) {
-
-          modale.className = 'fixed';
-
-        } else {
-          modale.className = 'absolute';
-
-        }
-
-      }
+    
     }
   }
 </script>
