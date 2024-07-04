@@ -9,7 +9,7 @@
                     <!-- title center -->
                 <div class="text-center title">
                     <h1 class="pb-2">
-                        Dreamhouse
+                        Bool'n'Dreams
                     </h1>
                 </div>
                 
