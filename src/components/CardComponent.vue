@@ -57,7 +57,7 @@ font-family: 'Roboto', sans-serif;
 
 .ls-card {
 position: relative;
-width: 32rem;
+width: 24rem;
 height: 20rem;
 border-radius: 15px;
 overflow: hidden;

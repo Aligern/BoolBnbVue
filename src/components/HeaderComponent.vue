@@ -13,13 +13,7 @@
                     </h1>
                 </div>
 
-                <!-- buttons -->
-                <div class="text-center">
-                    <p class="">
-                        <a class="btn" href="#"> <i class="fa-regular fa-id-card"></i>Register </a> or  <a
-                            class="btn" href="#"><i class="fa-solid fa-unlock-keyhole"></i> Login</a>
-                    </p>
-                </div>
+               
         </nav>
     </header>
 </template>

@@ -1,6 +1,6 @@
 <template>
 
-
+<CanvasComponent/>
   <main>
     <router-view></router-view>
     <div class="ls-line"></div>
@@ -17,6 +17,7 @@
   import CardComponent from './components/CardComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
   import JumbotronComponent from './components/JumbotronComponent.vue';
+import CanvasComponent from './components/CanvasComponent.vue';
 
   export default {
     name: 'App',
@@ -24,7 +25,8 @@
       HeaderComponent,
       FooterComponent,
       CardComponent,
-      JumbotronComponent
+      JumbotronComponent,
+      CanvasComponent
     },
     data() {
       return {
