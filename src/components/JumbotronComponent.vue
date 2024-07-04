@@ -3,7 +3,7 @@
     <HeaderComponent />
     <div class="p-2">
         <h1 id="jumbo-title-1" class="text-white">Your next dreamhouse</h1>
-        <h2 id="jumbo-title-2" class="text-white text-end">..where to dream</h2>
+        <h2 id="jumbo-title-2" class="text-black text-end ">..where to dream</h2>
     </div>
 </div>
 </template>
