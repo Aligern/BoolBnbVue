@@ -10,9 +10,9 @@
 
             <div id="apartment-container" >
                 <!-- apartment image -->
-                <h1>Your next dreamhouse</h1>
+                <h1>Your next dreamhouse {{ apartments.name }}</h1>
                 <div id="apartment-image">
-                    <img src="../assets/img/cover-12.jpg" alt="">
+                   <!-- <img src="../assets/img/7.jpg" :alt="apartments.name"> -->
                 </div>
 
                 <!-- left side -->
@@ -39,7 +39,7 @@
                     <!-- apartment description -->
                     <div id="apartment-description" class="">
                         <h3>Apartment Description</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id ratione dolore rerum deleniti, sit ab ut possimus nulla corrupti aliquid suscipit eum libero. Iusto distinctio ex sit maxime inventore deleniti iste ullam. Dolorem earum quos iusto sapiente dolor, reiciendis veritatis voluptatibus natus, quo, optio soluta non fugiat! Qui, reprehenderit molestias!</p>
+                        <p>{{ apartments.description }}</p>
                     </div>
                 </div>
 
@@ -72,7 +72,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { store } from '../store';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
@@ -84,9 +83,16 @@ import FooterComponent from '@/components/FooterComponent.vue';
             },
             data() {
                 return {
-                    store
+                    store, 
+                    apartments: [],
                 }
             },
+            created() {
+                const slug = this.$route.query.slug;
+                if (slug) {
+                    this.apartments = this.store.apartments.find(apartment => apartment.slug === slug);
+                }
+            }
     }
 </script>
 

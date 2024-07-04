@@ -15,12 +15,12 @@
                 {{item.description}}
               </p>
                 <!-- button -->
-                <a :href="item.slug" class="button">
-                  More informations 
+                <router-link :to="{ name: 'details', query: { slug: item.slug } }" class="button">
+                  More informations
                   <span>
-                      <i class="fas fa-chevron-right"></i>
+                    <i class="fas fa-chevron-right"></i>
                   </span>
-                </a>
+                </router-link>
          </div>
 <!-- </RouterLink>        -->
 </div>
