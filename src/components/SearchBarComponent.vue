@@ -40,7 +40,7 @@
 
 
 
-        if (scrollPosition > 129) {
+        if (scrollPosition > 99) {
 
           searchBar.style.width = '20%';
           searchBar.className = 'fixed';
