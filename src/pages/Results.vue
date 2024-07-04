@@ -1,6 +1,6 @@
 <template>
     <HeaderComponent/>
-    <SearchBarComponent @getPippo = "getPippo"/>
+    <SearchBarComponent @getPippo="getPippo"/>
         <!-- this is the home button -->
     <div class="pb-3">
         <RouterLink :to="{ name: 'home' }">
@@ -8,21 +8,10 @@
         </RouterLink>
     </div>
 
-    <div id="promoted" class="p-3 container-fluid">
-        <h2 class="ms-5">Your Results</h2>
-        <div ref="CardScrollContainer" class="ls-glass mx-5 d-flex overflow-x-scroll">
-            <CardComponent v-for="apartment in pippo" :key="apartment.result.id" :item="apartment.result" />
-        </div>
-<!-- these are the scroll buttons -->
-        <div class="d-flex justify-content-between position-relative">
-<!-- scroll left btn -->
-            <button class="ls-btn-left" id="scrollLeftCard" @click="scroll(-440, 'CardScrollContainer')">
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-<!-- scroll right btn -->
-            <button class="ls-btn-right" id="scrollRightCard" @click="scroll(440, 'CardScrollContainer')">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
+    <div class="container justify-content-between mb-5">
+        <h2 class="">Your Results</h2>
+        <div class="d-flex flex-wrap">
+            <CardComponent class="" v-for="apartment in pippo" :key="apartment.result.id" :item="apartment.result" />
         </div>
     </div>
 </template>
@@ -89,6 +78,8 @@ import CardComponent from '../components/CardComponent.vue';
 </script>
 
 <style lang="scss" scoped>
+
+
 .ls-btn-left, .ls-btn-right {
     background: hsla(0, 0%, 0%, 0.2);
     border: none;
