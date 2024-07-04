@@ -12,7 +12,7 @@
                 <!-- apartment image -->
                 <h1>Your next dreamhouse {{ apartments.name }}</h1>
                 <div id="apartment-image">
-                   <!-- <img src="../assets/img/7.jpg" :alt="apartments.name"> -->
+                   <img :src=" store.imgBasePath + apartments.image_cover" :alt="apartments.name">
                 </div>
 
                 <!-- left side -->
