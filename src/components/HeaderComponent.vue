@@ -2,19 +2,19 @@
     <header class="ls-header-glass">
         <nav class="d-flex justify-content-between align-items-center ">
             <div class="ms-3 p-2 position-relative">
-                <div class="logo-container">
-                    <p><i class="fs-5 fa-solid fa-house-flood-water"></i></p>
-                </div>
-                <div class="bubbles">
+                <!-- <div class="logo-container"> -->
+                    <img src="../assets/img/B-removebg-preview.png" alt="">
+                <!-- </div> -->
+                 <!-- <div class="bubbles">
                     <div></div>
-                </div>
-            </div>
+                </div>  -->
+            </div> 
 
             <div class="text-center">
                 <h1>
-                    Bool
+                    <!-- Bool
                     'n'
-                    Bubbles
+                    Bubbles -->
                 </h1>
                 <br />
             </div>
@@ -141,19 +141,19 @@
         height: 50px;
     }
 
-    .logo-container {
-        position: absolute;
-        top: 62%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
+    // .logo-container {
+    //     position: absolute;
+    //     top: 62%;
+    //     left: 50%;
+    //     transform: translate(-50%, -50%);
+    //     z-index: 1000;
 
-        i {
-            background: linear-gradient(#fbdb4f, #FA8A42);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-    }
+    //     i {
+    //         background: linear-gradient(#fbdb4f, #FA8A42);
+    //         -webkit-background-clip: text;
+    //         color: transparent;
+    //     }
+    // }
 
     .bubbles {
         position: relative;
@@ -267,6 +267,10 @@
         outline: 2px dotted #29C1E6;
        }
        
+        header img {
+         width: 250px;
+        }
+
        
 
 
