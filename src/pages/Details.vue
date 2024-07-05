@@ -110,6 +110,8 @@ import FooterComponent from '@/components/FooterComponent.vue';
 
 <style lang="scss" scoped>
 
+
+
 #host-info-left {
     padding: 30px;
     min-width: 50%;

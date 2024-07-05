@@ -43,7 +43,9 @@ import CanvasComponent from './components/CanvasComponent.vue';
 </script>
 
 <style lang="scss" scoped>
-
+main {
+  min-height: 70vh;
+}
 
 
   .absolute {
