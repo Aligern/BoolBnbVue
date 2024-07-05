@@ -3,28 +3,29 @@
     <div class="container m-0-auto mt-3">
             <!-- button go back -->
             <div class="pb-3">
+                    <!-- this is the home button -->
                     <RouterLink :to="{ name: 'home' }">
                         <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
                     </RouterLink>
             </div>
-
             <div id="apartment-container" >
                 <!-- apartment image -->
-                <h1>Your next dreamhouse {{ apartments.name }}</h1>
+                <h1>Wellcome to {{ apartments.name }}</h1>
                 <div id="apartment-image">
-                   <img :src=" store.imgBasePath + apartments.image_cover" :alt="apartments.name">
+                <img :src=" store.imgBasePath + apartments.image_cover" :alt="apartments.name">
                 </div>
-
                 <!-- left side -->
                 <!-- apartment info -->
-                <div  class="d-flex justify-content-between ls-glass mt-4 ">
-                    <div id="host-info-left" class="d-flex flex-column">
-                            <div class="ls-line-right ">
+                <div  class="d-flex justify-content-center ls-glass mt-4 ">
+                    <div id="host-info-left" class="">
+                            <div class="text-center">
                                 <div class="p-2 ls-line-bot">
-                                    <h3>Host Name</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt et fugit praesentium voluptates cupiditate quo esse reprehenderit sequi eveniet a rerum at omnis iusto in quia necessitatibus, ab, velit nostrum temporibus facilis optio voluptatem explicabo facere ipsum. Magni, quod molestias.</p>
+                                    <h3>{{ apartments.name }}</h3>
+                                    <p>
+                                        {{ apartments.description }}
+                                    </p>
                                 </div>
-
+                                <!-- services bagdes -->
                                 <div>
                                     <h5 class="pt-3 text-center">- Services available -</h5>
                                     <div class="btn">badge1</div>
@@ -35,35 +36,10 @@
                                 </div>
                             </div>
                     </div>
-
-                    <!-- apartment description -->
-                    <div id="apartment-description" class="">
-                        <h3>Apartment Description</h3>
-                        <p>{{ apartments.description }}</p>
-                    </div>
                 </div>
-
                 <!-- right side -->
                 <div id="apartment-info-right" class="ls-glass mt-4 mb-4 d-flex justify-content-between">
-                    <div id="contact-form" class="">
-                        <div class="ls-line-right p-3 pe-3">
-                            <form>
-                                <h4>Contact me:</h4>
-                                <div class="">
-                                    <label for="exampleFormControlInput1">Email address</label>
-                                    <input type="email" class=" form-control" id="" placeholder="name@example.com">
-                                </div>
-                                <div class="">
-                                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                                    <textarea class="form-control" id="" rows="5"></textarea>
-                                </div>
-                            </form>
-                            <div class="d-flex justify-content-end">
-                                <button class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="apartment-reservation" class="d-flex flex-column justify-content-between">
+                    <div id="apartment-reservation" class="ls-line-right d-flex flex-column justify-content-between">
                         <div>
                             <h4>Information</h4>
                             <ul class="p-2">
@@ -76,6 +52,37 @@
                         <div>
                             <h4>Address:</h4>
                             <p>{{ apartments.address }}</p>
+                        </div>
+                    </div>
+                    <!-- apartment description -->
+                    <div id="apartment-description" class="">
+                        <h3>Apartment Description</h3>
+                        <p>{{ apartments.description }}</p>
+                    </div>
+                </div>
+                <!-- contact host form -->
+                <div class="ls-glass mt-4 mb-4 d-flex justify-content-between" >
+                    <div id="contact-form">
+                        <div class="p-3 pe-3">
+                            <form @submit.prevent="handleSubmit">
+                                <h4>Contact me:</h4>
+                                <div class="">
+                                    <label for="email">Email address <span class="text-danger">*</span></label>
+                                    <input type="email" v-model="email" class=" form-control" id="email" placeholder="name@example.com" required>
+                                    <span v-if="!isValidEmail(email)" class="text-danger">Invalid email address</span>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="message">Example textarea <span class="text-danger">*</span></label>
+                                    <textarea v-model="message" class="form-control" id="message" rows="5" required></textarea>
+                                    <span v-if="message.trim() === ''"  class="text-danger">The text field cannot be empty</span>
+                                </div>
+                                <div>
+                                    <span><span class="text-danger fs-4">* </span>These fields are <span class="fs-4 text-decoration-underline">required.</span></span>
+                                </div>
+                            </form>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn draw-border mt-2" type="submit" @click="" :disabled="!isFormValid || !isValidEmail(email)"><i class="fa-solid fa-envelope-open-text"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,19 +104,68 @@ import FooterComponent from '@/components/FooterComponent.vue';
                 return {
                     store, 
                     apartments: [],
+                    emailRegex: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
+                    email: '',
+                    message: '',
                 }
             },
-            created() {
-                const slug = this.$route.query.slug;
-                if (slug) {
-                    this.apartments = this.store.apartments.find(apartment => apartment.slug === slug);
-                }
-            }
+            computed: {
+// questa funziona effettua un check sulla validazione del form tramite la proprietà trim() disabilitando il pulsante quando il campo email o il messaggio sono vuoti
+isFormValid() {
+    
+    return this.email.trim() !== '' && this.message.trim() !== '';
     }
+},
+methods: {
+    isValidEmail(email) {
+                    const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+                    return emailRegex.test(email);
+                },
+        // questa funzione è un tentativo di rendere le card sulla destra visibili quando si scorre la pagina
+        // handleScroll() {
+        //     const scrollPosition = window.pageYOffset;
+        //     const description = document.querySelector('#apartment-description'); // Seleziona la description
+        //     const reservation = document.querySelector('#apartment-reservation'); // Seleziona la reservation
+        //     if (scrollPosition > 99) {
+        //         description.style.width = '';
+        //     } else {
+        //         description.className = '';
+        //     }
+        // },
+    handleSubmit() { // questa funzione gestisce il submit del form
+    if (this.isFormValid) {
+        // Handle form submission
+        console.log('Form Submitted:', this.email, this.message);
+        // Reset form fields after submission if needed
+        this.email = '';
+        this.message = '';
+    }
+}},
+created() {
+    const slug = this.$route.query.slug;
+        if (slug) {
+            this.apartments = this.store.apartments.find(apartment => apartment.slug === slug);
+            }
+},
+mounted () {
+                // window.addEventListener('scroll', this.handleScroll) // richiamo della funzione che rende le card sulla destra visibili quando si scorre la pagina
+}}
 </script>
 
 <style lang="scss" scoped>
+// questa classe è un tentativo di rendere le card sulla destra visibili quando si scorre la pagina
+// #apartment-description, #apartment-reservation{
+//     padding: 20px;
+//     min-width: 50%;
+//     opacity: 0; /* Hidden initially */
+//     transform: translateX(-100%); /* Move out of view */
+//     transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Animation for moving and fading in */
+// }
 
+/* Class for when the element is in the viewport */
+.appear {
+    opacity: 1; /* Fully visible */
+    transform: translateX(0); /* Move to the original position */}
 
 
 #host-info-left {
@@ -128,7 +184,7 @@ import FooterComponent from '@/components/FooterComponent.vue';
 }
 
 #contact-form {
-    min-width: 50%;
+    min-width: 100%;
     padding: 20px;
 }
 
@@ -146,8 +202,8 @@ import FooterComponent from '@/components/FooterComponent.vue';
 }
 
 .draw-border {
- box-shadow: inset 0 0 0 4px #29C1E6;
- color: #29C1E6;
+ //box-shadow: inset 0 0 0 4px #000000;
+ color: #000000;
  transition: color 0.25s 0.0833333333s;
  position: relative;
 }
@@ -175,11 +231,12 @@ import FooterComponent from '@/components/FooterComponent.vue';
 }
 
 .draw-border:hover {
- color: #FBBF4F;
+ color: #000000;
+ background-color: transparent;
 }
 
 .draw-border:hover::before, .draw-border:hover::after {
- border-color: #FBBF4F;
+ border-color: #000000;
  transition: border-color 0s, width 0.25s, height 0.25s;
  width: 100%;
  height: 100%;
@@ -226,13 +283,13 @@ import FooterComponent from '@/components/FooterComponent.vue';
 }
 
 .ls-line-bot {
-    border-bottom: 1px solid #29C1E6;
+    border-bottom: 1px solid #000000;
     width: 90%;
 }
 
-#ls-header {
-    
+h1 {
+    text-decoration: underline;
+    margin: 0px 0px 32px 0px;
+    font-weight: 400;
 }
-
-
 </style>
