@@ -5,12 +5,21 @@
 <div id="ls-card-container" class="">
 <!-- <RouterLink  class="ls-card"> -->
   <div class="ls-card">
+    <!-- promoted logo -->
+      <div class="promoted-logo">
+        promoted-logo
+      </div>
+    <!-- service logos -->
+      <router-link class="service-logos">
+          Placeholder
+      </router-link>
     <!-- image -->
-
       <img :src="store.imgBasePath + item.image_cover" :alt="item.name">
       <!-- content -->
       <div class="card-content">
+        <!-- title -->
         <h2>{{ item.name }}</h2>
+        <!-- description -->
         <p>
           {{ item.description }}
         </p>
@@ -22,7 +31,6 @@
           </span>
         </router-link>
       </div>
-      <!-- </RouterLink>        -->
     </div>
   </div>
 </template>
@@ -50,6 +58,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 #ls-card-container {
   padding: 20px;
   display: flex;
@@ -80,6 +89,7 @@ export default {
     }
 
     h2 {
+      z-index: 2;
       position: absolute;
       inset: auto auto 40px 40px;
       margin: 0;
@@ -91,6 +101,7 @@ export default {
 
     p,
     a {
+      z-index: 2;
       position: absolute;
       opacity: 0;
       max-width: 80%;
@@ -106,15 +117,52 @@ export default {
       color: inherit;
       text-decoration: none;
     }
+// overlay style
+.service-logos { // Services logos
+      position: absolute;
+      top: 10px;
+      left: 285px;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+      z-index: 2000;
+    }
+
+    .promoted-logo { // Promoted logo
+
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+      z-index: 2000;
+    }
+
+
+    &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); // Base overlay color
+    transition: background-color 0.3s ease-in;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    background-color: rgba(0, 0, 0, 0.5); // Darker overlay color
+  }
 
     &:hover h2 {
       inset: auto auto 180px 30px;
       transition: inset .3s ease-out;
+      z-index: 2; // needed to appear on top of the overlay
     }
 
     &:hover p,
     &:hover a {
-      opacity: 1;
+      opacity: 1; // needed to appear on top of the overlay
       transition: opacity .5s .1s ease-in;
     }
 
@@ -126,13 +174,20 @@ export default {
       border-radius: 15px;
       box-shadow: 10px 10px 13px rgba(0, 0, 0, 0.2);
     }
-
   }
 
   .material-symbols-outlined {
     vertical-align: middle;
   }
 
+    &:hover .service-logos {
+      opacity: 1; // Renderlo visibile al passaggio del mouse
+    }
+
+    &:hover .promoted-logo {
+      opacity: 1; // Renderlo visibile al passaggio del mouse
+    }
+  
 
 }
 </style>
