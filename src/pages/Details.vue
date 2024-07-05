@@ -260,10 +260,6 @@ mounted () {
  letter-spacing: 0.05rem;
 }
 
-.btn:focus {
- outline: 2px dotted #29C1E6;
-}
-
 .ls-glass {
     background-color: hsla(0, 0%, 100%, 0.2);
     -webkit-backdrop-filter: blur(5px);
