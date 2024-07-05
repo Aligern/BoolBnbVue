@@ -10,9 +10,9 @@
 
             <div id="apartment-container" >
                 <!-- apartment image -->
-                <h1>Your next dreamhouse</h1>
+                <h1>Your next dreamhouse {{ apartments.name }}</h1>
                 <div id="apartment-image">
-                    <img src="../assets/img/cover-12.jpg" alt="">
+                   <img :src=" store.imgBasePath + apartments.image_cover" :alt="apartments.name">
                 </div>
 
                 <!-- left side -->
@@ -39,7 +39,7 @@
                     <!-- apartment description -->
                     <div id="apartment-description" class="">
                         <h3>Apartment Description</h3>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id ratione dolore rerum deleniti, sit ab ut possimus nulla corrupti aliquid suscipit eum libero. Iusto distinctio ex sit maxime inventore deleniti iste ullam. Dolorem earum quos iusto sapiente dolor, reiciendis veritatis voluptatibus natus, quo, optio soluta non fugiat! Qui, reprehenderit molestias!</p>
+                        <p>{{ apartments.description }}</p>
                     </div>
                 </div>
 
@@ -63,8 +63,20 @@
                             </div>
                         </div>
                     </div>
-                    <div id="apartment-reservation">
-                        <h4>Reserve now</h4>
+                    <div id="apartment-reservation" class="d-flex flex-column justify-content-between">
+                        <div>
+                            <h4>Information</h4>
+                            <ul class="p-2">
+                                <li><i class="fa-solid fa-home"></i> Rooms: {{ apartments.rooms }}</li>
+                                <li><i class="fa-solid fa-bath"></i> Bathrooms: {{ apartments.bathrooms }}</li>
+                                <li><i class="fa-solid fa-bed"></i> Beds: {{ apartments.beds }}</li>
+                                <li><i class="fa-solid fa-ruler"></i> Square Meters: {{ apartments.square_meters }}</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Address:</h4>
+                            <p>{{ apartments.address }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +84,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { store } from '../store';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
@@ -84,9 +95,16 @@ import FooterComponent from '@/components/FooterComponent.vue';
             },
             data() {
                 return {
-                    store
+                    store, 
+                    apartments: [],
                 }
             },
+            created() {
+                const slug = this.$route.query.slug;
+                if (slug) {
+                    this.apartments = this.store.apartments.find(apartment => apartment.slug === slug);
+                }
+            }
     }
 </script>
 
@@ -200,7 +218,7 @@ import FooterComponent from '@/components/FooterComponent.vue';
 }
 
 .ls-line-right {
-    border-right: 2px solid #29C1E6;
+    // border-right: 2px solid #29C1E6;
     border-radius: 11px;
     box-shadow:15px 10px 13px rgba(0, 0, 0, 0.2);
 }

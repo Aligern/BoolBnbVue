@@ -7,11 +7,12 @@
                 </div>
 
                     <!-- title center -->
-                <div class="text-center">
+                <div class="text-center title">
                     <h1 class="pb-2">
-                        Dreamhouse
+                        Bool'n'Dreams
                     </h1>
                 </div>
+                
 
                
         </nav>
@@ -33,13 +34,21 @@
 
 <style lang="scss" scoped>
 nav {
-    padding: 10px;
+    padding: 0 10px 0 10px;
     background-color: hsla(0, 0%, 100%, 0.2);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid white;
-    height: 150px;
+    height: 100px;
+    .title {
+        padding-right: 70px;
+        h1 {
+            font-weight: 200;
+            font-size: 3rem;
+        }
+        
+    }
 }
 
 p,
