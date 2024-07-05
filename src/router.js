@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppHome from "./pages/AppHome.vue";
 import Details from "./pages/Details.vue";
 import NotFound from "./pages/NotFound.vue";
-import Filters from "./pages/Filters.vue";
 import Results from "./pages/Results.vue";
 
 const router = createRouter({
@@ -24,16 +23,15 @@ const router = createRouter({
       component: NotFound, 
     },
     {
-      path: "/filters",
-      name: "filters",
-      component: Filters, 
-    },
-    {
       path: "/results",
       name: "results",
       component: Results,
     }
   ],
+  scrollBehavior(to, from, savedPosition) {
+    // Scroll to top of the page
+    return { top: 0 };
+  }
 });
 
 export { router };
