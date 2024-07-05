@@ -11,11 +11,11 @@
     <!-- these are the scroll buttons -->
     <div class="d-flex justify-content-between position-relative">
       <!-- scroll left btn -->
-      <button class="ls-btn-left" id="scrollLeftCard" @click="scroll(-440, 'CardScrollContainer')">
+      <button class="btn draw-border ls-btn-left" id="scrollLeftCard" @click="scroll(-440, 'CardScrollContainer')">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
       <!-- scroll right btn -->
-      <button class="ls-btn-right" id="scrollRightCard" @click="scroll(440, 'CardScrollContainer')">
+      <button class="btn draw-border ls-btn-right" id="scrollRightCard" @click="scroll(440, 'CardScrollContainer')">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
     </div>
@@ -72,11 +72,64 @@
 
 
 <style lang="scss" scoped>
+
+.draw-border::before, .draw-border::after {
+ border: 0 solid transparent;
+ box-sizing: border-box;
+ border-radius: 3px;
+ content: "";
+ pointer-events: none;
+ position: absolute;
+ width: 0;
+ height: 0;
+ bottom: 0;
+ right: 0;
+}
+
+.draw-border::before {
+ border-bottom-width: 4px;
+ border-left-width: 4px;
+}
+
+.draw-border::after {
+ border-top-width: 4px;
+ border-right-width: 4px;
+}
+
+.draw-border:hover {
+ color: #000000;
+ background-color: transparent;
+}
+
+.draw-border:hover::before, .draw-border:hover::after {
+ border-color: #000000;
+ transition: border-color 0s, width 0.25s, height 0.25s;
+ width: 100%;
+ height: 100%;
+}
+
+.draw-border:hover::before {
+ transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+ transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+ background: none;
+ border: none;
+ cursor: pointer;
+ line-height: 1.5;
+ font: 700 17px "Roboto Slab", sans-serif;
+ padding: 1em 2em;
+ letter-spacing: 0.05rem;
+}
+
   .ls-btn-left, .ls-btn-right {
-    background: hsla(0, 0%, 0%, 0.2);
-    border: none;
-    border-radius: 5px;
-    color: white;
+    color: #000000;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
     padding: 30px 10px;
     position: absolute;
     top: 50%;

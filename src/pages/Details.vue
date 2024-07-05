@@ -211,6 +211,7 @@ mounted () {
 .draw-border::before, .draw-border::after {
  border: 0 solid transparent;
  box-sizing: border-box;
+ border-radius: 3px;
  content: "";
  pointer-events: none;
  position: absolute;
