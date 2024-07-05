@@ -1,12 +1,12 @@
 <template>
 
-  <!-- card -->
-  <div id="ls-card-container" class="">
-    <!-- <RouterLink  class="ls-card"> -->
-    <div class="ls-card">
 
+<!-- card -->
+<div id="ls-card-container" class="">
+<!-- <RouterLink  class="ls-card"> -->
+  <div class="ls-card">
+    <!-- image -->
 
-      <!-- image -->
       <img :src="store.imgBasePath + item.image_cover" :alt="item.name">
       <!-- content -->
       <div class="card-content">
