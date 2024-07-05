@@ -104,7 +104,7 @@ import FooterComponent from '@/components/FooterComponent.vue';
                 return {
                     store, 
                     apartments: [],
-                    emailRegex: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
+                    emailRegex: /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/,
                     email: '',
                     message: '',
                 }
@@ -118,7 +118,7 @@ isFormValid() {
 },
 methods: {
     isValidEmail(email) {
-                    const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+                    const emailRegex = /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/;
                     return emailRegex.test(email);
                 },
         // questa funzione è un tentativo di rendere le card sulla destra visibili quando si scorre la pagina
