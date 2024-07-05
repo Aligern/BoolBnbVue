@@ -39,12 +39,20 @@ export default {
       const scrollPosition = window.pageYOffset;
       const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
     
-      if (scrollPosition > 99) {
+      if (scrollPosition > 0) {
         searchBar.style.width = '20%';
         searchBar.className = 'fixed';
       } else {
         searchBar.style.width = '50%';
         searchBar.className = 'absolute';
+      };
+
+      if (scrollPosition > 100) {
+        searchBar.style.width = '20%';
+     
+      } else {
+        searchBar.style.width = '50%';
+      
       }
     },
 
@@ -181,7 +189,7 @@ export default {
 
 .fixed {
   position: fixed;
-  top: 3px;
+  top: 25px;
   left: 50%;
   z-index: 2000;
 }
