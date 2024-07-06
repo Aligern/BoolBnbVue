@@ -10,8 +10,9 @@
         promoted-logo
       </div>
     <!-- service logos -->
-      <router-link class="service-logos">
-          Placeholder
+      <router-link v-for="(item, index) in store.services" :to="{ name: 'results', query: { slug: item.slug } }" 
+      class="service-logos">
+       <i class="fas fa-chevron-right"></i>
       </router-link>
     <!-- image -->
       <img :src="store.imgBasePath + item.image_cover" :alt="item.name">

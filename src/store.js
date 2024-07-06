@@ -10,6 +10,9 @@ export const store = reactive({
     filteredApart: [],
     pippo: [],
     imageBaseUrl: './assets/img/',
+    services: [],
+    users: [],
+    promotions: [],
 
 
     methods: {
@@ -45,6 +48,27 @@ export const store = reactive({
             // console.log('Filtered apartments:', filteredApartments);
             return filteredApartments;
         },
+        async fetchAllServices() {
+            const response = await axios.get(store.apiBaseUrl + '/services');
+            store.services = response.data.results;
+            console.log('Servizi OK!', store.services);
+            return response;
+        },
+        async fetchAllUsers() {
+            const response = await axios.get(store.apiBaseUrl + '/users');
+            store.users = response.data.results;
+            console.log('Users OK!', store.users);
+            return response;
+        },
+
+        async fetchAllPromotions() {
+            const response = await axios.get(store.apiBaseUrl + '/promotions');
+            store.promotions = response.data.results;
+            console.log('Promozioni OK!', store.promotions);
+            return response;
+        },
     }
 });
+
+
 

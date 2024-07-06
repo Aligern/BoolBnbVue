@@ -97,8 +97,9 @@
 }
 
 .draw-border:hover {
- color: #000000;
- background-color: transparent;
+ color: #ffffff;
+ background-color: rgba($color: #000000, $alpha: 0.3);
+ transition: background-color 2.35s;
 }
 
 .draw-border:hover::before, .draw-border:hover::after {
@@ -126,21 +127,16 @@
  letter-spacing: 0.05rem;
 }
 
-  .ls-btn-left, .ls-btn-right {
-    color: #000000;
-    transition: color 0.25s 0.0833333333s;
+.ls-btn-left, .ls-btn-right {
     position: relative;
     padding: 30px 10px;
     position: absolute;
-    top: 50%;
-    transform: translateY(-250%);
+    transform: translateY(-255%);
     z-index: 1000;
   }
-
   .ls-btn-left {
     left: 10px;
   }
-
   .ls-btn-right {
     right: 10px;
   }
