@@ -22,13 +22,16 @@ const router = createRouter({
       name: "not-found",
       component: NotFound, 
     },
-
     {
       path: "/results",
       name: "results",
       component: Results,
     }
   ],
+  scrollBehavior(to, from, savedPosition) {
+    // Scroll to top of the page
+    return { top: 0 };
+  }
 });
 
 export { router };
