@@ -47,6 +47,11 @@
           <span id="distance-value">25 km</span>
         </div>
       </div>
+      <!--inizio mappa e fine del form -->
+
+      <div id="map-container">
+        <Map  />
+      </div>
     </div>
   </div>
 
@@ -56,8 +61,13 @@
 <script>
   import { store } from '../store';
   import axios from 'axios';
+  import Map from '../components/Map.vue';
   export default {
     name: 'CanvasComponent',
+    components: {
+      Map
+    },
+  
     data() {
       return {
         store,
@@ -124,6 +134,7 @@
     z-index: 4800;
     transition: 1s ease-in-out;
 
+
   }
 
   #btn-canvas {
@@ -138,6 +149,7 @@
     .offcanvas {
       width: 100%;
       z-index: 4800;
+     
 
     }
   }
@@ -154,6 +166,7 @@
   #services {
     width: 35%;
   }
+
   #filter {
     width: 65%;
   }
@@ -162,5 +175,14 @@
     display: flex;
     justify-content: space-between;
     margin: 15px 0px;
+  }
+
+
+  #map-container {
+    width: 100%;
+    height: 510px;
+    border: 1px solid black;
+
+    overflow: hidden;
   }
 </style>
