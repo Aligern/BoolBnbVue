@@ -17,7 +17,7 @@
   import CardComponent from './components/CardComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
   import JumbotronComponent from './components/JumbotronComponent.vue';
-import CanvasComponent from './components/CanvasComponent.vue';
+  import CanvasComponent from './components/CanvasComponent.vue';
 
   export default {
     name: 'App',
@@ -35,6 +35,9 @@ import CanvasComponent from './components/CanvasComponent.vue';
     },
     mounted() {
       window.addEventListener('scroll', this.handleScroll);
+      console.log(store.methods.fetchAllServices());
+      console.log(store.methods.fetchAllPromotions());
+      console.log(store.methods.fetchAllUsers());
     },
     methods: {
     
