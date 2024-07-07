@@ -132,7 +132,7 @@
   .offcanvas {
     width: 50%;
     z-index: 4800;
-    transition: 1s ease-in-out;
+    transition: 0.8s ease-in-out;
 
 
   }
@@ -154,7 +154,14 @@
     }
   }
 
-  #servcheck,
+  #servcheck{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 4px 4px 5px 1px rgba(0, 0, 0, 0.2);
+  }
+
+
   #services,
   #filter,
   .filter-distance {
