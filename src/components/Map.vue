@@ -6,8 +6,16 @@
 </template>
 
 <script>
-  import { TOMTOM_API_KEY } from '@/script';
-import { onMounted, reactive, ref } from 'vue'
+// -------------------------- ATTENZIONE! --------------------------
+// Necessario creare un file script.js fratello di store.js
+// scrivere quanto segue: 
+// import { reactive } from "vue";
+// export const script = reactive({
+// TOMTOM_API_KEY: 'la tua API_KEY dal sito TomTom Api',
+// });
+// -------------------------- ATTENZIONE! --------------------------
+  import { script } from '@/script';
+  import { onMounted, reactive, ref } from 'vue'
 
   export default {
     name: 'Map',
@@ -35,7 +43,7 @@ import { onMounted, reactive, ref } from 'vue'
         const focus = { lat: 37.31052000000000, lng: 13.64791000000000 }
 
         var map = tt.map({
-          key: TOMTOM_API_KEY,
+          key: script.TOMTOM_API_KEY,
           container: mapRef.value,
           center: focus,
           zoom: 7

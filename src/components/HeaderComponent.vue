@@ -12,9 +12,6 @@
                         Bool'n'Dreams
                     </h1>
                 </div>
-                
-
-               
         </nav>
     </header>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent id="ls-header" />
+    <HeaderComponent />
     <div class="container m-0-auto mt-3">
             <!-- button go back -->
             <div class="pb-3">
@@ -24,6 +24,8 @@
                                     <p>
                                         {{ apartments.description }}
                                     </p>
+                                    <div class="pb-3">
+            </div>
                                 </div>
                                 <!-- services bagdes -->
                                 <div>
@@ -56,8 +58,15 @@
                     </div>
                     <!-- apartment description -->
                     <div id="apartment-description" class="">
-                        <h3>Apartment Description</h3>
-                        <p>{{ apartments.description }}</p>
+                        <div>
+                            <h3>Apartment Description</h3>
+                            <p>{{ apartments.description }}</p>
+                        </div>
+                        <div class="d-flex justify-content-start">
+                            <RouterLink :to="{ name: 'payments' }">
+                                <button class="btn draw-border"><i class="fa-solid fa-credit-card"></i> Reserve now</button>
+                            </RouterLink>
+                        </div>
                     </div>
                 </div>
                 <!-- contact host form -->
@@ -265,7 +274,7 @@ mounted () {
  border: none;
  cursor: pointer;
  line-height: 1.5;
- font: 700 17px "Roboto Slab", sans-serif;
+ font: 500 17px "Roboto Slab", sans-serif;
  padding: 1em 2em;
  letter-spacing: 0.05rem;
 }

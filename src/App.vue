@@ -36,8 +36,8 @@
     mounted() {
       window.addEventListener('scroll', this.handleScroll);
       console.log(store.methods.fetchAllServices());
-      console.log(store.methods.fetchAllPromotions());
-      console.log(store.methods.fetchAllUsers());
+      //console.log(store.methods.fetchAllPromotions());
+      //console.log(store.methods.fetchAllUsers());
     },
     methods: {
     
