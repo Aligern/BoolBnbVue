@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound.vue";
 import Results from "./pages/Results.vue";
 import Payments from "./pages/Payments.vue";
 import ApartmentsList from "./pages/ApartmentsList.vue";
+import Contacts from "./pages/Contacts.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -38,6 +39,11 @@ const router = createRouter({
       path: "/payments",
       name: "payments",
       component: Payments,
+    },
+    {
+      path: "/contacts",
+      name: "contacts",
+      component: Contacts,
     }
   ],
   scrollBehavior(to, from, savedPosition) {

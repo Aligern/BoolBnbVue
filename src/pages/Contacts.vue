@@ -30,9 +30,9 @@
                         <textarea v-model="message" class="form-control" id="message" cols="30" rows="10">{{ message }}</textarea>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" :disabled="!isValidEmail(email)" class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
+                        <button type="submit"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
                     </div>
-                    
+                    <!-- :disabled="!isValidEmail(email)" -->
                 </form>
             </div>
         </div>
@@ -51,10 +51,11 @@ import axios from 'axios';
         data() {
             return {
                 store,
-                emailRegex: /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/,
+                // emailRegex: /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/,
                 email: '',
                 message: '',
                 name: '',
+                success: false,
             }
         },
         computed: {
@@ -62,24 +63,33 @@ import axios from 'axios';
 },
 methods: {
     sendForm() {
+        this.success = false;
         const data = {
             name: this.name,
             email: this.email,
             message: this.message
         }
+        console.log('data_message:',data);
         axios.post(`${this.store.apiBaseUrl}/contacts`, data).then((res) => {
-            console.log(res.data.status);
+            console.log('risposta_chiamata_api:', res.data);
+            this.success = true;
+            this.name = '';
+            this.address = '';
+            this.message = '';
         }).catch((error) => {
-            
-        }).finally (() => {
-
+            console.log('error.response.data:', error.response.data);
+            this.errors = error.response.data.errors;
         })
+        // .finally (() => {
+
+        // })
     },
-    isValidEmail(email) {
-                    const emailRegex = /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/;
-                    return emailRegex.test(email);
-                },
-    }}
+    // isValidEmail(email) {
+    //                 const emailRegex = /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/;
+    //                 return emailRegex.test(email);
+    //             },
+    }
+    }
 </script>
 
 <style lang="scss" scoped>
