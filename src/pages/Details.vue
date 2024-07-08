@@ -66,47 +66,32 @@
                 </div>
             </div>
             <!-- contact host form -->
-            <div class="ls-glass mt-4 mb-4 d-flex justify-content-between">
-                <div id="contact-form">
-                    <div class="p-3 pe-3">
-                        <form @submit.prevent="handleSubmit">
-                            <h4>Contact me:</h4>
-                            <div class="d-flex">
-                                <div class="">
-                                    <label for="email">Email address <span class="text-danger">*</span></label>
-                                    <input type="email" v-model="email" class=" form-control" id="email"
-                                        placeholder="name@example.com" required>
-                                    <span v-if="!isValidEmail(email) && email.trim() !== ''" class="text-danger">Invalid
-                                        email address</span>
-                                </div>
-                                <div class="ms-3">
-                                    <label for="name">Name<span class="text-danger">*</span></label>
-                                    <input type="text" v-model="name" class="form-control" id="name"
-                                        placeholder="Your name" required>
-                                    <span v-if="name.trim() === '' && email.trim() !== ''" class="text-danger">The name
-                                        field cannot be empty</span>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label for="message">Example textarea <span class="text-danger">*</span></label>
-                                <textarea v-model="message" class="form-control" id="message" rows="5"
-                                    required></textarea>
-                                <span v-if="message.trim() === '' && email.trim() !== ''" class="text-danger">The text
-                                    field cannot be empty</span>
-                            </div>
-                            <div>
-                                <span><span class="text-danger fs-4">* </span>These fields are <span
-                                        class="fs-4 text-decoration-underline">required.</span></span>
-                            </div>
-                        </form>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn draw-border mt-2" type="submit" @click=""
-                                :disabled="!isFormValid || !isValidEmail(email)"><i
-                                    class="fa-solid fa-envelope-open-text"></i></button>
+            <div class="container ls-glass mt-4 mb-4 d-flex justify-content-between">
+        <div id="contact-form">
+            <div class="p-3 pe-3">
+                <form @submit.prevent="sendForm()" class="">
+                    <h4>Contact me:</h4>
+                    <div class="d-flex">
+                        <div>
+                            <label for="name">Name<span class="text-danger">*</span></label>
+                            <input v-model="name" type="text" class="form-control" id="name" placeholder="Your name">
+                        </div>
+                        <div class="ms-3">
+                            <label for="email">Email address <span class="text-danger">*</span></label>
+                            <input v-model="email" type="email" class=" form-control" id="email" placeholder="name@example.com">
                         </div>
                     </div>
-                </div>
+                    <div class="mt-2">
+                        <label for="message">Your message</label>
+                        <textarea v-model="message" class="form-control" id="message" cols="30" rows="10">{{ message }}</textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" :disabled="!isValidEmail(email)"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
         </div>
     </div>
 </template>
@@ -134,10 +119,6 @@
         },
         computed: {
             // questa funziona effettua un check sulla validazione del form tramite la proprietà trim() disabilitando il pulsante quando il campo email o il messaggio sono vuoti
-            isFormValid() {
-
-                return this.email.trim() !== '' && this.message.trim() !== '' && this.name.trim() !== '';
-            }
         },
         methods: {
             getApartment() {
@@ -152,35 +133,36 @@
                 console.log('Response data:', error.response.data);
             });
         },
-            isValidEmail(email) {
-                const emailRegex = /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/;
-                return emailRegex.test(email);
-            },
-            // questa funzione è un tentativo di rendere le card sulla destra visibili quando si scorre la pagina
-            // handleScroll() {
-            //     const scrollPosition = window.pageYOffset;
-            //     const description = document.querySelector('#apartment-description'); // Seleziona la description
-            //     const reservation = document.querySelector('#apartment-reservation'); // Seleziona la reservation
-            //     if (scrollPosition > 99) {
-            //         description.style.width = '';
-            //     } else {
-            //         description.className = '';
-            //     }
-            // },
-            handleSubmit() { // questa funzione gestisce il submit del form
-                if (this.isFormValid) {
-                    // Handle form submission
-                    console.log('Form Submitted:', this.email, this.message, this.name);
-                    // Reset form fields after submission if needed
-                    this.email = '';
-                    this.message = '';
-                    this.name = '';
-                }
-            }
+        sendForm() {
+        this.success = false;
+        const data = {
+            name: this.name,
+            email: this.email,
+            message: this.message
+        }
+        console.log('data_message:',data);
+        axios.post(`${this.store.apiBaseUrl}/contacts`, data).then((res) => {
+            console.log('risposta_chiamata_api:', res.data);
+            this.success = true;
+            this.name = '';
+            this.address = '';
+            this.message = '';
+        }).catch((error) => {
+            console.log('error.response.data:', error.response.data);
+            this.errors = error.response.data.errors;
+        })
+        // .finally (() => {
+
+        // })
+    },
+    isValidEmail(email) {
+                     const emailRegex = /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/;
+                     return emailRegex.test(email);
+                 },
         },
 
         mounted() {
-          this.getApartment();
+        this.getApartment();
             // window.addEventListener('scroll', this.handleScroll) // richiamo della funzione che rende le card sulla destra visibili quando si scorre la pagina
 
         },
