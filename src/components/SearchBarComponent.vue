@@ -27,6 +27,7 @@ export default {
       store,
       query: '',
       results: [],
+      positionReasearch: null,
       researchResults: [],
       apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
       apiBaseUrl: 'https://api.tomtom.com/search/2/search/'
@@ -48,33 +49,23 @@ export default {
       }
     },
 
-    //funzione per la chiamata della chiave API
+    // handleInput() {
+    //   const query = this.query.trim();
+    //   if (query.length < 5) {
+    //     this.results = [];
+    //     return;
+    //   }
+    //   this.fetchAddresses(query)
+    //     .then(results => {
+    //       this.results = results;
 
-    async fetchAddresses(query) {
-      const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
-      
-      try {
-        const response = await axios.get(url);
-        if (!response.data.results) {
-          throw new Error('Nessun risultato trovato.');
-        }
-        // console.log('Risultati ricevuti:', response.data.results);
-        // console.log('Risultati posizioni:', response.data.results[0].position);
-        const fixedPoint = response.data.results[0].position;
-        // console.log('fixedPoint:', fixedPoint);
-        // console.log('pippo.filteredApart:', store.filteredApart)
-        const pippo = this.makeCircleDistance(fixedPoint, store.filteredApart, 20);
-        this.researchResults = pippo;
-        store.pippo = pippo;
+    //     })
+    //     .catch(error => {
+    //       console.error('Errore durante la gestione dell\'input:', error);
+    //     });
+    // },
 
-        console.log('pippo:', store.pippo);
-        return response.data.results;
-
-      } catch (error) {
-        console.error('Errore durante la ricerca degli indirizzi:', error.message);
-        return [];
-      }
-    },
+    //metodo per selezionare un punto nella searchbar
     handleInput() {
       const query = this.query.trim();
       if (query.length < 5) {
@@ -84,55 +75,110 @@ export default {
       this.fetchAddresses(query)
         .then(results => {
           this.results = results;
-
         })
         .catch(error => {
           console.error('Errore durante la gestione dell\'input:', error);
         });
     },
+
+
+
+
+    // async fetchAddresses(query) {
+    //   const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
+      
+    //   try {
+    //     const response = await axios.get(url);
+    //     if (!response.data.results) {
+    //       throw new Error('Nessun risultato trovato.');
+    //     }
+    //     // console.log('Risultati ricevuti:', response.data.results);
+    //     // console.log('Risultati posizioni:', response.data.results[0].position);
+    //     const fixedPoint = response.data.results[0].position;
+    //     // console.log('fixedPoint:', fixedPoint);
+    //     // console.log('pippo.filteredApart:', store.filteredApart)
+    //     const pippo = this.makeCircleDistance(fixedPoint, store.filteredApart, 20);
+    //     this.researchResults = pippo;
+    //     store.pippo = pippo;
+
+    //     console.log('pippo:', store.pippo);
+    //     return response.data.results;
+
+    //   } catch (error) {
+    //     console.error('Errore durante la ricerca degli indirizzi:', error.message);
+    //     return [];
+    //   }
+    // },
+
+    //Chiamata API per ottenere coordinate punto searchbar
+    async fetchAddresses(query) {
+      const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
+      
+      try {
+        const response = await axios.get(url);
+        if (!response.data.results) {
+          throw new Error('Nessun risultato trovato.');
+        }
+        
+        // Estrai le coordinate (latitudine e longitudine) dal primo risultato
+        const position = response.data.results[0].position;
+        this.positionReasearch = position;
+        console.log('position:', position);
+        return response.data.results.map(result => ({
+          ...result,
+          position: {
+            lat: result.position.lat,
+            lon: result.position.lon
+          }
+        }));
+      } catch (error) {
+        console.error('Errore durante la ricerca degli indirizzi:', error.message);
+        return null;
+      }
+    },
+
+    
+
+
+
+    // selectAddress(result) {
+    //   this.query = result.address.freeformAddress;
+    //   this.results = [];
+    //   this.$router.push({ name: 'results' });
+    // },
+
+
+    //Selezione dell'indirizzo e ricerca degli appartamenti nelle vicinanze
     selectAddress(result) {
       this.query = result.address.freeformAddress;
       this.results = [];
       this.$router.push({ name: 'results' });
-    },
 
-    //conversione da gradi a radianti
-    conversiontoradians(degrees) {
-      return degrees * Math.PI / 180;
+      const latitude = result.position.lat;
+      const longitude = result.position.lon;
+      this.searchNearbyApartments(latitude, longitude);
     },
+    //Chiamata API per cercare gli appartamenti nelle vicinanze:
+    async searchNearbyApartments(latitude, longitude) {
+      const radius = 20; // Raggio di 20 chilometri
+      const urlSearchNearby = `/api/apartments/nearby?latitude=${latitude}&longitude=${longitude}&radius=${radius}`;
 
-    //calcolo distanza tra due punto con cordinate gps
-    distanceBetweenTwoPoints(fixedPoint, movinPpoint) {
-      //mi salvo le cordinate in modo separato del punto fisso 
-      const R = 6371; // Raggio della Terra in km
-      const fpLat = this.conversiontoradians(fixedPoint.lat);
-      const fpLon = this.conversiontoradians(fixedPoint.lon);
-      //mi salvo le cordinate in modo separato del punto mobile
-      const mpLat = this.conversiontoradians(movinPpoint.lat);
-      const mpLon = this.conversiontoradians(movinPpoint.lon);
-      //differenza delle cordinate sempre in modo separato
-      const deltaLat = Math.abs(fpLat - mpLat);
-      const deltaLon = Math.abs(fpLon - mpLon);
-      //applico la formula di Haversine 
-      //prima parte della formula
-      const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) + Math.cos(fpLat) * Math.cos(mpLat) * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-      //seconda parte della formula
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      //ritorno la distanza
-      return R * c; // Distanza in km
-    },
-
-    //calcolo raggio ricerca
-    makeCircleDistance(fixedPoint, movinPpoints, searchRadius) {
-      let result = [];
-      for (const movinPpoint of movinPpoints) {
-        if (this.distanceBetweenTwoPoints(fixedPoint, movinPpoint) <= searchRadius) {
-          result.push(movinPpoint);
+      try {
+        const response = await axios.get(store.apiBaseUrl + urlSearchNearby);
+        console.log('Risposta API:', response.data);
+        if (response.data.success) {
+          console.log('Appartamenti trovati nelle vicinanze:', response.data.results);
+        } else {
+          console.error('Errore nella ricerca degli appartamenti nelle vicinanze:', response.data.message);
         }
+      } catch (error) {
+        console.error('Errore durante la ricerca degli appartamenti nelle vicinanze:', error.message);
       }
-      return result;
-
+    },   
+    degreesToRadians(degrees) {
+      return degrees * Math.PI / 180;
     }
+
 
   },
   mounted() {

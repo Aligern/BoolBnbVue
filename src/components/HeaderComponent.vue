@@ -9,12 +9,9 @@
                     <!-- title center -->
                 <div class="text-center title">
                     <h1 class="pb-2">
-                        Bool'n'Dreams
+                        <!-- Bool'n'Dreams -->
                     </h1>
                 </div>
-                
-
-               
         </nav>
     </header>
 </template>

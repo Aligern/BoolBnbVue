@@ -9,42 +9,42 @@ export const store = reactive({
     apartments: [],
     filteredApart: [],
     pippo: [],
-    imageBaseUrl: './assets/img/',
+    // imageBaseUrl: './assets/img/',
 
 
     methods: {
         getAllApartments() {
             axios.get(store.apiBaseUrl + '/apartments').then((res) => {
-                console.log('Response data:', res.data);
+                // console.log('Response data:', res.data);
                 store.apartments = res.data.results;
-                const pluto = store.methods.filterApartments();
+                // const pluto = store.methods.filterApartments();
                 // console.log('provaprova:', store.apartments);
-                store.filteredApart = pluto;
+                // store.filteredApart = pluto;
                 // console.log('pluto:', pluto);
                 // console.log('pippo nello sotre:', pippo);
-                return  pluto;
+                // return  pluto;
             }).catch(error => {
                 console.error('An error has occurred:', error);
-                console.log('Response data:', error.response.data);
+                // console.log('Response data:', error.response.data);
             });
         },
-        filterApartments() {
-            console.log('Original apartments:', store.apartments);
-            const filteredApartments = store.apartments.map(apartment => {
+        // filterApartments() {
+        //     console.log('Original apartments:', store.apartments);
+        //     const filteredApartments = store.apartments.map(apartment => {
 
-                const lat = apartment.latitude || (apartment.location && apartment.location.latitude);
-                const lon = apartment.longitude || (apartment.location && apartment.location.longitude);
+        //         const lat = apartment.latitude || (apartment.location && apartment.location.latitude);
+        //         const lon = apartment.longitude || (apartment.location && apartment.location.longitude);
 
-                return {
-                    result: apartment,
-                    lat: lat,
-                    lon: lon
-                };
-            });
+        //         return {
+        //             result: apartment,
+        //             lat: lat,
+        //             lon: lon
+        //         };
+        //     });
 
-            // console.log('Filtered apartments:', filteredApartments);
-            return filteredApartments;
-        },
+        //     console.log('Filtered apartments:', filteredApartments);
+        //     return filteredApartments;
+        // },
     }
 });
 

@@ -10,9 +10,9 @@
         promoted-logo
       </div>
     <!-- service logos -->
-      <router-link class="service-logos">
+      <!-- <router-link class="service-logos">
           Placeholder
-      </router-link>
+      </router-link> -->
     <!-- image -->
       <img :src="store.imgBasePath + item.image_cover" :alt="item.name">
       <!-- content -->
