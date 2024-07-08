@@ -12,7 +12,7 @@
              <div class="container justify-content-between mb-5">
                  <h2 class="">Your Results</h2>
                  <div class="d-flex flex-wrap">
-                     <CardComponent class="" v-for="apartment in pippo" :key="apartment.result.id" :item="apartment.result" />
+                     <CardComponent class="" v-for="apartment in pippo" :key="apartment.result.slug" :item="apartment.result" />
                  </div>
              </div>
          </div>

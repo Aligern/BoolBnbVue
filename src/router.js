@@ -4,6 +4,7 @@ import Details from "./pages/Details.vue";
 import NotFound from "./pages/NotFound.vue";
 import Results from "./pages/Results.vue";
 import Payments from "./pages/Payments.vue";
+import ApartmentsList from "./pages/ApartmentsList.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,7 +15,12 @@ const router = createRouter({
       component: AppHome, 
     },
     {
-      path: "/details",
+      path: "/apartments",
+      name: "apartments",
+      component: ApartmentsList, 
+    },
+    {
+      path: "/details/:slug",
       name: "details",
       component: Details, 
     },
