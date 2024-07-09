@@ -30,7 +30,7 @@
         results: [],
         researchResults: [],
         apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
-        apiBaseUrl: 'https://api.tomtom.com/search/2/search/'
+        apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/'
       };
     },
 
@@ -63,7 +63,7 @@
       //funzione per la chiamata della chiave API
 
       async fetchAddresses(query) {
-        const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
+        const url = `${this.apiBaseUrlTomTom}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
 
         try {
           const response = await axios.get(url);
@@ -73,9 +73,11 @@
           // console.log('Risultati ricevuti:', response.data.results);
           // console.log('Risultati posizioni:', response.data.results[0].position);
           const fixedPoint = response.data.results[0].position;
-          // console.log('fixedPoint:', fixedPoint);
+          console.log('fixedPoint:', fixedPoint);
           // console.log('pippo.filteredApart:', store.filteredApart)
-          const pippo = this.makeCircleDistance(fixedPoint, store.filteredApart, 20);
+      
+          const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, 20);
+          console.log('researchResults:', this.researchResults)
           this.researchResults = pippo;
           store.pippo = pippo;
 
@@ -106,49 +108,9 @@
         this.query = result.address.freeformAddress;
         this.results = [];
         this.$router.push({ name: 'results' });
-      },
-
-      //conversione da gradi a radianti
-      conversiontoradians(degrees) {
-        return degrees * Math.PI / 180;
-      },
-
-      //calcolo distanza tra due punto con cordinate gps
-      distanceBetweenTwoPoints(fixedPoint, movinPpoint) {
-        //mi salvo le cordinate in modo separato del punto fisso 
-        const R = 6371; // Raggio della Terra in km
-        const fpLat = this.conversiontoradians(fixedPoint.lat);
-        const fpLon = this.conversiontoradians(fixedPoint.lon);
-        //mi salvo le cordinate in modo separato del punto mobile
-        const mpLat = this.conversiontoradians(movinPpoint.lat);
-        const mpLon = this.conversiontoradians(movinPpoint.lon);
-        //differenza delle cordinate sempre in modo separato
-        const deltaLat = Math.abs(fpLat - mpLat);
-        const deltaLon = Math.abs(fpLon - mpLon);
-        //applico la formula di Haversine 
-        //prima parte della formula
-        const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) + Math.cos(fpLat) * Math.cos(mpLat) * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-        //seconda parte della formula
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        //ritorno la distanza
-        return R * c; // Distanza in km
-      },
-
-      //calcolo raggio ricerca
-      makeCircleDistance(fixedPoint, movinPpoints, searchRadius) {
-        let result = [];
-        for (const movinPpoint of movinPpoints) {
-          if (this.distanceBetweenTwoPoints(fixedPoint, movinPpoint) <= searchRadius) {
-            result.push(movinPpoint);
-          }
-        }
-        return result;
-
       }
-
     },
     mounted() {
-      store.methods.getAllApartments();
       window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
     },
   };
