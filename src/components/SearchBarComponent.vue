@@ -30,7 +30,7 @@
         results: [],
         researchResults: [],
         apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
-        apiBaseUrl: 'https://api.tomtom.com/search/2/search/'
+        apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/'
       };
     },
 
@@ -63,7 +63,7 @@
       //funzione per la chiamata della chiave API
 
       async fetchAddresses(query) {
-        const url = `${this.apiBaseUrl}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
+        const url = `${this.apiBaseUrlTomTom}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
 
         try {
           const response = await axios.get(url);
@@ -76,7 +76,8 @@
           console.log('fixedPoint:', fixedPoint);
           // console.log('pippo.filteredApart:', store.filteredApart)
       
-          const pippo = await store.methods.fetchApartments(fixedPoint.lat, fixedPoint.lon, 20);
+          const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, 20);
+          console.log('researchResults:', this.researchResults)
           this.researchResults = pippo;
           store.pippo = pippo;
 

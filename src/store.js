@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const store = reactive({
 
-    apiBaseUrl: "http://127.0.0.1:8000/api",
+    apiBaseUrl: 'http://127.0.0.1:8000/api',
     imgBasePath: "http://127.0.0.1:8000/storage/",
     apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
     apartments: [],
@@ -16,18 +16,20 @@ export const store = reactive({
 
 
     methods: {
-        async fetchApartments($latitude,$longitude, $radius) {
+        async fetchApartments($longitude, $latitude, $radius) {
             try {
-              const response = await axios.get(`${this.apiBaseUrl}/apartments`, {
+              const response = await axios.get(`${store.apiBaseUrl}/apartments`, {
                 params: {
-                  latitude: $latitude,
-                  longitude: $longitude,
-                  radius: $radius
+                    longitude: $longitude,
+                    latitude: $latitude,
+                    radius: $radius
                 }
               });
-              console.log('latitude:', $latitude);
               console.log('longitude:', $longitude);
+              console.log('latitude:', $latitude);
               console.log('radius:', $radius);
+              console.log('response:', response);
+            console.log('response.data:', response.data);
               console.log(' response.data.resultsAPI:',  response.data.results);
              return response.data.results;
             } catch (error) {
