@@ -25,6 +25,10 @@ export const store = reactive({
                   radius: $radius
                 }
               });
+              console.log('latitude:', $latitude);
+              console.log('longitude:', $longitude);
+              console.log('radius:', $radius);
+              console.log(' response.data.resultsAPI:',  response.data.results);
              return response.data.results;
             } catch (error) {
               this.error = 'Si è verificato un errore durante il recupero degli appartamenti: ' + error.message;

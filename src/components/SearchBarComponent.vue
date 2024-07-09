@@ -73,9 +73,10 @@
           // console.log('Risultati ricevuti:', response.data.results);
           // console.log('Risultati posizioni:', response.data.results[0].position);
           const fixedPoint = response.data.results[0].position;
-          // console.log('fixedPoint:', fixedPoint);
+          console.log('fixedPoint:', fixedPoint);
           // console.log('pippo.filteredApart:', store.filteredApart)
-          const pippo = await store.methods.fetchApartments(fixedPoint.latitude, fixedPoint.longitude, 20);
+      
+          const pippo = await store.methods.fetchApartments(fixedPoint.lat, fixedPoint.lon, 20);
           this.researchResults = pippo;
           store.pippo = pippo;
 
