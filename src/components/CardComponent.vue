@@ -196,7 +196,7 @@
     &:hover .promoted-logo {
       opacity: 1; // Renderlo visibile al passaggio del mouse
     }
-
+// ciao
 
   }
 </style>
