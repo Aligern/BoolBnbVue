@@ -16,38 +16,22 @@ export const store = reactive({
 
 
     methods: {
-        getAllApartments() {
-            axios.get(store.apiBaseUrl + '/apartments').then((res) => {
-                console.log('Response data:', res.data);
-                store.apartments = res.data.results;
-                const pluto = store.methods.filterApartments();
-                // console.log('provaprova:', store.apartments);
-                store.filteredApart = pluto;
-                // console.log('pluto:', pluto);
-                // console.log('pippo nello sotre:', pippo);
-                return  pluto;
-            }).catch(error => {
-                console.error('An error has occurred:', error);
-                console.log('Response data:', error.response.data);
-            });
-        },
-        filterApartments() {
-            console.log('Original apartments:', store.apartments);
-            const filteredApartments = store.apartments.map(apartment => {
-
-                const lat = apartment.latitude || (apartment.location && apartment.location.latitude);
-                const lon = apartment.longitude || (apartment.location && apartment.location.longitude);
-
-                return {
-                    result: apartment,
-                    lat: lat,
-                    lon: lon
-                };
-            });
-
-            // console.log('Filtered apartments:', filteredApartments);
-            return filteredApartments;
-        },
+        async fetchApartments($latitude,$longitude, $radius) {
+            try {
+              const response = await axios.get(`${this.apiBaseUrl}/apartments`, {
+                params: {
+                  latitude: $latitude,
+                  longitude: $longitude,
+                  radius: $radius
+                }
+              });
+             return response.data.results;
+            } catch (error) {
+              this.error = 'Si è verificato un errore durante il recupero degli appartamenti: ' + error.message;
+              console.error(error);
+            }
+          }
+      ,
         async fetchAllServices() {
             const response = await axios.get(store.apiBaseUrl + '/services');
             store.services = response.data.results;

@@ -56,7 +56,7 @@
           }
       },
       mounted() {
-          this.store.methods.getAllApartments();
+     
       }
   }
   </script>
