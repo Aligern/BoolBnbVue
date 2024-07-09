@@ -1,22 +1,38 @@
 <template>
   <JumbotronComponent />
   <SearchBarComponent />
+
     <!-- these are the promoted cards -->
-<div id="promoted" class="p-3 ">
-    <h2 class="ms-5">Promoted</h2>
-      <div class="d-flex flex-wrap justify-content-start">
-        <div class="p-3" v-for="(apartment, index) in store.apartments" :key="apartment.id">
-          <CardComponent :item="apartment" :index="index"/>
-        </div>
-      </div>
+<div id="promoted" class="p-3 container-fluid">
+<h2 class="ms-5">Promoted</h2>
+<div class="row ls-glass mx-5 d-flex overflow-x-scroll" ref="CardScrollContainer">
+  <div class="col-12 col-md-6 col-lg-3" v-for="(apartment, index) in store.apartments" :key="apartment.id">
+    <CardComponent :item="apartment" :index="index"/>
+ </div>
+</div>
+
+  <!-- these are the scroll buttons -->
+  <div class="d-flex justify-content-between position-relative">
+    <!-- scroll left btn -->
+    <button class="btn draw-border ls-btn-left" id="scrollLeftCard" @click="scroll(-440, 'CardScrollContainer')">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <!-- scroll right btn -->
+    <button class="btn draw-border ls-btn-right" id="scrollRightCard" @click="scroll(440, 'CardScrollContainer')">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
 </div>    
 </template>
+
+
 <script>
 import CardComponent from '@/components/CardComponent.vue';
 import JumbotronComponent from '@/components/JumbotronComponent.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
 import { store } from '@/store.js';
 import axios from 'axios';
+
 export default {
     name: 'ApartmentsList',
     components: {
@@ -31,6 +47,7 @@ export default {
         }
     },
     methods: {
+       
         scroll(distance, id) {
             this.$refs[id].scrollBy({
                 left: distance,
@@ -39,7 +56,7 @@ export default {
         }
     },
     mounted() {
-        this.store.methods.getAllApartments();
+   
     }
 }
 </script>
