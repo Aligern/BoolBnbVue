@@ -1,7 +1,7 @@
 <template>
   
 
-  <article class="card">
+  <article class="card my-4">
     <div class="card__badges ">
       <div class="badge-left"><i class="fa-solid fa-star"></i></div>
       <div v-for="services in item.services" :key="services.id"  class="badge-right" >
@@ -14,7 +14,7 @@
 
 <img
   class="card__background"
-  src="https://i.imgur.com/QYWAcXk.jpeg"
+  :src="store.imgBasePath + item.image_cover"
   alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
   width="1920"
   height="2193"
@@ -27,7 +27,7 @@
       labore laudantium deserunt fugiat numquam.
     </p>
   </div>
-  <button class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></button>
+  <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></router-link>
 </div>
 </article>
 </template>
@@ -45,8 +45,8 @@ export default {
     }
   },
   mounted() {
-    console.log('item:', this.item);
-    console.log('services:', this.item.services);
+   // console.log('item:', this.item);
+    //console.log('services:', this.item.services);
   },
   methods: {
 
