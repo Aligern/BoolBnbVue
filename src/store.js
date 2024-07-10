@@ -27,20 +27,22 @@ export const store = reactive({
             longitude: $longitude,
             latitude: $latitude,
             radius: $radius,
-            beds: store.bedrooms,
-            bathrooms: store.rooms,
-            services: store.selectedServices,
+            beds: parseInt(store.bedrooms),
+            bathrooms: parseInt(store.rooms),
+            services: store.selectedServices.map(service => service.id),
           },
         });
         console.log("longitude:", $longitude);
         console.log("latitude:", $latitude);
         console.log("radius:", $radius);
+        console.log("bedrooms:",store.bedrooms);
+        console.log("rooms:", store.rooms);
+        console.log("selectedServices:", store.selectedServices);
+
         console.log("response:", response);
         console.log("response.data:", response.data);
         console.log(" response.data.resultsAPI:", response.data.results);
-        console.log("longitude:",store.bedrooms);
-        console.log("latitude:", store.rooms);
-        console.log("radius:", store.selectedServices);
+        
         return response.data.results;
       } catch (error) {
         this.error =

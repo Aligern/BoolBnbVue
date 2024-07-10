@@ -14,128 +14,126 @@
       </div>
     </div>
     <div class="d-flex gap-3">
-          <div id="services">
-            <h2 class="text-center">Services</h2>
+      <div id="services">
+        <h2 class="text-center">Services</h2>
 
-            <div class="d-flex" v-for="service in store.services" :key="service.id">
-              <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id" v-model="store.selectedServices" @input="console.log(store.selectedServices)">
-              <label for="servcheck">{{ service.name }}</label>
-            </div>
-          </div>
-          <div id="filter">
-            
-            <div class="my-2">
-              <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
-            </div>
-            <div>
-              <input type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
-            </div>
-            <div v-for="service in store.selectedServices" :key="service.id">{{ service.id }}</div>
-            <div class="filter-distance">
-              <label for="distance-range">Distanza (km):</label>
-              <input class="w-75" type="range" id="distance-range" min="0" max="20" value="20" v-model="store.radius">
-              <span id="distance-value">20 km</span>
-            </div>
-          </div>
+        <div class="d-flex" v-for="service in store.services" :key="service.id">
+          <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id"
+            v-model="store.selectedServices" @input="console.log(store.selectedServices)">
+          <label for="servcheck">{{ service.name }}</label>
         </div>
+      </div>
+      <div id="filter">
+
+        <div class="my-2">
+          <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
+        </div>
+        <div>
+          <input type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
+        </div>
+        <div v-for="service in store.selectedServices" :key="service.id">{{ service.id }}</div>
+        <div class="filter-distance">
+          <label for="distance-range">Distanza (km):</label>
+          <input class="w-75" type="range" id="distance-range" min="0" max="20" value="20" v-model="store.radius">
+          <span id="distance-value">20 km</span>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
 
 <script>
-  import axios from 'axios';
-  import { store } from '@/store.js';
+import axios from 'axios';
+import { store } from '@/store.js';
 
-  export default {
-    name: 'SearchBarComponent',
-    data() {
-      return {
-        store,
-        query: '',
-        results: [],
-        researchResults: [],
-        apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
-        apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/'
-      };
-    },
+export default {
+  name: 'SearchBarComponent',
+  data() {
+    return {
+      store,
+      query: '',
+      results: [],
+      researchResults: [],
+      apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
+      apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/'
+    };
+  },
 
-    methods: {
-      //funzione per l'effetto scroll
-      handleScroll() {
-        const scrollPosition = window.pageYOffset;
-        const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
+  methods: {
+    //funzione per l'effetto scroll
+    handleScroll() {
+      const scrollPosition = window.pageYOffset;
+      const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
 
+      if (searchBar) {
+        if (scrollPosition > 0) {
+          searchBar.className = 'fixed';
+        } else {
+          searchBar.className = 'absolute';
+        };
 
-        if (searchBar) {
-          if (scrollPosition > 0) {
-
-            searchBar.className = 'fixed';
-          } else {
-
-            searchBar.className = 'absolute';
-          };
-
-          if (scrollPosition > 100) {
-            searchBar.style.width = '20%';
-
-          } else {
-            searchBar.style.width = '50%';
-
-          }
+        if (scrollPosition > 100) {
+          searchBar.style.width = '20%';
+        } else {
+          searchBar.style.width = '50%';
         }
-      },
-
-      //funzione per la chiamata della chiave API
-
-      async fetchAddresses(query) {
-        const url = `${this.apiBaseUrlTomTom}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
-
-        try {
-          const response = await axios.get(url);
-          if (!response.data.results) {
-            throw new Error('Nessun risultato trovato.');
-          }
-          // console.log('Risultati ricevuti:', response.data.results);
-          // console.log('Risultati posizioni:', response.data.results[0].position);
-          const fixedPoint = response.data.results[0].position;
-          console.log('fixedPoint:', fixedPoint);
-          // console.log('pippo.filteredApart:', store.filteredApart)
-      
-          const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, 20);
-          console.log('researchResults:', this.researchResults)
-          this.researchResults = pippo;
-          store.pippo = pippo;
-
-          console.log('pippo:', store.pippo);
-          return response.data.results;
-
-        } catch (error) {
-          console.error('Errore durante la ricerca degli indirizzi:', error.message);
-          return [];
-        }
-      },
-      handleInput() {
-        const query = this.query.trim();
-        if (query.length < 5) {
-          this.results = [];
-          return;
-        }
-        this.fetchAddresses(query)
-          .then(results => {
-            this.results = results;
-
-          })
-          .catch(error => {
-            console.error('Errore durante la gestione dell\'input:', error);
-          });
-      },
-      selectAddress(result) {
-        this.query = result.address.freeformAddress;
-        this.results = [];
-        // this.$router.push({ name: 'results' });
       }
     },
-    computed: {
+
+    //funzione per la chiamata della chiave API
+
+    async fetchAddresses(query) {
+      const url = `${this.apiBaseUrlTomTom}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
+
+      try {
+        const response = await axios.get(url);
+        if (!response.data.results) {
+          throw new Error('Nessun risultato trovato.');
+        }
+        // console.log('Risultati ricevuti:', response.data.results);
+        // console.log('Risultati posizioni:', response.data.results[0].position);
+        const fixedPoint = response.data.results[0].position;
+        // console.log('fixedPoint:', fixedPoint);
+        // console.log('pippo.filteredApart:', store.filteredApart)
+
+        
+
+        const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, 20);
+        console.log('researchResults:', this.researchResults)
+        this.researchResults = pippo;
+        store.pippo = pippo;
+
+        console.log('pippo:', store.pippo);
+        return response.data.results;
+
+      } catch (error) {
+        console.error('Errore durante la ricerca degli indirizzi:', error.message);
+        return [];
+      }
+    },
+    handleInput() {
+      const query = this.query.trim();
+      if (query.length < 5) {
+        this.results = [];
+        return;
+      }
+      this.fetchAddresses(query)
+        .then(results => {
+          this.results = results;
+
+        })
+        .catch(error => {
+          console.error('Errore durante la gestione dell\'input:', error);
+        });
+    },
+    selectAddress(result) {
+      this.query = result.address.freeformAddress;
+      this.results = [];
+      // this.$router.push({ name: 'results' });
+    }
+  },
+  computed: {
     resultsRoute() {
       return {
         name: 'results',
@@ -145,55 +143,55 @@
       };
     },
   },
-    mounted() {
-      window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
-    },
-  };
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
+  },
+};
 </script>
 
 
 <style lang="scss" scoped>
-  #search-bar {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+#search-bar {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
 
-    transform: translateY(-50%);
-    transform: translateX(-50%);
-    width: 50%;
+  transform: translateY(-50%);
+  transform: translateX(-50%);
+  width: 50%;
 
-    transition: width 1.2s ease;
-    //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  transition: width 1.2s ease;
+  //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 
-    border-radius: 25px;
+  border-radius: 25px;
 
-    #resultsContainer {
-      background-color: white;
-      width: 75%;
-      border-radius: 5px;
-      padding: 10px;
-      border-bottom: 0p;
-      cursor: pointer;
-
-    }
+  #resultsContainer {
+    background-color: white;
+    width: 75%;
+    border-radius: 5px;
+    padding: 10px;
+    border-bottom: 0p;
+    cursor: pointer;
 
   }
 
+}
 
 
-  .absolute {
-    position: absolute;
-    top: 25px;
-    left: 50%;
 
-  }
+.absolute {
+  position: absolute;
+  top: 25px;
+  left: 50%;
 
-  .fixed {
-    position: fixed;
-    top: 25px;
-    left: 50%;
-    z-index: 2000;
+}
 
-  }
+.fixed {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  z-index: 2000;
+
+}
 </style>

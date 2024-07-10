@@ -3,11 +3,11 @@
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
                 <div class="logo-container position-relative"> 
-                    <img class="img-fluid h-100 w-50" src="../assets/img/logo-1.png" alt="">
-                    <div class="text-overlay text-black">
-                    ool'n'Dreams
+                    <img class="img-fluid h-100 w-50" src="../assets/img/logo-4.png" alt="">
+                    <!-- <div class="text-overlay text-black"> -->
+                    
                 </div>
-                </div>
+                <!-- </div> -->
 
                     <!-- title center -->
                 <!-- <div class="text-center title">
