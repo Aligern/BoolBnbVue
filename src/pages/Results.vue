@@ -56,11 +56,21 @@ import CardComponent from '../components/CardComponent.vue';
                     this.pippo = [];
                     this.pippo = store.pippo;
                     console.log('pippo in result:', this.pippo);
-                }
+                },
+                fetchResults() {
+                    const address = this.$route.query.address;
+                    if (address) {
+                        this.pippo = store.pippo;
+                    }
+                    }
             },
         mounted() {
-            this.getPippo()
+            this.getPippo();
+            this.fetchResults();
         },
+        watch: {
+            '$route.query.address': 'fetchResults'
+        }
         
         // mounted() {
         //     //store.methods.getAllApartments();
