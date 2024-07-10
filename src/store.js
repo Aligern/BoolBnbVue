@@ -7,17 +7,12 @@ export const store = reactive({
   imgBasePath: "http://127.0.0.1:8000/storage/",
   apiKey: script.TOMTOM_API_KEY,
   apartments: [], //contiene tutti gli appartamenti
-  filteredApart: [],
   pippo: [], //array con appartamenti filtrati per distanza
-  imageBaseUrl: "./assets/img/",
   services: [], //contine tutti i servizi
-  users: [],
-  promotions: [],
   selectedServices: [], // contiene gli ID dei services checkati nel canvas... serve per le filter
   bedrooms: 0,
   rooms: 0,
   radius: 20,
-  searchCanv:'',
 
   methods: {
     async fetchApartments($longitude, $latitude, $radius) {
@@ -27,6 +22,9 @@ export const store = reactive({
             longitude: $longitude,
             latitude: $latitude,
             radius: $radius,
+            beds: store.bedrooms,
+            bathrooms: store.rooms,
+            services: store.selectedServices,
           },
         });
         console.log("longitude:", $longitude);
@@ -35,6 +33,9 @@ export const store = reactive({
         console.log("response:", response);
         console.log("response.data:", response.data);
         console.log(" response.data.resultsAPI:", response.data.results);
+        console.log("longitude:",store.bedrooms);
+        console.log("latitude:", store.rooms);
+        console.log("radius:", store.selectedServices);
         return response.data.results;
       } catch (error) {
         this.error =
