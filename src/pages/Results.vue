@@ -12,7 +12,7 @@
              <div class="container justify-content-between mb-5">
                  <h2 class="">Your Results</h2>
                  <div class="d-flex flex-wrap">
-                     <!-- <CardComponent class="" v-for="apartment in pippo" :key="apartment.result.slug" :item="apartment.result" /> -->
+                     <CardComponent class="" v-for="apartment in pippo" :key="apartment.slug" :item="apartment" /> 
                  </div>
              </div>
          </div>
@@ -55,6 +55,7 @@ import CardComponent from '../components/CardComponent.vue';
                 getPippo(){
                     this.pippo = [];
                     this.pippo = store.pippo;
+                    console.log('pippo in result:', this.pippo);
                 }
             },
         mounted() {
