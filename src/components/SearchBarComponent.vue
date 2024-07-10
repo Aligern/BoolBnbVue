@@ -3,16 +3,41 @@
     <div class="w-75 d-flex">
       <input type="text" class="form-control " placeholder="Search" v-model="query" @keyup.enter="$emit('getPippo')"
         @input="handleInput">
-      <router-link :to="{ name: 'results' }" class="btn btn-dark ms-2">
+      <router-link :to="resultsRoute" class="btn btn-dark ms-2">
         <i class="fa-solid fa-magnifying-glass"></i>
       </router-link>
     </div>
 
     <div id="resultsContainer" v-if="results.length > 0">
-      <div v-for="(result, index) in results" :key="index" @click="selectAddress(result), $emit('getPippo')">
+      <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)">
         {{ result.address.freeformAddress }}
       </div>
     </div>
+    <div class="d-flex gap-3">
+          <div id="services">
+            <h2 class="text-center">Services</h2>
+
+            <div class="d-flex" v-for="service in store.services" :key="service.id">
+              <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id" v-model="store.selectedServices" @input="console.log(store.selectedServices)">
+              <label for="servcheck">{{ service.name }}</label>
+            </div>
+          </div>
+          <div id="filter">
+            
+            <div class="my-2">
+              <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
+            </div>
+            <div>
+              <input type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
+            </div>
+            <div v-for="service in store.selectedServices" :key="service.id">{{ service.id }}</div>
+            <div class="filter-distance">
+              <label for="distance-range">Distanza (km):</label>
+              <input class="w-75" type="range" id="distance-range" min="0" max="20" value="20" v-model="store.radius">
+              <span id="distance-value">20 km</span>
+            </div>
+          </div>
+        </div>
   </div>
 
 </template>
@@ -107,9 +132,19 @@
       selectAddress(result) {
         this.query = result.address.freeformAddress;
         this.results = [];
-        this.$router.push({ name: 'results' });
+        // this.$router.push({ name: 'results' });
       }
     },
+    computed: {
+    resultsRoute() {
+      return {
+        name: 'results',
+        query: {
+          address: this.query,
+        },
+      };
+    },
+  },
     mounted() {
       window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
     },

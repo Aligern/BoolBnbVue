@@ -38,9 +38,7 @@
             </div>
           </div>
           <div id="filter">
-            <div id="searchCanv" class="my-2">
-              <input type="search" class="form-control" placeholder="Search" v-model="store.searchCanv">
-            </div>
+           
             <div class="my-2">
               <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
             </div>
