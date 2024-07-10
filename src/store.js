@@ -27,9 +27,9 @@ export const store = reactive({
             longitude: $longitude,
             latitude: $latitude,
             radius: $radius,
-            beds: parseInt(store.bedrooms),
-            bathrooms: parseInt(store.rooms),
-            services: store.selectedServices.map(service => service.id),
+            beds: store.bedrooms,
+            bathrooms: store.rooms,
+            services: store.selectedServices,
           },
         });
         console.log("longitude:", $longitude);
