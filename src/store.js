@@ -7,12 +7,17 @@ export const store = reactive({
   imgBasePath: "http://127.0.0.1:8000/storage/",
   apiKey: script.TOMTOM_API_KEY,
   apartments: [], //contiene tutti gli appartamenti
+  filteredApart: [],
   pippo: [], //array con appartamenti filtrati per distanza
+  imageBaseUrl: "./assets/img/",
   services: [], //contine tutti i servizi
+  users: [],
+  promotions: [],
   selectedServices: [], // contiene gli ID dei services checkati nel canvas... serve per le filter
   bedrooms: 0,
   rooms: 0,
   radius: 20,
+  searchCanv:'',
 
   methods: {
     async fetchApartments($longitude, $latitude, $radius) {

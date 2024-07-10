@@ -71,22 +71,6 @@ import CardComponent from '../components/CardComponent.vue';
         watch: {
             '$route.query.address': 'fetchResults'
         }
-        
-        // mounted() {
-        //     //store.methods.getAllApartments();
-        //     this.checkResults;
-        // },
-        // computed: {
-        //     checkResults() {
-        //         console.log('ciao:', );
-        //         if (store.pippo.results != null) {
-        //             console.log('ciao', this.apartments);
-        //             return this.apartments = store.pippo.results;
-        //         } else {
-        //             return false
-        //         }
-        //     }
-        // }
     }
 </script>
 
