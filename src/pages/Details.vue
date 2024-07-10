@@ -10,9 +10,9 @@
         </div>
         <div id="apartment-container">
             <!-- apartment image -->
-            <h1>Welcome to {{ apartments?.name }}</h1>
+            <h1>Welcome to {{ apartment?.name }}</h1>
             <div class="w-50 m-auto" id="apartment-image">
-                <img class="img-fluid " :src="store.imgBasePath + apartments?.image_cover" :alt="apartments?.name">
+                <img class="img-fluid " :src="store.imgBasePath + apartment?.image_cover" :alt="apartment?.name">
             </div>
             <!-- left side -->
             <!-- apartment info -->
@@ -20,13 +20,13 @@
                 <div id="host-info-left" class="">
                     <div class="text-center">
                         <div class="p-2 ls-line-bot text-center">
-                            <h3 class="">{{ apartments?.name }}</h3>
+                            <h3 class="">{{ apartment?.name }}</h3>
                         </div>
                         <!-- services bagdes -->
                         <h5 class="pt-3 text-center">- Services available -</h5>
                           
                         <div  class="d-flex justify-content-center">
-                             <span v-for="service in apartments.services" :key="service.id" class="btn">{{ service.name }}</span>
+                             <span v-for="service in apartment.services" :key="service.id" class="btn">{{ service.name }}</span>
                         </div>
                     </div>
                 </div>
@@ -37,23 +37,23 @@
                     <div>
                         <h4>Information</h4>
                         <ul class="p-2">
-                            <li><i class="fa-solid fa-home"></i> Rooms: {{ apartments?.rooms }}</li>
-                            <li><i class="fa-solid fa-bath"></i> Bathrooms: {{ apartments.bathrooms }}</li>
-                            <li><i class="fa-solid fa-bed"></i> Beds: {{ apartments.beds }}</li>
-                            <li><i class="fa-solid fa-ruler"></i> Square Meters: {{ apartments.square_meters }}
+                            <li><i class="fa-solid fa-home"></i> Rooms: {{ apartment?.rooms }}</li>
+                            <li><i class="fa-solid fa-bath"></i> Bathrooms: {{ apartment?.bathrooms }}</li>
+                            <li><i class="fa-solid fa-bed"></i> Beds: {{ apartment?.beds }}</li>
+                            <li><i class="fa-solid fa-ruler"></i> Square Meters: {{ apartment?.square_meters }}
                             </li>
                         </ul>
                     </div>
                     <div>
                         <h4>Address:</h4>
-                        <p>{{ apartments.address }}</p>
+                        <p>{{ apartment?.address }}</p>
                     </div>
                 </div>
                 <!-- apartment description -->
                 <div id="apartment-description" class="">
                     <div>
                         <h3>Apartment Description</h3>
-                        <p>{{ apartments.description }}</p>
+                        <p>{{ apartment?.description }}</p>
                     </div>
                     <div class="d-flex justify-content-start">
                         <RouterLink :to="{ name: 'payments' }">
@@ -111,7 +111,7 @@
                 email: '',
                 message: '',
                 name: '',
-                apartments: [],
+                apartment: [],
             }
         },
         computed: {
@@ -121,9 +121,9 @@
             getApartment() {
             axios.get(`${this.store.apiBaseUrl}/apartments/${this.$route.params.slug}`).then((res) => {
                 console.log('Response data:', res.data);
-                this.apartments = res.data.results;
+                this.apartment = res.data.results;
                 
-                console.log('provadetails:', this.apartments);
+                console.log('provadetails:', this.apartment);
                 
             }).catch(error => {
                 console.error('An error has occurred:', error);
