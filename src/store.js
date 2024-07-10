@@ -22,7 +22,7 @@ export const store = reactive({
   methods: {
     async fetchApartments($longitude, $latitude, $radius) {
       try {
-        const response = await axios.get(`${store.apiBaseUrl}/filter`, {
+        const response = await axios.get(`${store.apiBaseUrl}/apartments`, {
           params: {
             longitude: $longitude,
             latitude: $latitude,
