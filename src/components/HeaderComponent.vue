@@ -2,16 +2,19 @@
     <header>
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
-                <div class="logo-container"> 
-                    <img class="img-fluid h-100 w-50" src="../assets/img/ool___Dreams__4_-removebg-preview.png" alt="">
+                <div class="logo-container position-relative"> 
+                    <img class="img-fluid h-100 w-50" src="../assets/img/logo-1.png" alt="">
+                    <div class="text-overlay text-black">
+                    ool'n'Dreams
+                </div>
                 </div>
 
                     <!-- title center -->
-                <div class="text-center title">
+                <!-- <div class="text-center title">
                     <h1 class="pb-2">
                         Bool'n'Dreams
                     </h1>
-                </div>
+                </div> -->
         </nav>
     </header>
 </template>
@@ -68,7 +71,20 @@ select {
 }
 
 header img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 }
+.logo-container {
+        position: relative;
+        width: fit-content;
+    }
+    
+    .text-overlay {
+        position: absolute;
+        top: 55%;
+        left: 63%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem; 
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
 </style>
