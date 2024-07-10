@@ -13,6 +13,31 @@
         {{ result.address.freeformAddress }}
       </div>
     </div>
+    <div class="d-flex gap-3">
+          <div id="services">
+            <h2 class="text-center">Services</h2>
+
+            <div class="d-flex" v-for="service in store.services" :key="service.id">
+              <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id" v-model="store.selectedServices" @input="console.log(store.selectedServices)">
+              <label for="servcheck">{{ service.name }}</label>
+            </div>
+          </div>
+          <div id="filter">
+           
+            <div class="my-2">
+              <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
+            </div>
+            <div>
+              <input type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
+            </div>
+            <div v-for="service in store.selectedServices" :key="service.id">{{ service.id }}</div>
+            <div class="filter-distance">
+              <label for="distance-range">Distanza (km):</label>
+              <input class="w-75" type="range" id="distance-range" min="0" max="20" value="20" v-model="store.radius">
+              <span id="distance-value">20 km</span>
+            </div>
+          </div>
+        </div>
   </div>
 
 </template>
