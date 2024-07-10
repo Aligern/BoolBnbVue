@@ -15,10 +15,16 @@
 // });
 // -------------------------- ATTENZIONE! --------------------------
   import { script } from '@/script';
+  import { store } from '@/store';
   import { onMounted, reactive, ref } from 'vue'
 
   export default {
     name: 'Map',
+    data() {
+      return {
+        store
+      }
+    },
 
     setup() {
       const mapRef = ref(null)
@@ -31,9 +37,9 @@
       const insertLocs = (map) => {
         const tomtom = window.tt;
 
-        state.locations.forEach(function (location) {
-          var marker = new tomtom.Marker().setLngLat(location).addTo(map)
-          const popup = new tt.Popup({ anchor: 'top' }).setText('UBABank')
+        store.apartments.forEach(function (apartment) {
+          var marker = new tomtom.Marker().setLngLat([apartment.longitude, apartment.latitude]).addTo(map)
+          const popup = new tt.Popup({ anchor: 'top' }).setText(apartment.address)
           marker.setPopup(popup).togglePopup()
         })
       }

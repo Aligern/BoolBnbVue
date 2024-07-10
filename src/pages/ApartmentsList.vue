@@ -47,6 +47,16 @@ export default {
         }
     },
     methods: {
+      getAllApartments() {
+        axios.get(store.apiBaseUrl + '/apartments').then((res) => {
+          console.log('Response data:', res.data);
+          this.store.apartments = res.data.results;
+          console.log(this.store.apartments);
+        }).catch(error => {
+          console.error('An error has occurred:', error);
+          console.log('Response data:', error.response.data);
+        });
+      },
        
         scroll(distance, id) {
             this.$refs[id].scrollBy({
@@ -56,7 +66,7 @@ export default {
         }
     },
     mounted() {
-   
+   this.getAllApartments();
     }
 }
 </script>
