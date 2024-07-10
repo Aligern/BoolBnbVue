@@ -19,17 +19,14 @@
             <div class="d-flex justify-content-center ls-glass mt-4 ">
                 <div id="host-info-left" class="">
                     <div class="text-center">
-                        <div class="p-2 ls-line-bot">
-                            <h3>{{ apartments?.name }}</h3>
-                            <div class="pb-3">
-                            </div>
+                        <div class="p-2 ls-line-bot text-center">
+                            <h3 class="">{{ apartments?.name }}</h3>
                         </div>
                         <!-- services bagdes -->
                         <h5 class="pt-3 text-center">- Services available -</h5>
                           
                         <div  class="d-flex justify-content-center">
                              <span v-for="service in apartments.services" :key="service.id" class="btn">{{ service.name }}</span>
-            
                         </div>
                     </div>
                 </div>
@@ -314,7 +311,7 @@
 
     .ls-line-bot {
         border-bottom: 1px solid #000000;
-        width: 90%;
+        width: 100%;
     }
 
     h1 {

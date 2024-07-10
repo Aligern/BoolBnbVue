@@ -11,7 +11,7 @@
     <div class="offcanvas-header">
 
       <div id="logo">
-        <img class="img-fluid w-25" src="../assets/img/B-removebg-preview.png" alt="">
+        <h1>LOGO</h1>
       </div>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
@@ -32,25 +32,34 @@
           <div id="services">
             <h2 class="text-center">Services</h2>
 
-            <div class="d-flex" v-for="service in services" :key="service.id">
-              <input id="servcheck" type="checkbox" class="form-check-input me-2 " :value="service.id">
+            <div class="d-flex" v-for="service in store.services" :key="service.id">
+              <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id" v-model="store.selectedServices" @input="console.log(store.selectedServices)">
               <label for="servcheck">{{ service.name }}</label>
             </div>
           </div>
-          <div id="filter" class="d-flex justify-content-center align-items-center">
-            <h1 class="display-1 ">?</h1>
+          <div id="filter">
+            <div id="searchCanv" class="my-2">
+              <input type="search" class="form-control" placeholder="Search" v-model="store.searchCanv">
+            </div>
+            <div class="my-2">
+              <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
+            </div>
+            <div>
+              <input type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
+            </div>
+            <div v-for="service in store.selectedServices" :key="service.id">{{ service.id }}</div>
+            <div class="filter-distance">
+              <label for="distance-range">Distanza (km):</label>
+              <input class="w-75" type="range" id="distance-range" min="0" max="20" value="20" v-model="store.radius">
+              <span id="distance-value">20 km</span>
+            </div>
           </div>
-        </div>
-        <div class="filter-distance">
-          <label for="distance-range">Distanza (km):</label>
-          <input class="w-75" type="range" id="distance-range" min="0" max="50" value="25">
-          <span id="distance-value">25 km</span>
         </div>
       </div>
       <!--inizio mappa e fine del form -->
 
       <div id="map-container">
-        <Map  />
+        <Map />
       </div>
     </div>
   </div>
@@ -67,7 +76,7 @@
     components: {
       Map
     },
-  
+
     data() {
       return {
         store,
@@ -77,6 +86,7 @@
       }
     },
     methods: {
+      
       getAllServices() {
         axios.get(store.apiBaseUrl + '/services').then((res) => {
           console.log('Response data:', res.data);
@@ -149,12 +159,12 @@
     .offcanvas {
       width: 100%;
       z-index: 4800;
-     
+
 
     }
   }
 
-  #servcheck{
+  #servcheck {
     border: none;
     border-radius: 10px;
     padding: 10px;
@@ -187,8 +197,9 @@
 
   #map-container {
     width: 100%;
-    height: 510px;
+    height: 480px;
     border: 1px solid black;
+    margin-top: 20px;
 
     overflow: hidden;
   }
