@@ -41,7 +41,7 @@ img {
     border-radius: 15px;
     box-shadow:5px 5px 5px rgba(0, 0, 0, 0.2);
     
-  }
+}
 
 body {
     background: linear-gradient(to top, #9e9e9e7e 0%, rgba(161, 161, 161, 0.023) 63%);
@@ -54,7 +54,7 @@ body {
 html {
     scroll-behavior: smooth;
     ::-webkit-scrollbar {
-        display: none;
+    display: none;
     }
 }
 :root {
@@ -66,3 +66,6 @@ html {
     --font-title: "Montserrat", sans-serif;
     --font-text: "Lato", sans-serif;
 }
+
+
+

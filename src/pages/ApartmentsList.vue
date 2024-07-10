@@ -3,25 +3,13 @@
   <SearchBarComponent />
 
     <!-- these are the promoted cards -->
-<div id="promoted" class="p-3 container-fluid">
-<h2 class="ms-5">Promoted</h2>
-<div class="row ls-glass mx-5 d-flex overflow-x-scroll" ref="CardScrollContainer">
-  <div class="col-12 col-md-6 col-lg-3" v-for="(apartment, index) in store.apartments" :key="apartment.id">
+<div id="promoted" class="p-5 container-fluid">
+<h2 class="mt-5 ms-5 text-decoration-underline">Promoted</h2>
+<div class="d-flex justify-content-between flex-wrap ls-glass p-5 d-flex overflow-x-scroll" ref="CardScrollContainer">
+  <div class="" v-for="(apartment, index) in store.apartments" :key="apartment.id">
     <CardComponent :item="apartment" :index="index"/>
  </div>
 </div>
-
-  <!-- these are the scroll buttons -->
-  <div class="d-flex justify-content-between position-relative">
-    <!-- scroll left btn -->
-    <button class="btn draw-border ls-btn-left" id="scrollLeftCard" @click="scroll(-440, 'CardScrollContainer')">
-      <i class="fa-solid fa-chevron-left"></i>
-    </button>
-    <!-- scroll right btn -->
-    <button class="btn draw-border ls-btn-right" id="scrollRightCard" @click="scroll(440, 'CardScrollContainer')">
-      <i class="fa-solid fa-chevron-right"></i>
-    </button>
-  </div>
 </div>    
 </template>
 
@@ -57,16 +45,9 @@ export default {
           console.log('Response data:', error.response.data);
         });
       },
-       
-        scroll(distance, id) {
-            this.$refs[id].scrollBy({
-                left: distance,
-                behavior: 'smooth',
-            });
-        }
     },
     mounted() {
-   this.getAllApartments();
+  this.getAllApartments();
     }
 }
 </script>
