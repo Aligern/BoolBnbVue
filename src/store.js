@@ -29,7 +29,7 @@ export const store = reactive({
             longitude: $longitude,
             latitude: $latitude,
             radius: $radius,
-            beds: store.bedrooms,
+            beds: store.beds,
             bathrooms: store.rooms,
             services: store.selectedServices,
           },
