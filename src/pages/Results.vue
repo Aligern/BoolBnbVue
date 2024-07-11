@@ -37,7 +37,6 @@ import CardComponent from '../components/CardComponent.vue';
             data() {
                 return {
                     store,
-                    apartments: [],
                     pippo: [],
                 }
             },

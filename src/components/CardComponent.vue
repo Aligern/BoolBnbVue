@@ -21,7 +21,7 @@
 />
 <div class="card__content | flow">
   <div class="card__content--container | flow">
-    <h2 class="card__title">Titolo</h2>
+    <h2 class="card__title">{{ store.pippo.name }}</h2>
     <p class="card__description">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
       labore laudantium deserunt fugiat numquam.
