@@ -371,7 +371,7 @@ margin: 2px;
 #services-img {
 margin: 3px;
 img {
-  width: 205px;
+  width: 25px;
   height: 20px;
 }
 }
