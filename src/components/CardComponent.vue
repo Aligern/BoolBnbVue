@@ -1,31 +1,35 @@
 <template>
   <article  class="card my-4">
     <div class="card__badges ">
-      <div class="badge-left"><i class="fa-solid fa-star"></i></div>
-      <div v-for="services in item.services" :key="services.id"  class="badge-right" >
-        <router-link id="services-img" :to="{ name: 'results', params: { id: services.id }}" class="text-black">
-          <img :src="store.imgBasePath + services.icon" alt="">
-        </router-link>
+      <div class="badge-left">
+        <div class="promo-badge">
+          <i class="fa-solid fa-star"></i>
+        </div>
+      </div>
+      <div class="badge-right">
+        <div v-for="services in item.services" :key="services.id" class="service-badge">
+          <router-link id="services-img" :to="{ name: 'results', params: { id: services.id }}" class="text-black">
+            <img :src="store.imgBasePath + services.icon" alt="">
+          </router-link>
+        </div>
       </div>
     </div>
-
-
-<img
-  class="card__background"
-  :src="store.imgBasePath + item.image_cover"
-  alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
-  width="1920"
-  height="2193"/>
-<div ref="cardContent" class="card__content | flow">
-  <div class="card__content--container | flow">
-    <h2 class="card__title" ref="cardTitle">{{ item.name }}</h2>
-    <p class="p-4 pb-0 card__description">
-      {{ item.description }}
-    </p>
-  </div>
-  <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></router-link>
-</div>
-</article>
+    <img
+    class="card__background"
+    :src="store.imgBasePath + item.image_cover"
+    alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+    width="1920"
+    height="2193"/>
+    <div ref="cardContent" class="card__content | flow">
+      <div class="card__content--container | flow">
+        <h2 class="card__title" ref="cardTitle">{{ item.name }}</h2>
+          <p class="p-4 pb-0 card__description">
+            {{ item.description }}
+          </p>
+      </div>
+      <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></router-link>
+    </div>
+  </article>
 </template>
 
 <script>
@@ -60,7 +64,7 @@ export default {
         titleElement.classList.remove('card__title--truncate', 'card__title--truncate-2');
       }
       
-      // Aggiungere una classe al contenitore in base alla lunghezza del titolo
+      // Aggiunge una classe al contenitore in base alla lunghezza del titolo
       if (contentElement) {
         if (titleLength > this.maxLength) {
           contentElement.classList.add('card__content-2');
@@ -322,12 +326,10 @@ opacity: 1;
 }
 .badge-left,
 .badge-right {
-width: 50%;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
-background-color: rgba(255, 255, 255, 0.3);
 color: rgb(0, 0, 0);
 border-radius: 5px;
 z-index: 2000;
@@ -335,13 +337,42 @@ z-index: 2000;
 }
 .badge-right {
 cursor: pointer;
-/* Stili aggiuntivi per il badge destra se necessario */
+justify-content: end;
+flex-wrap: wrap;
+}
+.badge-left {
+cursor: pointer;
+justify-content: start;
+flex-wrap: wrap;
+z-index: 2000;
+  
+}
+.promo-badge {
+background-color: rgba(255, 255, 255, 0.3);
+color: rgb(255, 217, 0);
+border-radius: 5px;
+z-index: 2000;
+margin: 2px;
+padding: 5px;
+}
+.service-badge {
+background-color: rgba(255, 255, 255, 0.3);
+border-radius: 5px;
+z-index: 2000;
+margin: 2px;
+}
+.service-badge:hover {
+background-color: rgb(255, 211, 65);
+color: rgb(0, 0, 0);
+border-radius: 5px;
+z-index: 2000;
+margin: 2px;
 }
 #services-img {
 margin: 3px;
 img {
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 20px;
 }
 }
 }
