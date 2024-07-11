@@ -22,29 +22,34 @@ export const store = reactive({
   searchCanv:'',
 
   methods: {
-    async fetchApartments(latitude, longitude, radius) {
+    async fetchApartments($longitude, $latitude, $radius) {
       try {
-        const response = await axios.post(`${store.apiBaseUrl}/search`, {
-          longitude,
-          latitude,
-          radius,
-          beds: store.beds,
-          rooms: store.rooms,
-          services: store.selectedServices.length > 0 ? store.selectedServices : []
+        const response = await axios.get(`${store.apiBaseUrl}/search`, {
+          params: {
+            longitude: $longitude,
+            latitude: $latitude,
+            radius: $radius,
+            beds: store.bedrooms,
+            bathrooms: store.rooms,
+            services: store.selectedServices,
+          },
         });
-        console.log("longitude:", longitude);
-        console.log("latitude:", latitude);
-        console.log("radius:", radius);
-        console.log("beds:", store.beds);
+        console.log("longitude:", $longitude);
+        console.log("latitude:", $latitude);
+        console.log("radius:", $radius);
+        console.log("bedrooms:",store.bedrooms);
         console.log("rooms:", store.rooms);
         console.log("selectedServices:", store.selectedServices);
 
         console.log("response:", response);
         console.log("response.data:", response.data);
-        console.log("response.data.resultsAPI:", response.data.results);
+        console.log(" response.data.resultsAPI:", response.data.results);
+        
         return response.data.results;
       } catch (error) {
-        this.error = "Si è verificato un errore durante il recupero degli appartamenti: " + error.message;
+        this.error =
+          "Si è verificato un errore durante il recupero degli appartamenti: " +
+          error.message;
         console.error(error);
       }
     },
