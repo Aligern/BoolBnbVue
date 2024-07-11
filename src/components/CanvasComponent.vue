@@ -26,7 +26,6 @@
       <!-- ****************************** filters section ****************************** -->
       <div id="pageFilter" class="container">
 
-       
       </div>
       <!--inizio mappa e fine del form -->
 

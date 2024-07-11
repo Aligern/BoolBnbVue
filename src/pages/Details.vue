@@ -10,8 +10,8 @@
         </div>
         <div id="apartment-container">
             <!-- apartment image -->
-            <h1>Welcome to {{ apartment?.name }}</h1>
-            <div class="w-50 m-auto" id="apartment-image">
+            <h1 class="text-decoration-underline">Welcome to {{ apartment?.name }}</h1>
+            <div class="img-container w-75 m-auto" id="apartment-image">
                 <img class="img-fluid " :src="store.imgBasePath + apartment?.image_cover" :alt="apartment?.name">
             </div>
             <!-- left side -->
@@ -24,9 +24,10 @@
                         </div>
                         <!-- services bagdes -->
                         <h5 class="pt-3 text-center">- Services available -</h5>
-                          
-                        <div  class="d-flex justify-content-center">
-                             <span v-for="service in apartment.services" :key="service.id" class="btn">{{ service.name }}</span>
+                        <div class="d-flex justify-content-center">
+                            <div id="services-badges" v-for="service in apartment.services" :key="service.id">
+                                <img :src="store.imgBasePath + service.icon"  alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,6 +45,7 @@
                             </li>
                         </ul>
                     </div>
+                    <!-- apartment address -->
                     <div>
                         <h4>Address:</h4>
                         <p>{{ apartment?.address }}</p>
@@ -51,11 +53,11 @@
                 </div>
                 <!-- apartment description -->
                 <div id="apartment-description" class="">
-                    <div>
+                    <div class="p-3">
                         <h3>Apartment Description</h3>
                         <p>{{ apartment?.description }}</p>
                     </div>
-                    <div class="d-flex justify-content-start">
+                    <div class="d-flex justify-content-end mt-5">
                         <RouterLink :to="{ name: 'payments' }">
                             <button class="btn draw-border"><i class="fa-solid fa-credit-card"></i> Reserve now</button>
                         </RouterLink>
@@ -69,21 +71,24 @@
                 <form @submit.prevent="sendForm()" class="">
                     <h4>Contact me:</h4>
                     <div class="d-flex">
-                        <div>
+                        <!-- <div>
                             <label for="name">Name<span class="text-danger">*</span></label>
                             <input v-model="name" type="text" class="form-control" id="name" placeholder="Your name">
-                        </div>
-                        <div class="ms-3">
+                            <small class="text-danger" v-if="!isValidName(name) && name !== ''">Please enter a valid name</small>
+                        </div> -->
+                        <div>
                             <label for="email">Email address <span class="text-danger">*</span></label>
                             <input v-model="email" type="email" class=" form-control" id="email" placeholder="name@example.com">
+                            <small class="text-danger" v-if="!isValidEmail(email) && email !== ''">Please enter a valid email</small>
                         </div>
                     </div>
                     <div class="mt-2">
                         <label for="message">Your message</label>
                         <textarea v-model="message" class="form-control" id="message" cols="30" rows="10">{{ message }}</textarea>
+                        <small class="text-danger" v-if="!isValidEmail(email) && message !== ''">Please enter a message</small>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" :disabled="!isValidEmail(email)"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
+                        <button type="submit" :disabled="!isValidEmail(email) || !message"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
                     </div>
                 </form>
             </div>
@@ -195,6 +200,24 @@
         /* Move to the original position */
     }
 
+#services-badges {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: hsla(0, 0%, 100%, 0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    box-shadow: 5px 3px 3px rgba(0, 0, 0, 0.2);
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
 
     #host-info-left {
         padding: 30px;

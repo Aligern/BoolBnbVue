@@ -2,19 +2,10 @@
     <header>
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
-                <div class="logo-container position-relative"> 
-                    <img class="img-fluid h-100 w-50" src="../assets/img/logo-1.png" alt="">
-                    <div class="text-overlay text-black">
-                    ool'n'Dreams
-                </div>
-                </div>
-
-                    <!-- title center -->
-                <!-- <div class="text-center title">
-                    <h1 class="pb-2">
-                        Bool'n'Dreams
-                    </h1>
-                </div> -->
+                <div class="logo-container d-flex align-items-center"> 
+                    <img class="position-relative" src="../assets/img/logo-1.png" alt="logo">
+                    <span class="logo-span">Bool n Dreams</span>
+                </div> 
         </nav>
     </header>
 </template>
@@ -87,4 +78,15 @@ header img {
         font-size: 3rem; 
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
+
+    header img {
+    width: 150px;
+}
+.logo-span {
+    position: absolute;
+    left: 110px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 </style>
