@@ -14,6 +14,7 @@
         </div>
       </div>
     </div>
+
     <img
     class="card__background"
     :src="store.imgBasePath + item.image_cover"
@@ -30,6 +31,7 @@
       <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></router-link>
     </div>
   </article>
+
 </template>
 
 <script>

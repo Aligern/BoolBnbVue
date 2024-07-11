@@ -13,44 +13,43 @@ export const store = reactive({
   services: [], //contine tutti i servizi
   users: [],
   promotions: [],
+
   selectedServices: [], // contiene gli ID dei services checkati nel canvas... serve per le filter
-  bedrooms: 0,
+  beds: 0,
   rooms: 0,
+
   radius: 20,
   searchCanv:'',
 
   methods: {
-    async fetchApartments($longitude, $latitude, $radius) {
+    async fetchApartments(latitude, longitude, radius) {
       try {
-        const response = await axios.get(`${store.apiBaseUrl}/search`, {
-          params: {
-            longitude: $longitude,
-            latitude: $latitude,
-            radius: $radius,
-            beds: store.bedrooms,
-            bathrooms: store.rooms,
-            services: store.selectedServices,
-          },
+        const response = await axios.post(`${store.apiBaseUrl}/search`, {
+          longitude,
+          latitude,
+          radius,
+          beds: store.beds,
+          rooms: store.rooms,
+          services: store.selectedServices.length > 0 ? store.selectedServices : []
         });
-        console.log("longitude:", $longitude);
-        console.log("latitude:", $latitude);
-        console.log("radius:", $radius);
-        console.log("bedrooms:",store.bedrooms);
+        console.log("longitude:", longitude);
+        console.log("latitude:", latitude);
+        console.log("radius:", radius);
+        console.log("beds:", store.beds);
         console.log("rooms:", store.rooms);
         console.log("selectedServices:", store.selectedServices);
 
         console.log("response:", response);
         console.log("response.data:", response.data);
-        console.log(" response.data.resultsAPI:", response.data.results);
-        
+        console.log("response.data.resultsAPI:", response.data.results);
         return response.data.results;
       } catch (error) {
-        this.error =
-          "Si è verificato un errore durante il recupero degli appartamenti: " +
-          error.message;
+        this.error = "Si è verificato un errore durante il recupero degli appartamenti: " + error.message;
         console.error(error);
       }
     },
+
+
     async fetchAllServices() {
       const response = await axios.get(store.apiBaseUrl + "/services");
       store.services = response.data.results;

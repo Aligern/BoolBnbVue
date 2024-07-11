@@ -19,19 +19,24 @@
 
         <div class="d-flex" v-for="service in store.services" :key="service.id">
           <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id"
-            v-model="store.selectedServices" @input="console.log(store.selectedServices)">
+            v-model="store.selectedServices" @input="console.log('store.selectedServices:', store.selectedServices)">
           <label for="servcheck">{{ service.name }}</label>
         </div>
       </div>
-      <div id="filter">
 
+
+
+
+      <div id="filter">
         <div class="my-2">
-          <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.bedrooms">
+          <input type="number" class="form-control" placeholder="Bedrooms" v-model="store.beds">
         </div>
         <div>
           <input type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
         </div>
-        <div v-for="service in store.selectedServices" :key="service.id">{{ service.id }}</div>
+        <!-- <div v-for="service in store.selectedServices" :key="service.id">
+          {{ service.id }}
+        </div> -->
         <div class="filter-distance">
           <label for="distance-range">Distanza (km):</label>
           <input class="w-75" type="range" id="distance-range" min="0" max="20" value="20" v-model="store.radius">
@@ -97,12 +102,13 @@ export default {
         // console.log('fixedPoint:', fixedPoint);
         // console.log('pippo.filteredApart:', store.filteredApart)
 
-        
+
 
         const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, 20);
         console.log('researchResults:', this.researchResults)
         this.researchResults = pippo;
         store.pippo = pippo;
+        this.$emit('updateResults', pippo);
 
         console.log('pippo:', store.pippo);
         return response.data.results;
@@ -111,6 +117,16 @@ export default {
         console.error('Errore durante la ricerca degli indirizzi:', error.message);
         return [];
       }
+    },
+    updateSearch() {
+      if (this.query) {
+        this.fetchAddresses(this.query);
+      }
+    },
+    selectAddress(result) {
+      this.query = result.address.freeformAddress;
+      this.results = [];
+      this.updateSearch(); // Aggiorna la ricerca dopo la selezione dell'indirizzo
     },
     handleInput() {
       const query = this.query.trim();
@@ -127,11 +143,6 @@ export default {
           console.error('Errore durante la gestione dell\'input:', error);
         });
     },
-    selectAddress(result) {
-      this.query = result.address.freeformAddress;
-      this.results = [];
-      // this.$router.push({ name: 'results' });
-    }
   },
   computed: {
     resultsRoute() {
@@ -146,6 +157,17 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
   },
+  watch: {
+    'store.beds'() {
+      this.updateSearch();
+    },
+    'store.rooms'() {
+      this.updateSearch();
+    },
+    'store.selectedServices'() {
+      this.updateSearch();
+    },
+  }
 };
 </script>
 
