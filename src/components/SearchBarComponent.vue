@@ -108,6 +108,7 @@ export default {
         console.log('researchResults:', this.researchResults)
         this.researchResults = pippo;
         store.pippo = pippo;
+        this.$emit('updateResults', pippo);
 
         console.log('pippo:', store.pippo);
         return response.data.results;

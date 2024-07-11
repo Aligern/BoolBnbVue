@@ -1,21 +1,21 @@
 <template>
-    <HeaderComponent/>
-    <SearchBarComponent @getPippo="getPippo"/>
-        <!-- this is the home button -->
-         <div class="container mt-4">
-             <div class="pb-3">
-                 <RouterLink :to="{ name: 'home' }">
-                     <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
-                 </RouterLink>
-             </div>
-         
-             <div class="container justify-content-between mb-5">
-                 <h2 class="">Your Results</h2>
-                 <div class="d-flex flex-wrap">
-                     <CardComponent class="" v-for="apartment in pippo" :key="apartment.slug" :item="apartment" /> 
-                 </div>
-             </div>
-         </div>
+    <HeaderComponent />
+    <SearchBarComponent @updateResults="updateResults" />
+    <!-- this is the home button -->
+    <div class="container mt-4">
+        <div class="pb-3">
+            <RouterLink :to="{ name: 'home' }">
+                <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
+            </RouterLink>
+        </div>
+
+        <div class="container justify-content-between mb-5">
+            <h2 class="">Your Results</h2>
+            <div class="d-flex flex-wrap">
+                <CardComponent class="" v-for="apartment in pippo" :key="apartment.slug" :item="apartment" />
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -26,57 +26,59 @@ import SearchBarComponent from '@/components/SearchBarComponent.vue';
 import FooterComponent from '../components/FooterComponent.vue';
 import CardComponent from '../components/CardComponent.vue';
 
-    export default {
-        name: 'Results',
-        components: { 
-            HeaderComponent,
-            FooterComponent,
-            CardComponent,
-            SearchBarComponent
-            },
-            data() {
-                return {
-                    store,
-                    pippo: [],
-                }
-            },
-            methods: {
-                scroll(distance, id) {
-                    //console.log('entrato'),
-                    //console.log(distance),
-                    //console.log(id),
-                    console.log(this.apartments,'ciaooo'),
-                    this.$refs[id].scrollBy({
-                        left: distance,
-                        behavior: 'smooth',
-                    })
-                },
-                getPippo(){
-                    this.pippo = [];
-                    this.pippo = store.pippo;
-                    console.log('pippo in result:', this.pippo);
-                },
-                fetchResults() {
-                    const address = this.$route.query.address;
-                    if (address) {
-                        this.pippo = store.pippo;
-                    }
-                    }
-            },
-        mounted() {
-            this.getPippo();
-            this.fetchResults();
-        },
-        watch: {
-            '$route.query.address': 'fetchResults'
+export default {
+    name: 'Results',
+    components: {
+        HeaderComponent,
+        FooterComponent,
+        CardComponent,
+        SearchBarComponent
+    },
+    data() {
+        return {
+            store,
+            pippo: [],
         }
+    },
+    methods: {
+        scroll(distance, id) {
+            //console.log('entrato'),
+            //console.log(distance),
+            //console.log(id),
+            console.log(this.apartments, 'ciaooo'),
+                this.$refs[id].scrollBy({
+                    left: distance,
+                    behavior: 'smooth',
+                })
+        },
+        getPippo() {
+            this.pippo = [];
+            this.pippo = store.pippo;
+            console.log('pippo in result:', this.pippo);
+        },
+        fetchResults() {
+            const address = this.$route.query.address;
+            if (address) {
+                this.pippo = store.pippo;
+            }
+        },
+        updateResults(newResults) {
+            this.pippo = newResults;
+        }
+    },
+    mounted() {
+        this.getPippo();
+        this.fetchResults();
+    },
+    watch: {
+        '$route.query.address': 'fetchResults'
     }
+}
 </script>
 
 <style lang="scss" scoped>
-
-
-.ls-btn-left, .ls-btn-right {
+.ls-btn-left,
+.ls-btn-right {
     background: hsla(0, 0%, 0%, 0.2);
     border: none;
     border-radius: 5px;
@@ -97,63 +99,65 @@ import CardComponent from '../components/CardComponent.vue';
 }
 
 .draw-border {
- //box-shadow: inset 0 0 0 4px #000000;
- color: #000000;
- transition: color 0.25s 0.0833333333s;
- position: relative;
+    //box-shadow: inset 0 0 0 4px #000000;
+    color: #000000;
+    transition: color 0.25s 0.0833333333s;
+    position: relative;
 }
 
-.draw-border::before, .draw-border::after {
- border: 0 solid transparent;
- box-sizing: border-box;
- border-radius: 3px;
- content: "";
- pointer-events: none;
- position: absolute;
- width: 0;
- height: 0;
- bottom: 0;
- right: 0;
+.draw-border::before,
+.draw-border::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    border-radius: 3px;
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0;
+    right: 0;
 }
 
 .draw-border::before {
- border-bottom-width: 4px;
- border-left-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
 }
 
 .draw-border::after {
- border-top-width: 4px;
- border-right-width: 4px;
+    border-top-width: 4px;
+    border-right-width: 4px;
 }
 
 .draw-border:hover {
- color: #000000;
- background-color: transparent;
+    color: #000000;
+    background-color: transparent;
 }
 
-.draw-border:hover::before, .draw-border:hover::after {
- border-color: #000000;
- transition: border-color 0s, width 0.25s, height 0.25s;
- width: 100%;
- height: 100%;
+.draw-border:hover::before,
+.draw-border:hover::after {
+    border-color: #000000;
+    transition: border-color 0s, width 0.25s, height 0.25s;
+    width: 100%;
+    height: 100%;
 }
 
 .draw-border:hover::before {
- transition-delay: 0s, 0s, 0.25s;
+    transition-delay: 0s, 0s, 0.25s;
 }
 
 .draw-border:hover::after {
- transition-delay: 0s, 0.25s, 0s;
+    transition-delay: 0s, 0.25s, 0s;
 }
 
 .btn {
- background: none;
- border: none;
- cursor: pointer;
- line-height: 1.5;
- font: 700 17px "Roboto Slab", sans-serif;
- padding: 1em 2em;
- letter-spacing: 0.05rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1.5;
+    font: 700 17px "Roboto Slab", sans-serif;
+    padding: 1em 2em;
+    letter-spacing: 0.05rem;
 }
 
 #CardScrollContainer {
@@ -168,5 +172,4 @@ import CardComponent from '../components/CardComponent.vue';
     align-items: center;
     margin-top: 20px;
 }
-
 </style>
