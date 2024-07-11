@@ -1,23 +1,28 @@
 <template>
-    <HeaderComponent />
-    <SearchBarComponent @updateResults="updateResults" />
-    <!-- this is the home button -->
-    <div class="container mt-4">
-        <div class="pb-3">
-            <RouterLink :to="{ name: 'home' }">
-                <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
-            </RouterLink>
-        </div>
 
-        <div class="container justify-content-between mb-5">
-            <h2 class="">Your Results</h2>
-            <div class="d-flex flex-wrap">
-                <CardComponent class="" v-for="apartment in pippo" :key="apartment.slug" :item="apartment" />
+    <HeaderComponent/>
+    <SearchBarComponent @updateResults="updateResults"/>
+        <!-- this is the home button -->
+        <div class="container-fluid ms-5 mt-3">
+            <div class="pb-3 ms-5">
+                <RouterLink :to="{ name: 'home' }">
+                    <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
+                </RouterLink>
             </div>
+            <!-- apartments results -->
         </div>
-    </div>
-</template>
+            <div class="container-fluid p-5">
+                <h2 class="mt-5 ms-5 text-decoration-underline">Your Results</h2>
+                <div class="d-flex justify-content-start flex-wrap ls-glass p-5">
+                    <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
+                        <CardComponent  :item="apartment" /> 
+                    </div>
+                </div>
+            </div>
 
+</template>
+<!-- <CardComponent class="" v-for="apartment in pippo" :key="apartment.slug" :item="apartment" /> 
+                </div> -->
 <script>
 import axios from 'axios';
 import { store } from '../store';
