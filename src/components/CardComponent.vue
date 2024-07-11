@@ -1,7 +1,5 @@
 <template>
-  
-
-  <article class="card my-4">
+  <article  class="card my-4">
     <div class="card__badges ">
       <div class="badge-left"><i class="fa-solid fa-star"></i></div>
       <div v-for="services in item.services" :key="services.id"  class="badge-right" >
@@ -17,14 +15,12 @@
   :src="store.imgBasePath + item.image_cover"
   alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
   width="1920"
-  height="2193"
-/>
-<div class="card__content | flow">
+  height="2193"/>
+<div ref="cardContent" class="card__content | flow">
   <div class="card__content--container | flow">
-    <h2 class="card__title">Titolo</h2>
-    <p class="card__description">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
-      labore laudantium deserunt fugiat numquam.
+    <h2 class="card__title" ref="cardTitle">{{ item.name }}</h2>
+    <p class="p-4 pb-0 card__description">
+      {{ item.description }}
     </p>
   </div>
   <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></router-link>
@@ -41,17 +37,46 @@ export default {
   ],
   data() {
     return {
-      store
+      store,
+      maxLength: 16,
+      otherMaxLength: 17,
+      titleElement: 'this is an example of a very very long title that probably may be truncated due of it\'s length',
     }
+  },
+  methods: {
+    checkTitleLength() {
+    const titleElement = this.$refs.cardTitle;
+    const contentElement = this.$refs.cardContent; // Riferimento al contenitore
+
+    if (titleElement) {
+      const titleLength = titleElement.innerText.length;
+      if (titleLength > this.otherMaxLength) {
+        titleElement.classList.add('card__title--truncate-2');
+        titleElement.classList.remove('card__title--truncate');
+      } else if (titleLength > this.maxLength) {
+        titleElement.classList.add('card__title--truncate');
+        titleElement.classList.remove('card__title--truncate-2');
+      } else {
+        titleElement.classList.remove('card__title--truncate', 'card__title--truncate-2');
+      }
+      
+      // Aggiungere una classe al contenitore in base alla lunghezza del titolo
+      if (contentElement) {
+        if (titleLength > this.maxLength) {
+          contentElement.classList.add('card__content-2');
+        } else {
+          contentElement.classList.remove('card__content-2');
+        }
+      }
+    }
+  }
   },
   mounted() {
    // console.log('item:', this.item);
     //console.log('services:', this.item.services);
-  },
-  methods: {
+    this.checkTitleLength();
 
   },
-
 }
 </script>
 
@@ -63,8 +88,7 @@ export default {
 box-sizing: border-box;
 }
 /* Remove default margin */
-body,
-h2,
+body, h2,
 p {
 margin: 0;
 }
@@ -78,7 +102,7 @@ h2 {
 font-size: 2.25rem;
 font-family: var(--font-title);
 color: var(--white);
-line-height: 1.1;
+line-height: 1.2;
 }
 p {
 font-family: var(--font-text);
@@ -111,12 +135,13 @@ height: 100%;
 }
 .card__content {
 --flow-space: 0.9375rem;
+width: 100%;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-self: flex-end;
-height: 55%;
-padding: 12% 1.25rem 1.875rem;
+height: 60%;
+padding: 12% 0.275rem 1.875rem;
 background: linear-gradient(
   180deg,
   hsla(0, 0%, 0%, 0) 0%,
@@ -132,6 +157,38 @@ position: relative;
 width: fit-content;
 width: -moz-fit-content; /* Prefijo necesario para Firefox  */
 }
+.card__title--truncate {
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  width: fit-content;
+}
+
+// queste classi sono solo per il titolo e vengono applicate tramite funzione checkTitleLength
+.card__title--truncate-2 {
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  width: fit-content;
+  text-wrap: wrap;
+  line-height: 0.90;
+}
+.card__content-2 {
+--flow-space: 0.9375rem;
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-self: flex-end;
+height: 67%;
+padding: 12% 0.105rem 1.875rem;
+background: linear-gradient(
+  180deg,
+  hsla(0, 0%, 0%, 0) 0%,
+  hsla(0, 0%, 0%, 0.3) 10%,
+  hsl(0, 0%, 0%) 100%
+);
+}
+/////////////////////////////////////////////////////////////////////
 .card__title::after {
 content: "";
 position: absolute;
@@ -280,11 +337,8 @@ z-index: 2000;
 cursor: pointer;
 /* Stili aggiuntivi per il badge destra se necessario */
 }
-
 #services-img {
 margin: 3px;
-
-
 img {
   width: 15px;
   height: 15px;
