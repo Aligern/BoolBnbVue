@@ -82,7 +82,7 @@ export default {
       const distanceValue = document.getElementById('distance-value');
 
       distanceRange.addEventListener('input', function () {
-        const selectedDistance = distanceRange.value;
+        const selectedDistance = store.radius;
         distanceValue.textContent = selectedDistance + ' km';
       });
     },
@@ -96,7 +96,7 @@ export default {
           throw new Error('Nessun risultato trovato.');
         }
         const fixedPoint = response.data.results[0].position;
-        const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, 20);
+        const pippo = await store.methods.fetchApartments(fixedPoint.lon, fixedPoint.lat, store.radius);
         console.log('researchResults:', this.researchResults)
         this.researchResults = pippo;
         store.pippo = pippo;
@@ -164,6 +164,9 @@ export default {
       this.updateSearch();
     },
     'store.selectedServices'() {
+      this.updateSearch();
+    },
+    'store.radius'() {
       this.updateSearch();
     },
   }
