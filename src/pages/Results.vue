@@ -1,30 +1,51 @@
 <template>
-
     <HeaderComponent/>
     <SearchBarComponent @updateResults="updateResults"/>
-        <!-- this is the home button -->
-        <div class="container-fluid ms-5 mt-3">
-            <div class="pb-3 ms-5">
-                <RouterLink :to="{ name: 'home' }">
-                    <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
-                </RouterLink>
-            </div>
-            <!-- apartments results -->
+    <!-- this is the home button -->
+    <div class="container-fluid ms-5 mt-3">
+        <div class="pb-3 ms-5">
+            <RouterLink :to="{ name: 'home' }">
+                <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
+            </RouterLink>
         </div>
-            <div class="container-fluid p-5">
-                <h2 class="mt-5 ms-5 text-decoration-underline">Your Results</h2>
-                <div class="d-flex justify-content-start flex-wrap ls-glass p-5">
-                    <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
-                        <CardComponent  :item="apartment" /> 
-                    </div>
+        <!-- apartments results -->
+    </div>
+    <div class="container-fluid p-5">
+        <h2 class="mt-5 ms-5 text-decoration-underline">Your Results</h2>
+        <div class="d-flex gap-3 mb-3">
+            <div id="services">
+                <h2 class="text-center">Services</h2>
+                <div class="d-flex" v-for="service in store.services" :key="service.id">
+                    <input id="servcheck" type="checkbox" class="form-check-input me-2" :value="service.id" v-model="store.selectedServices">
+                    <label for="servcheck">{{ service.name }}</label>
                 </div>
             </div>
-
+            <div id="filter">
+                <div class="my-2">
+                    <label for="Bedrooms">Bedrooms</label>
+                    <input id="Bedrooms" type="number" class="form-control" placeholder="Bedrooms" v-model="store.beds">
+                </div>
+                <div>
+                    <label for="rooms">Rooms</label>
+                    <input id="rooms" type="number" class="form-control" placeholder="Rooms" v-model="store.rooms">
+                </div>
+                <div class="filter-distance">
+                    <label for="distance-range">Distanza (km):</label>
+                    <span id="distance-value">{{ store.radius }}</span>
+                    <br>
+                    <input class="w-75" type="range" id="distance-range" min="1" max="25" v-model="store.radius" @blur="fetchFilteredResults">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-start flex-wrap ls-glass p-5">
+            <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
+                <CardComponent :item="apartment"/> 
+            </div>
+        </div>
+    </div>
 </template>
-<!-- <CardComponent class="" v-for="apartment in pippo" :key="apartment.slug" :item="apartment" /> 
-                </div> -->
+
 <script>
-import axios from 'axios';
 import { store } from '../store';
 import HeaderComponent from '../components/HeaderComponent.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
@@ -46,26 +67,21 @@ export default {
         }
     },
     methods: {
-        scroll(distance, id) {
-            //console.log('entrato'),
-            //console.log(distance),
-            //console.log(id),
-            console.log(this.apartments, 'ciaooo'),
-                this.$refs[id].scrollBy({
-                    left: distance,
-                    behavior: 'smooth',
-                })
-        },
         getPippo() {
-            this.pippo = [];
             this.pippo = store.pippo;
             console.log('pippo in result:', this.pippo);
         },
-        fetchResults() {
-            const address = this.$route.query.address;
-            if (address) {
-                this.pippo = store.pippo;
-            }
+        async fetchFilteredResults() {
+            console.log('fetchFilteredResults - params:', {
+                beds: this.store.beds,
+                rooms: this.store.rooms,
+                services: this.store.selectedServices,
+                radius: this.store.radius,
+            }); // Log dei parametri
+            
+            const results = await store.methods.fetchApartmentsFiltered();
+            console.log('fetchFilteredResults - results:', results); // Log dei risultati
+            this.pippo = results;
         },
         updateResults(newResults) {
             this.pippo = newResults;
@@ -73,10 +89,11 @@ export default {
     },
     mounted() {
         this.getPippo();
-        this.fetchResults();
     },
     watch: {
-        '$route.query.address': 'fetchResults'
+        'store.beds': 'fetchFilteredResults',
+        'store.rooms': 'fetchFilteredResults',
+        'store.selectedServices': 'fetchFilteredResults',
     }
 }
 </script>
