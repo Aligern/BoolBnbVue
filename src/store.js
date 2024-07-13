@@ -6,72 +6,104 @@ export const store = reactive({
   apiBaseUrl: "http://127.0.0.1:8000/api",
   imgBasePath: "http://127.0.0.1:8000/storage/",
   apiKey: script.TOMTOM_API_KEY,
-  apartments: [], //contiene tutti gli appartamenti
+  homeApartments: [],
+  apartments: [],
   filteredApart: [],
-  pippo: [], //array con appartamenti filtrati per distanza
+  pippo: [],
   imageBaseUrl: "./assets/img/",
-  services: [], //contine tutti i servizi
+  services: [],
   users: [],
   promotions: [],
-
-  selectedServices: [], // contiene gli ID dei services checkati nel canvas... serve per le filter
+  selectedServices: [],
   beds: 0,
   rooms: 0,
-
   radius: 20,
-  searchCanv:'',
+  searchCanv: '',
+  latitude: null,  
+  longitude: null, 
 
   methods: {
+    async fetchHomeApartments() {
+      try {
+        const response = await axios.get(`${store.apiBaseUrl}/apartments`, {
+          params: {
+            promoted: true,
+          },
+        });
+        console.log('Response data:', response.data.results); // Log
+        store.homeApartments = response.data.results;
+      } catch (error) {
+        console.error("Errore durante il recupero degli appartamenti con promozioni:", error.message);
+        console.error("Dettagli errore:", error.response.data);
+        throw error;
+      }
+    },
     async fetchApartments($longitude, $latitude, $radius) {
       try {
-        const response = await axios.get(`${store.apiBaseUrl}/search`, {
+        const response = await axios.get(`${store.apiBaseUrl}/search/location`, {
           params: {
             longitude: $longitude,
             latitude: $latitude,
             radius: $radius,
-            beds: store.beds,
-            bathrooms: store.rooms,
-            services: store.selectedServices,
           },
         });
-        console.log("longitude:", $longitude);
-        console.log("latitude:", $latitude);
-        console.log("radius:", $radius);
-        console.log("bedrooms:",store.bedrooms);
-        console.log("rooms:", store.rooms);
-        console.log("selectedServices:", store.selectedServices);
-
-        console.log("response:", response);
-        console.log("response.data:", response.data);
-        console.log(" response.data.resultsAPI:", response.data.results);
-        
+        console.log('fetchApartments - results:', response.data.results); // Log
+        store.latitude = $latitude;  // Salva la latitudine
+        store.longitude = $longitude;  // Salva la longitudine
+        store.radius = $radius;  // Salva il raggio
+        store.apartments = response.data.results;  // Salva i risultati
         return response.data.results;
       } catch (error) {
-        this.error =
-          "Si è verificato un errore durante il recupero degli appartamenti: " +
-          error.message;
-        console.error(error);
+        console.error("Errore durante il recupero degli appartamenti:", error.message);
+        throw error;
       }
     },
 
+    async fetchApartmentsFiltered() {
+      console.log('fetchApartmentsFiltered - params:', {
+        longitude: store.longitude,
+        latitude: store.latitude,
+        radius: store.radius,
+        beds: store.beds,
+        rooms: store.rooms,
+        services: store.selectedServices,
+      }); // Log dei parametri
+      
+      try {
+        const response = await axios.get(`${store.apiBaseUrl}/search/filter`, {
+          params: {
+            longitude: store.longitude,
+            latitude: store.latitude,
+            radius: store.radius,
+            beds: store.beds,
+            rooms: store.rooms,
+            services: store.selectedServices,
+          },
+        });
+        console.log('fetchApartmentsFiltered - results:', response.data.results); // Log
+        store.filteredApart = response.data.results;  // Salva i risultati filtrati
+        return response.data.results;
+      } catch (error) {
+        console.error("Errore durante il recupero degli appartamenti filtrati:", error.message);
+        throw error;
+      }
+    },
 
     async fetchAllServices() {
       const response = await axios.get(store.apiBaseUrl + "/services");
       store.services = response.data.results;
-      console.log("Servizi OK!", store.services);
       return response;
     },
+    
     async fetchAllUsers() {
       const response = await axios.get(store.apiBaseUrl + "/users");
       store.users = response.data.results;
-      console.log("Users OK!", store.users);
       return response;
     },
 
     async fetchAllPromotions() {
       const response = await axios.get(store.apiBaseUrl + "/promotions");
       store.promotions = response.data.results;
-      console.log("Promozioni OK!", store.promotions);
       return response;
     },
   },
