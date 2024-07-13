@@ -62,15 +62,15 @@
             </div>
         </div>
     </div>
- <!--  ******************* map section ******************** -->
-        <div id="map-container">
-            <div class="map " aria-label="map">
-                <Map />
-            </div>
+    <!--  ******************* map section ******************** -->
+    <div id="map-container">
+        <div class="map " aria-label="map">
+            <Map />
         </div>
+    </div>
 
 
- 
+
 
     <SearchBarComponent @updateResults="updateResults" />
     <!-- this is the home button -->
@@ -98,68 +98,137 @@
 
 <script>
 
-import { store } from '../store';
-import HeaderComponent from '../components/HeaderComponent.vue';
-import SearchBarComponent from '@/components/SearchBarComponent.vue';
-import FooterComponent from '../components/FooterComponent.vue';
-import CardComponent from '../components/CardComponent.vue';
+    import { store } from '../store';
+    import HeaderComponent from '../components/HeaderComponent.vue';
+    import SearchBarComponent from '@/components/SearchBarComponent.vue';
+    import FooterComponent from '../components/FooterComponent.vue';
+    import CardComponent from '../components/CardComponent.vue';
+    import Map from '../components/Map.vue';
 
-export default {
-    name: 'Results',
-    components: {
-        HeaderComponent,
-        FooterComponent,
-        CardComponent,
-        SearchBarComponent
-    },
-    data() {
-        return {
-            store,
-            pippo: [],
-        }
-    },
-    methods: {
-        getPippo() {
-            this.pippo = store.pippo;
-            console.log('pippo in result:', this.pippo);
+
+    export default {
+
+        name: 'Results',
+        components: {
+            HeaderComponent,
+            FooterComponent,
+            CardComponent,
+            SearchBarComponent,
+            Map
+
         },
-        async fetchFilteredResults() {
-            console.log('fetchFilteredResults - params:', {
-                beds: this.store.beds,
-                rooms: this.store.rooms,
-                services: this.store.selectedServices,
-                radius: this.store.radius,
-            }); // Log dei parametri
-            
-            const results = await store.methods.fetchApartmentsFiltered();
-            console.log('fetchFilteredResults - results:', results); // Log dei risultati
-            this.pippo = results;
+        data() {
+            return {
+                store,
+                pippo: [],
+                beds: 0,
+                rooms: 0,
+
+            }
+        },
+        methods: {
+                        //funzione per l'update dei risultati
+            // Toggle selection of a service
+            toggleSelection(serviceId) {
+                const index = this.store.selectedServices.indexOf(serviceId);
+                if (index === -1) {
+                    this.store.selectedServices.push(serviceId);
+                    //console.log(this.store.selectedServices);
+                } else {
+                    this.store.selectedServices.splice(index, 1);
+                    //console.log(this.store.searchService);
+                }
+            },
+            // Check if a service is selected
+            isSelected(serviceId) {
+                return this.store.selectedServices.includes(serviceId);
+            },
+
+
+
+            //funzioni per i counter
+
+            increment(variable) {
+                if (this[variable] < 10) {
+                    this[variable] += 1;
+                    this.store[variable] = this[variable];
+                    //console.log(this.store[variable])
+                }
+            },
+            decrement(variable) {
+                if (this[variable] > 0) {
+                    this[variable] -= 1;
+                    this.store[variable] = this[variable];
+                    //console.log(this.store[variable])
+                }
+            },
+
+            //funxione per il range di distanza
+            rangeFunction() {
+                const distanceRange = document.getElementById('distance-range');
+                const distanceValue = document.getElementById('distance-value');
+
+                distanceRange.addEventListener('input', function () {
+                    const selectedDistance = store.radius;
+                    distanceValue.textContent = selectedDistance + ' km';
+                });
+            },
+
+
+            scroll(distance, id) {
+                //console.log('entrato'),
+                //console.log(distance),
+                //console.log(id),
+                console.log(this.apartments, 'ciaooo'),
+                    this.$refs[id].scrollBy({
+                        left: distance,
+                        behavior: 'smooth',
+                    })
+            },
+
+
+// Matteo Functions
+            getPippo() {
+                this.pippo = store.pippo;
+                console.log('pippo in result:', this.pippo);
+            },
+            async fetchFilteredResults() {
+                console.log('fetchFilteredResults - params:', {
+                    beds: this.store.beds,
+                    rooms: this.store.rooms,
+                    services: this.store.selectedServices,
+                    radius: this.store.radius,
+                }); // Log dei parametri
+
+                const results = await store.methods.fetchApartmentsFiltered();
+                console.log('fetchFilteredResults - results:', results); // Log dei risultati
+                this.pippo = results;
+            },
+            mounted() {
+                this.getPippo();
+                this.fetchResults();
+                document.addEventListener('click', this.handleClickOutside);// jasvascript per il collapse
+                this.rangeFunction();//funzione per il range
+                console.log(store.pippo)
+
+            },
+            beforeUnmount() {//javascript per il collapse
+                document.removeEventListener('click', this.handleClickOutside);
+            },
+            watch: {
+                '$route.query.address': 'fetchResults'
+            }
+
         },
         mounted() {
             this.getPippo();
-            this.fetchResults();
-            document.addEventListener('click', this.handleClickOutside);// jasvascript per il collapse
-            this.rangeFunction();//funzione per il range
-            console.log(store.pippo)
-
-        },
-        beforeUnmount() {//javascript per il collapse
-            document.removeEventListener('click', this.handleClickOutside);
         },
         watch: {
-            '$route.query.address': 'fetchResults'
+            'store.beds': 'fetchFilteredResults',
+            'store.rooms': 'fetchFilteredResults',
+            'store.selectedServices': 'fetchFilteredResults',
         }
-
-    },
-    mounted() {
-        this.getPippo();
-    },
-    watch: {
-        'store.beds': 'fetchFilteredResults',
-        'store.rooms': 'fetchFilteredResults',
-        'store.selectedServices': 'fetchFilteredResults',
     }
-}
 
 </script>
 
@@ -178,16 +247,17 @@ export default {
             }
         }
 
-        
+
     }
-    #map-container{
+
+    #map-container {
         display: flex;
         justify-content: center;
-        
 
-           
-       
-            
+
+
+
+
     }
 
     button {
