@@ -1,8 +1,11 @@
 <template>
   <div ref="dropdown" id="search-bar" class="absolute">
+
+    
+
     <div class="d-flex">
       <input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="query"
-        @keyup.enter="handleSearch" @input="handleInput">
+        @input="handleInput">
       <router-link :to="resultsRoute" class="btn btn-dark ms-2">
         <i class="fa-solid fa-magnifying-glass"></i>
       </router-link>
@@ -28,9 +31,11 @@ export default {
       results: [],
       apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
       apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/',
+
     };
   },
   methods: {
+
     async fetchCoordinates(query) {
       const url = `${this.apiBaseUrlTomTom}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
       try {
@@ -106,10 +111,6 @@ export default {
 };
 </script>
 
-
-
-
-
 <style lang="scss" scoped>
 .active {
   // classe del collapse in searchbar
@@ -117,21 +118,6 @@ export default {
 }
 
 
-#collapse1 {
-  background-color: white;
-  width: 100%;
-  height: 450px;
-  border-radius: 5px;
-  padding: 10px;
-  border-bottom: 0p;
-  cursor: pointer;
-  display: block;
-  transition: display 1.2s ease;
-
-  #filter {
-    width: 100%;
-  }
-}
 
 #search-bar {
   display: flex;
@@ -161,31 +147,20 @@ export default {
   border-bottom: 0p;
   cursor: pointer;
 
-
-  #resultsContainer {
-    background-color: white;
-    width: 75%;
-    border-radius: 5px;
-    padding: 10px;
-    border-bottom: 0p;
-    cursor: pointer;
-
-  }
-
 }
 
 
 
 .absolute {
   position: absolute;
-  top: 25px;
+  top:5px;
   left: 50%;
 
 }
 
 .fixed {
   position: fixed;
-  top: 25px;
+  top: 5px;
   left: 50%;
   z-index: 2000;
 

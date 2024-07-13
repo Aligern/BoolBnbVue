@@ -11,6 +11,6 @@ import { router } from './router';
 import App from './App.vue';
 
 // gestisce il click fuori dal componente
-import clickOutside from './clickOutside.js';
 
-createApp(App).directive('click-outside', clickOutside).use(router).mount('#app')
+
+createApp(App).use(router).mount('#app')

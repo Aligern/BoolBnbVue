@@ -15,6 +15,7 @@
     "@tomtom-international/web-sdk-services": "^6.25.0",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "primevue": "^4.0.0",
     "radix-vue": "^1.9.0",
     "sass": "^1.77.6",
     "vue": "^3.4.29",
