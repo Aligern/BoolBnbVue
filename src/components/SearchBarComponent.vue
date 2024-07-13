@@ -1,33 +1,13 @@
 <template>
   <div ref="dropdown" id="search-bar" class="absolute">
     <div class="d-flex"><input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="query"
-        @keyup.enter="$emit('getPippo')" @input="handleInput" @click="toggleCollapse('collapse1')"><router-link
+        @keyup.enter="$emit('getPippo')" @input="handleInput" ><router-link
         :to="resultsRoute" class="btn btn-dark ms-2"><i class="fa-solid fa-magnifying-glass"></i></router-link></div>
     <div id="resultsContainer" v-if="results.length > 0">
       <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)"> {{
         result.address.freeformAddress }} </div>
     </div><!-- collapse contenente i filtri -->
-    <div v-show="isOpen === 'collapse1'" class="collapse show" id="collapse1">
-      <h1 class="text-black text-center text-uppercase">Filter</h1>
-      <div class="d-flex gap-3">
-        <div id="services">
-          <h2 class="text-center">Services</h2>
-          <div class="d-flex" v-for="service in store.services" :key="service.id"><input id="servcheck" type="checkbox"
-              class="form-check-input me-2" :value="service.id" v-model="store.selectedServices"
-              @input="console.log('store.selectedServices:', store.selectedServices)"><label for="servcheck">{{
-              service.name }}</label></div>
-        </div>
-        <div id="filter">
-          <div class="my-2"><label for="Bedrooms">Bedrooms</label><input id="Bedrooms" type="number"
-              class="form-control" placeholder="Bedrooms" v-model="store.beds"></div>
-          <div><label for="rooms">Rooms</label><input id="rooms" type="number" class="form-control" placeholder="Rooms"
-              v-model="store.rooms"></div>
-          <div class="filter-distance"><label for="distance-range">Distanza (km):</label> <span id="distance-value">{{
-            store.radius }}</span> <br><input class="w-75" type="range" id="distance-range" min="1" max="100"
-              value="20" v-model="store.radius"></div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </template>
 
@@ -47,7 +27,7 @@ export default {
       researchResults: [],
       apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
       apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/',
-      isOpen: null,
+      
 
     };
   },
@@ -59,33 +39,24 @@ export default {
       const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
       const inputSearch = document.querySelector('#searchInput'); // Seleziona l'input di ricerca
 
-      if (scrollPosition > 100) {
-        inputSearch.style.padding = '3px';
-      } else {
-        inputSearch.style.padding = '15px';
-      }
-    },
+      if (searchBar) {
+          if (scrollPosition > 0) {
 
-    // funzioni del collapse
-    toggleCollapse(collapseId) {
-      this.isOpen = this.isOpen === collapseId ? null : collapseId;
-    },
-    handleClickOutside(event) {
-      if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
-        this.isOpen = null;
-      }
-    },
+            searchBar.className = 'fixed';
+          } else {
 
-    //funxione per il range di distanza
-    rangeFunction() {
-      const distanceRange = document.getElementById('distance-range');
-      const distanceValue = document.getElementById('distance-value');
+            searchBar.className = 'absolute';
+          };
 
-      distanceRange.addEventListener('input', function () {
-        const selectedDistance = store.radius;
-        distanceValue.textContent = selectedDistance + ' km';
-      });
+          if (scrollPosition > 100) {
+            searchBar.style.padding = '3px';
+          } else {
+            searchBar.style.padding = '15px';
+          }
+        }
+
     },
+   
     //funzione per la chiamata della chiave API
     async fetchAddresses(query) {
       const url = `${this.apiBaseUrlTomTom}${encodeURIComponent(query)}.json?key=${this.apiKey}`;
@@ -149,12 +120,8 @@ export default {
 
   mounted() {
     window.addEventListener('scroll', this.handleScroll);//javascript per l'effetto scroll
-    document.addEventListener('click', this.handleClickOutside);// jasvascript per il collapse
-    this.rangeFunction();//funzione per il range
   },
-  beforeUnmount() {//javascript per il collapse
-    document.removeEventListener('click', this.handleClickOutside);
-  },
+ 
 
   watch: {
     'store.beds'() {
@@ -183,21 +150,6 @@ export default {
 }
 
 
-#collapse1 {
-  background-color: white;
-  width: 100%;
-  height: 450px;
-  border-radius: 5px;
-  padding: 10px;
-  border-bottom: 0p;
-  cursor: pointer;
-  display: block;
-  transition: display 1.2s ease;
-
-  #filter {
-    width: 100%;
-  }
-}
 
 #search-bar {
   display: flex;
@@ -227,31 +179,20 @@ export default {
   border-bottom: 0p;
   cursor: pointer;
 
-
-  #resultsContainer {
-    background-color: white;
-    width: 75%;
-    border-radius: 5px;
-    padding: 10px;
-    border-bottom: 0p;
-    cursor: pointer;
-
-  }
-
 }
 
 
 
 .absolute {
   position: absolute;
-  top: 25px;
+  top:5px;
   left: 50%;
 
 }
 
 .fixed {
   position: fixed;
-  top: 25px;
+  top: 5px;
   left: 50%;
   z-index: 2000;
 

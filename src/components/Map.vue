@@ -6,84 +6,70 @@
 </template>
 
 <script>
-// -------------------------- ATTENZIONE! --------------------------
-// Necessario creare un file script.js fratello di store.js
-// scrivere quanto segue: 
-// import { reactive } from "vue";
-// export const script = reactive({
-// TOMTOM_API_KEY: 'la tua API_KEY dal sito TomTom Api',
-// });
-// -------------------------- ATTENZIONE! --------------------------
-  import { script } from '@/script';
-  import { store } from '@/store';
-  import { onMounted, reactive, ref, watch } from 'vue'
+  
+  import { onMounted, reactive, ref } from 'vue';
+  import { store } from '../store';
 
   export default {
-  name: 'Map',
-  setup() {
-    const mapRef = ref(null);
-    const map = ref(null);
-
-    const initMap = () => {
-      const tt = window.tt;
-      const focus = { lat: 37.31052, lng: 13.64791 };
-
-      map.value = tt.map({
-        key: script.TOMTOM_API_KEY,
-        container: mapRef.value,
-        center: focus,
-        zoom: 7,
-      });
-
-      map.value.addControl(new tt.FullscreenControl());
-      map.value.addControl(new tt.NavigationControl());
-    };
-
-    const insertLocs = () => {
-      if (map.value) {
-        // Rimuove eventuali marker precedenti
-        const existingMarkers = document.querySelectorAll('.tt-marker');
-        existingMarkers.forEach(marker => marker.remove());
-
-        // Aggiunge i nuovi marker
-        store.apartments.forEach((apartment) => {
-          const marker = new tt.Marker().setLngLat([apartment.longitude, apartment.latitude]).addTo(map.value);
-          const popup = new tt.Popup({ anchor: 'top' }).setText(apartment.address);
-          marker.setPopup(popup).togglePopup();
-        });
+    name: 'Map',
+    data() {
+      return {
+        store
       }
-    };
+    },
 
-    onMounted(() => {
-      // Inizializza la mappa solo se ci sono già dati negli appartamenti
-      if (store.apartments.length > 0) {
-        initMap();
-        insertLocs();
+    setup() {
+      const mapRef = ref(null)
+      const state = reactive({
+        locations: [
+          { lng: 15.29470985780, lat: 37.85263650717430 },
+
+        ]
+      })
+      const insertLocs = (map) => {
+        let tomtom = window.tt;
+
+       store.pippo.forEach(function (apartment) {
+          let marker = new tomtom.Marker().setLngLat(apartment.longitude, apartment.latitude).addTo(map)
+          const popup = new tt.Popup({ anchor: 'top' }).setText('UBABank')
+          marker.setPopup(popup).togglePopup()
+        })
       }
 
-      // Guarda i cambiamenti negli appartamenti e aggiorna la mappa di conseguenza
-      watch(() => store.apartments, (newApartments) => {
-        if (newApartments.length > 0) {
-          if (!map.value) {
-            initMap();
-          }
-          insertLocs();
-        }
-      }, { immediate: true, deep: true });
-    });
+      onMounted(() => {
+        const tt = window.tt;
+        const focus = { lat: 37.31052000000000, lng: 13.64791000000000 }
 
-    return {
-      mapRef,
-    };
-  },
-};
+       const map = tt.map({
+          key: 'KXIIb5tNzA5VmKDh5NJAeNOOAI2ZfOoN',
+          container: mapRef.value,
+          center: focus,
+          zoom: 6
+        })
+
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+
+        window.map = map
+
+        insertLocs(map)
+      })
+
+      return {
+        mapRef
+      }
+
+    },
+    creatted() {
+      setup();
+    }
+
+  };
 </script>
 
 <style scoped>
   #map {
-    width: 100%;
-    height: 600px;
+    width: 900px;
+    height: 400px;
   }
-
- 
 </style>
