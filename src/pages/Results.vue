@@ -10,7 +10,7 @@
         </div>
         <!-- apartments results -->
     </div>
-    <div class="container-fluid p-5">
+    <div class="container-fluid">
         <h2 class="mt-5 ms-5 text-decoration-underline">Your Results</h2>
         <div class="d-flex gap-3 mb-3">
             <div id="services">
@@ -37,10 +37,9 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-start flex-wrap ls-glass p-5">
-            <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
-                <CardComponent :item="apartment"/> 
-            </div>
+        <div class="d-flex justify-content-between flex-wrap">
+                
+                    <CardComponent v-for="apartment in pippo" :key="apartment.slug" :item="apartment"/> 
         </div>
     </div>
 </template>
@@ -194,4 +193,14 @@ export default {
     align-items: center;
     margin-top: 20px;
 }
+
+@media (max-width: 992px) {
+    #results {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: start;
+    }
+}
+
+
 </style>
