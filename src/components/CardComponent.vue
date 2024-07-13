@@ -1,16 +1,9 @@
 <template>
   <article  class="card my-4">
     <div class="card__badges ">
-      <div class="badge-left">
-        <div class="promo-badge">
-          <i class="fa-solid fa-star"></i>
-        </div>
-      </div>
       <div class="badge-right">
-        <div v-for="services in item.services" :key="services.id" class="service-badge">
-          <router-link id="services-img" :to="{ name: 'results', params: { id: services.id }}" class="text-black">
+        <div id="services-img"  v-for="services in item.services" :key="services.id" class="service-badge">
             <img :src="store.imgBasePath + services.icon" alt="">
-          </router-link>
         </div>
       </div>
     </div>
@@ -23,12 +16,14 @@
     height="2193"/>
     <div ref="cardContent" class="card__content | flow">
       <div class="card__content--container | flow">
-        <h2 class="card__title" ref="cardTitle">{{ item.name }}</h2>
+        <h2 class=" ms-1 card__title d-inline fs-3" ref="cardTitle">{{ item.name }}<i class="fa-solid fs-5 align-top text-warning fa-star"></i></h2>
+
+
           <p class="p-4 pb-0 card__description">
             {{ item.description }}
           </p>
       </div>
-      <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn draw-border">Read more <i class="fa-solid fa-chevron-right"></i></router-link>
+      <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn ms-5 draw-border w-75 p-3">Details <i class="fa-solid fa-chevron-right"></i></router-link>
     </div>
   </article>
 
@@ -176,7 +171,7 @@ width: -moz-fit-content; /* Prefijo necesario para Firefox  */
   width: -moz-fit-content; /* Prefijo necesario para Firefox  */
   width: fit-content;
   text-wrap: wrap;
-  line-height: 0.90;
+  line-height: 0.0;
 }
 .card__content-2 {
 --flow-space: 0.9375rem;
@@ -185,7 +180,7 @@ display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-self: flex-end;
-height: 67%;
+height: 57%;
 padding: 12% 0.105rem 1.875rem;
 background: linear-gradient(
   180deg,
@@ -315,18 +310,15 @@ background-color: var(--brand-color);
 display: flex;
 justify-content: space-between;
 position: absolute;
-
 top: 10px;
 left: 10px;
 right: 10px;
 z-index: 10;
-opacity: 0;
+opacity: 1;
 transition: opacity 0.3s ease;
 }
-.card:hover .card__badges {
-opacity: 1;
-}
-.badge-left,
+
+
 .badge-right {
 display: flex;
 justify-content: center;
@@ -338,17 +330,10 @@ z-index: 2000;
 
 }
 .badge-right {
-cursor: pointer;
 justify-content: end;
 flex-wrap: wrap;
 }
-.badge-left {
-cursor: pointer;
-justify-content: start;
-flex-wrap: wrap;
-z-index: 2000;
-  
-}
+
 .promo-badge {
 background-color: rgba(255, 255, 255, 0.3);
 color: rgb(255, 217, 0);
@@ -361,20 +346,16 @@ padding: 5px;
 background-color: rgba(255, 255, 255, 0.3);
 border-radius: 5px;
 z-index: 2000;
-margin: 2px;
+margin: 4px;
+box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.3);
 }
-.service-badge:hover {
-background-color: rgb(255, 211, 65);
-color: rgb(0, 0, 0);
-border-radius: 5px;
-z-index: 2000;
-margin: 2px;
-}
+
 #services-img {
 margin: 3px;
+padding: 3px;
 img {
   width: 25px;
-  height: 20px;
+  height: 25px;
 }
 }
 }
