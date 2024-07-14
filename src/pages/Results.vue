@@ -10,19 +10,18 @@
         </div>
         <!-- apartments results -->
     </div>
-    <!-- :style="{ backgroundImage: 'url(' + store.imgBasePath + service.icon + ')' }" -->
     <div class="container-fluid p-5">
-       
+
         <div class="d-flex flex-column align-items-center gap-3 mb-3">
             <div class=" d-flex justify-content-center">
                 <!-- services section -->
                 <div id="services" class="d-flex justify-content-center gap-3 flex-wrap">
                     <!-- <h2 class="text-center">Services</h2> -->
-                    <div class="d-flex flex-wrap " v-for="service in store.services" :key="service.id">
+                    <div class="d-flex flex-wrap flex-column" v-for="service in store.services" :key="service.id">
                         <input id="servcheck" type="checkbox" class="checkbox-custom me-2" :value="service.id"
                             v-model="store.selectedServices"
-                            :style="{ backgroundImage: 'url(' + store.imgBasePath + service.icon + ')' }">
-                        <!-- <label for="servcheck">{{ service.name }}</label> -->
+                            :style="{ backgroundImage: 'url(' + store.imgBasePath + service.icon + ')' }"> <br>
+                        <label for="servcheck">{{ service.name }}</label>
                     </div>
                 </div>
 
@@ -68,7 +67,7 @@
                 </div>
                 <div class="d-flex flex-column align-items-center w-50">
                     <h3 class="text-center my-4">Distance</h3>
-                    <div  class="filter-distance d-flex justify-content-center w-100 flex-wrap mb-4">
+                    <div class="filter-distance d-flex justify-content-center w-100 flex-wrap mb-4">
                         <label for="distance-range">(km):</label>
                         <span id="distance-value">{{ store.radius }}</span>
                         <br>
