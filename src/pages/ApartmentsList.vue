@@ -5,7 +5,7 @@
   <!-- these are the promoted cards -->
   <div id="promoted" class="p-5 container-fluid">
     <h2 class="mt-5 ms-5 text-decoration-underline">Promoted</h2>
-    <div class="d-flex justify-content-start flex-wrap ls-glass p-5">
+    <div class="d-flex justify-content-start flex-wrap p-5">
       <div class="p-3" v-for="(apartment, index) in store.homeApartments" :key="apartment.id">
         <CardComponent :item="apartment" :index="index" />
       </div>
