@@ -17,7 +17,7 @@
                         </div>
                         <!-- services bagdes -->
                         <h5 class="pt-3 text-center">- Services available -</h5>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center flex-wrap">
                             <div id="services-badges" v-for="service in apartment.services" :key="service.id">
                                 <img :src="store.imgBasePath + service.icon"  alt="">
                             </div>
