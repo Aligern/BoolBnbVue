@@ -1,4 +1,5 @@
 <template>
+  <router-link class="text-decoration-none" :to="{ name: 'details', params: { slug: item.slug } }">
   <article  class="card my-4">
     <div class="card__badges ">
       <div class="badge-right">
@@ -17,16 +18,14 @@
     <div ref="cardContent" class="card__content | flow">
       <div class="card__content--container | flow">
         <h2 class=" ms-1 card__title d-inline fs-3" ref="cardTitle">{{ item.name }}<i class="fa-solid fs-5 align-top text-warning fa-star"></i></h2>
-
-
           <p class="p-4 pb-0 card__description">
             {{ item.description }}
           </p>
       </div>
-      <router-link :to="{ name: 'details', params: { slug: item.slug } }" class="btn ms-5 draw-border w-75 p-3">Details <i class="fa-solid fa-chevron-right"></i></router-link>
+      <span :to="{ name: 'details', params: { slug: item.slug } }" class="btn ms-5 draw-border w-75 p-3">Details <i class="fa-solid fa-chevron-right"></i></span>
     </div>
   </article>
-
+</router-link>
 </template>
 
 <script>
