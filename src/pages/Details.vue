@@ -77,6 +77,9 @@
                             <small class="text-danger" v-if="!isValidName(name) && name !== ''">Please enter a valid name</small>
                         </div> -->
                         <div>
+                            
+                            <label for="name">name <span class="text-danger">*</span></label>
+                            <input type="text" class=" form-control" name="name" id="name" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" placeholder="mario rossi">
                             <label for="email">Email address <span class="text-danger">*</span></label>
                             <input v-model="email" type="email" class=" form-control" id="email" placeholder="name@example.com">
                             <small class="text-danger" v-if="!isValidEmail(email) && email !== ''">Please enter a valid email</small>
