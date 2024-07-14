@@ -17,7 +17,7 @@
   import CardComponent from './components/CardComponent.vue';
   import FooterComponent from './components/FooterComponent.vue';
   import JumbotronComponent from './components/JumbotronComponent.vue';
-  import CanvasComponent from './components/CanvasComponent.vue';
+  // import CanvasComponent from './components/CanvasComponent.vue';
 
   export default {
     name: 'App',
@@ -26,7 +26,7 @@
       FooterComponent,
       CardComponent,
       JumbotronComponent,
-      CanvasComponent
+      // CanvasComponent
     },
     data() {
       return {

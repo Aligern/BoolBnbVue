@@ -6,6 +6,16 @@
                     <img class="position-relative" src="../assets/img/logo-1.png" alt="logo">
                     <span class="logo-span">Bool n Dreams</span>
                 </div> 
+                 <!-- ******************************* buttons register and login ********************************-->
+                 <div class="text-center">
+                    <a class="btn btn-outline-dark" href="http://127.0.0.1:8000/register"> 
+                        <i class="fa-regular fa-id-card"></i> Register 
+                    </a> 
+                    or 
+                    <a class="btn btn-outline-dark" href="http://127.0.0.1:8000/login">
+                        <i class="fa-solid fa-unlock-keyhole"></i> Login
+                    </a>
+                </div>
         </nav>
     </header>
 </template>
