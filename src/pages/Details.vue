@@ -1,13 +1,6 @@
 <template>
     <HeaderComponent />
     <div class="container m-0-auto mt-3">
-        <!-- button go back -->
-        <div class="pb-3">
-            <!-- this is the home button -->
-            <RouterLink :to="{ name: 'home' }">
-                <button class="btn draw-border"><i class="fa-solid fa-chevron-left"></i> Go Back</button>
-            </RouterLink>
-        </div>
         <div id="apartment-container">
             <!-- apartment image -->
             <h1 class="text-decoration-underline">Welcome to {{ apartment?.name }}</h1>
@@ -24,7 +17,7 @@
                         </div>
                         <!-- services bagdes -->
                         <h5 class="pt-3 text-center">- Services available -</h5>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center flex-wrap">
                             <div id="services-badges" v-for="service in apartment.services" :key="service.id">
                                 <img :src="store.imgBasePath + service.icon"  alt="">
                             </div>
@@ -59,7 +52,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-5">
                         <RouterLink :to="{ name: 'payments' }">
-                            <button class="btn draw-border"><i class="fa-solid fa-credit-card"></i> Reserve now</button>
+                            <button class="btn d-none draw-border"><i class="fa-solid fa-credit-card"></i> Reserve now</button>
                         </RouterLink>
                     </div>
                 </div>
