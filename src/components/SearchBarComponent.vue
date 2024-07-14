@@ -111,34 +111,13 @@ export default {
 
 
 <style lang="scss" scoped>
-.active {
-  // classe del collapse in searchbar
-  background-color: #44444420;
-}
-
-
-#collapse1 {
-  background-color: white;
-  width: 100%;
-  height: 450px;
-  border-radius: 5px;
-  padding: 10px;
-  border-bottom: 0p;
-  cursor: pointer;
-  display: block;
-  transition: display 1.2s ease;
-
-  #filter {
-    width: 100%;
-  }
-}
 
 #search-bar {
   display: flex;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
   z-index: 3000;
-  width: 800px;
+  width: 60%;
   transform: translateY(-50%);
   transform: translateX(-50%);
   transition: padding 1.2s ease;
