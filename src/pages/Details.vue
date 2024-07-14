@@ -64,15 +64,12 @@
                 <form @submit.prevent="sendForm()" class="">
                     <h4>Contact me:</h4>
                     <div class="d-flex">
-                        <!-- <div>
-                            <label for="name">Name<span class="text-danger">*</span></label>
-                            <input v-model="name" type="text" class="form-control" id="name" placeholder="Your name">
-                            <small class="text-danger" v-if="!isValidName(name) && name !== ''">Please enter a valid name</small>
-                        </div> -->
                         <div>
+                            <label for="name">Name<span class="text-danger">*</span></label>
+                            <input v-model="name" type="text" class="form-control" id="name" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" placeholder="Your name">
                             
-                            <label for="name">name <span class="text-danger">*</span></label>
-                            <input type="text" class=" form-control" name="name" id="name" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" placeholder="mario rossi">
+                        </div>
+                        <div>
                             <label for="email">Email address <span class="text-danger">*</span></label>
                             <input v-model="email" type="email" class=" form-control" id="email" placeholder="name@example.com">
                             <small class="text-danger" v-if="!isValidEmail(email) && email !== ''">Please enter a valid email</small>
