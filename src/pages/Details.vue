@@ -80,7 +80,8 @@
                         <small class="text-danger" v-if="!isValidEmail(email) && message !== ''">Please enter a message</small>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" :disabled="!isValidEmail(email) || !message"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
+                        <button id="send-message" type="submit" :disabled="!isValidEmail(email) || !message"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
+                        <span id="message-sent" v-if="success">Your message was sent successfully!</span>
                     </div>
                 </form>
             </div>
