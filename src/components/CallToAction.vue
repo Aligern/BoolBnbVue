@@ -29,7 +29,7 @@ import { store } from '../store';
 
 <style lang="scss" scoped>
 #calltoaction {    
-    height: 40vh;
+    height: 60vh;
     width: 100%;
     background-image: url('../assets/img/calltoaction_6.jpeg');
     background-size: cover;
