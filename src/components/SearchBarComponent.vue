@@ -147,7 +147,6 @@
   #search-bar {
     display: flex;
     flex-direction: column;
-    transform: translateY(-50%);
     transform: translateX(-50%);
     transition: width 0.7s;
     //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
@@ -167,7 +166,6 @@
   }
 }
 
-
     #resultsContainer {
       background-color: white;
       border-radius: 5px;
@@ -178,10 +176,6 @@
       cursor: pointer;
 
     }
-
- 
-
-
 
   .absolute {
     position: absolute;
