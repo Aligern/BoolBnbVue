@@ -159,6 +159,7 @@
     transition: width 0.7s;
     //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
     width: 600px;
+    z-index: 3000;
 
     #searchInput {
       padding: 10px;
@@ -183,8 +184,6 @@
     border-radius: 5px;
     padding: 10px;
     margin: 2px 72px 0px 18px;
-
-
     cursor: pointer;
 
   }
