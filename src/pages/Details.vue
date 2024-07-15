@@ -66,22 +66,23 @@
                     <div class="d-flex">
                         <div class="pe-3">
                             <label for="name">Name<span class="text-danger">*</span></label>
-                            <input v-model="name" type="text" class="form-control" id="name" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" placeholder="Your name">
+                            <input v-model="name" type="text" class="form-control" id="name" placeholder="Your name">
+                            <small class="text-danger" v-if="name !== '' && !isValidName(name)">Please enter a valid name (ex: John Doe)</small>
                         </div>
                         <div>
                             <label for="email">Email address <span class="text-danger">*</span></label>
                             <input v-model="email" type="email" class=" form-control" id="email" placeholder="name@example.com">
-                            <small class="text-danger" v-if="!isValidEmail(email) && email !== ''">Please enter a valid email</small>
+                            <small class="text-danger" v-if="!isValidEmail(email) && email !== ''">Please enter a valid email (ex: name@example.com)</small>
                         </div>
                     </div>
                     <div class="mt-2">
                         <label for="message">Your message</label>
                         <textarea v-model="message" class="form-control" id="message" cols="30" rows="10">{{ message }}</textarea>
-                        <small class="text-danger" v-if="!isValidEmail(email) && message !== ''">Please enter a message</small>
+                        <small class="text-danger" v-if="message == '' && email !== '' && name !== ''">Please enter a message</small>
                     </div>
                     <div class="d-flex justify-content-end">
                         <span class="d-block align-content-center pe-4" id="message-sent"></span>
-                        <button id="send-message" type="submit" :disabled="!isValidEmail(email) || !message"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
+                        <button id="send-message" type="submit" :disabled="!isValidEmail(email) || !message || !isValidName(name)"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
                     </div>
                 </form>
             </div>
@@ -162,11 +163,11 @@
                      const emailRegex = /^(?!.*\.\.)((?!\.)[\w-]+(\.[\w-]+)*)(@[\w-]+)((\.[a-zA-Z]{2,})+)$/;
                      return emailRegex.test(email);
                  },
+                 isValidName(name) {
+                     const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+                     return nameRegex.test(name);
+                 },
         },
-    isValidName(name) {
-        const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
-        return nameRegex.test(name);
-    },
 
         mounted() {
         this.getApartment();
