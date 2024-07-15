@@ -48,10 +48,10 @@ import { store } from '../store';
             font-size: 5rem;
             font-weight: 200;
             font-style: italic;
-            // padding:  0px  50px 20px 50px;  
-            // background: rgba(255, 255, 255, 0.1);  
-            // backdrop-filter: blur(5px);  
-            // border-radius: 5px; 
+            padding:  0px  50px 20px 50px;  
+            background: rgba(255, 255, 255, 0.1);  
+            backdrop-filter: blur(5px);  
+            border-radius: 5px; 
         }
         #call-title-2 {
             font-family: "Roboto", sans-serif!important;
