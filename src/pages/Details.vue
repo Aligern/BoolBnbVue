@@ -132,15 +132,19 @@
         const data = {
             name: this.name,
             email: this.email,
-            message: this.message
+            message: this,
+            //apartment_id: this.apartment.id
         }
         console.log('data_message:',data);
+        
         axios.post(`${this.store.apiBaseUrl}/contacts`, data).then((res) => {
             console.log('risposta_chiamata_api:', res.data);
             this.success = true;
             this.name = '';
             this.address = '';
             this.message = '';
+            this.email = '';
+         
         }).catch((error) => {
             console.log('error.response.data:', error.response.data);
             this.errors = error.response.data.errors;
