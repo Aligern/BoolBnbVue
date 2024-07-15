@@ -138,7 +138,7 @@
             name: this.name,
             email: this.email,
             message: this.message,
-            // apartment_id: this.apartment.id
+            apartment_id: this.apartment.id
         }
         sendBtn.classList.add("disabled");
         console.log('data_message:',data);
