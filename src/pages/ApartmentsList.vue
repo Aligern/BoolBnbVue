@@ -6,17 +6,20 @@
   <div id="promoted" class="container-fluid">
     <h2 class="mt-5 text-center text-decoration-underline">Promoted</h2>
     <div class="d-flex justify-content-start flex-wrap p-3">
+
       <div class="p-3" v-for="(apartment, index) in store.homeApartments" :key="apartment.id">
         <CardComponent :item="apartment" :index="index" />
       </div>
     </div>
   </div>
+  <CallToAction />
 </template>
 
 <script>
 import CardComponent from '@/components/CardComponent.vue';
 import JumbotronComponent from '@/components/JumbotronComponent.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
+import CallToAction from '@/components/CallToAction.vue';
 import { store } from '@/store.js';
 
 export default {
@@ -24,7 +27,8 @@ export default {
   components: {
     CardComponent,
     JumbotronComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CallToAction
   },
   data() {
     return {

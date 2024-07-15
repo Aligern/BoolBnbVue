@@ -12,7 +12,9 @@ $fa-font-path: '../fonts/webfonts';
 @import 'bootstrap/scss/bootstrap';
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 
 
 .ls-line {
@@ -45,7 +47,7 @@ img {
 
 body {
     background: linear-gradient(to top, #9e9e9e7e 0%, rgba(161, 161, 161, 0.023) 63%);
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif!important;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -63,8 +65,8 @@ html {
     --black: hsl(0, 0%, 0%);
     --white: hsl(0, 0%, 100%);
     /* Fonts */
-    --font-title: "Montserrat", sans-serif;
-    --font-text: "Lato", sans-serif;
+    --font-title: "Montserrat", sans-serif!important;
+    --font-text: "Lato", sans-serif!important;
 }
 
 
