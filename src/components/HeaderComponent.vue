@@ -3,7 +3,8 @@
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
                 <div class="logo-container d-flex align-items-center"> 
-                    <img class="position-relative" src="../assets/img/logo-6.png" alt="logo">
+                    <img class="logo-large position-relative" src="../assets/img/logo-6.png" alt="logo">
+                    <img class="logo-small position-relative" src="../assets/img/logo-1.png" alt="logo">
                     <!-- <span class="logo-span">Bool n Dreams</span> -->
                 </div> 
                  <!-- ******************************* buttons register and login ********************************-->
@@ -77,23 +78,27 @@ select {
         width: fit-content;
     }
     
-    .text-overlay {
-        position: absolute;
-        top: 55%;
-        left: 63%;
-        transform: translate(-50%, -50%);
-        font-size: 3rem; 
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    header img {
-    width: 200px;
+.logo-small {
+    display: none;
 }
-.logo-span {
-    position: absolute;
-    left: 110px;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+/* Mostra il logo grande di default */
+.logo-large {
+    display: block;
+    width: 180px;
+    
+}
+
+/* Quando lo schermo è più piccolo di 768px, mostra il logo piccolo e nascondi il logo grande */
+@media (max-width: 768px) {
+    .logo-large {
+        display: none;
+    }
+    .logo-small {
+        display: block;
+        width: 145px;
+        margin-left: -55px;
+        
+    }
 }
 </style>
