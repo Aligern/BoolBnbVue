@@ -3,8 +3,8 @@
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
                 <div class="logo-container d-flex align-items-center"> 
-                    <img class="position-relative" src="../assets/img/logo-1.png" alt="logo">
-                    <span class="logo-span">Bool n Dreams</span>
+                    <img class="position-relative" src="../assets/img/logo-6.png" alt="logo">
+                    <!-- <span class="logo-span">Bool n Dreams</span> -->
                 </div> 
                  <!-- ******************************* buttons register and login ********************************-->
                  <div class="text-center">
@@ -71,10 +71,7 @@ select {
     padding: 12px 12px;
 }
 
-header img {
-    width: 100px;
-    height: 100px;
-}
+
 .logo-container {
         position: relative;
         width: fit-content;
@@ -90,7 +87,7 @@ header img {
     }
 
     header img {
-    width: 150px;
+    width: 200px;
 }
 .logo-span {
     position: absolute;
