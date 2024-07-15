@@ -9,6 +9,7 @@ export const store = reactive({
   homeApartments: [],
   apartments: [],
   filteredApart: [],
+  query: '',
   pippo: [],
   imageBaseUrl: "./assets/img/",
   services: [],
