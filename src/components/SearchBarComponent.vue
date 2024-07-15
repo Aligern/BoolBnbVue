@@ -1,7 +1,7 @@
 <template>
   <div id="search-bar" class="absolute">
     <div class="d-flex">
-      <input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="query"
+      <input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="store.query"
         @keyup.enter="handleSearch" @input="handleInput">
       <div class="input-group-prepend">
         <router-link id="btnSearch" :to="resultsRoute" class="btn btn-dark ms-2">
@@ -26,7 +26,7 @@
     data() {
       return {
         store,
-        query: '',
+       
         results: [],
         apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
         apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/',
@@ -97,12 +97,12 @@
         }
       },
       async handleSearch() {
-        if (this.query) {
-          await this.fetchAddresses(this.query);
+        if (store.query) {
+          await this.fetchAddresses(store.query);
         }
       },
       async handleInput() {
-        const query = this.query.trim();
+        const query = store.query.trim();
         if (query.length < 5) {
           this.results = [];
           return;
@@ -115,7 +115,7 @@
         }
       },
       selectAddress(result) {
-        this.query = result.address.freeformAddress;
+        store.query = result.address.freeformAddress;
         this.results = [];
         this.handleSearch();
       },
@@ -130,7 +130,7 @@
         return {
           name: 'results',
           query: {
-            address: this.query,
+            address: store.query,
           },
         };
       },
