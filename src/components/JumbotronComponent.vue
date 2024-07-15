@@ -77,7 +77,7 @@
                 left: 20%;
                 font-size: 5rem;
                 font-weight: 200;
-                font-style: italic;
+                // font-style: italic;
             }
 
             #jumbo-title-2 {
@@ -86,7 +86,7 @@
                 right: 20%;
                 font-size: 5rem;
                 font-weight: 200;
-                font-style: italic;
+                // font-style: italic;
             }
         }
 
