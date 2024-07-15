@@ -2,8 +2,9 @@
     <header>
         <nav class="d-flex justify-content-between align-items-center mb-2">
             <!-- logo -->
+
             <div class="logo-container d-flex align-items-center">
-                <img class="position-relative" src="../assets/img/logo-1.png" alt="logo">
+                <img class="position-relative" src="../assets/img/logo-6.png" alt="logo">
                 <span class="logo-span">Bool n Dreams</span>
             </div>
             <!-- ******************************* buttons register and login ********************************-->
@@ -15,6 +16,7 @@
                     Login
                 </a>
             </div>
+
         </nav>
     </header>
 </template>
@@ -77,9 +79,10 @@
         }
     }
 
+
     p,
     a {
-        color: rgb(0, 0, 0);
+        color: white;
         text-decoration: none;
     }
 
@@ -95,6 +98,7 @@
     }
 
     .logo-container {
+
         position: relative;
         width: fit-content;
     }
@@ -109,14 +113,13 @@
     }
 
     header img {
-        width: 150px;
-    }
-
-    .logo-span {
-        position: absolute;
-        left: 110px;
-        font-size: 1.5rem;
-        font-weight: 400;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    }
+    width: 200px;
+}
+.logo-span {
+    position: absolute;
+    left: 110px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 </style>

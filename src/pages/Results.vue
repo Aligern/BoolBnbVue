@@ -48,7 +48,7 @@
                     </div>
                     <!-- second counter for bedrooms -->
                     <div class="mx-4">
-                        <h3 class="text-center my-4">Bedrooms</h3>
+                        <h3 class="text-center my-4">Rooms</h3>
 
                         <div class="d-flex mb-4" id="rooms">
                             <div class="d-flex align-items-center">
@@ -81,7 +81,7 @@
         </div>
 
 
-        <h2 class="mt-5 ms-5 text-decoration-underline text-center">Your Results</h2>
+        <h2 class="mt-5 ms-5 text-center">Your Results for apartments with: <br> {{ store.selectedServices + ' ' + store.beds + ' beds ' + store.rooms + ' rooms ' + store.radius + ' km' }}</h2>
         <div class="d-flex justify-content-center flex-wrap ls-glass ">
             <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
                 <CardComponent :item="apartment" />
