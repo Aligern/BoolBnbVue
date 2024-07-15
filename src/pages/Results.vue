@@ -77,12 +77,14 @@
                 </div>
             </div>
         </div> 
-        <h4 class="mt-5 ms-5">Your Results for {{ store.query }}</h4>  
-            <span class="ms-5" v-if="getSelectedServiceNames()"> <strong>With these services included:</strong> {{ getSelectedServiceNames() }}</span> <br>
+        <div class="container">
+            <h4 class="mt-5 ms-5">Your Results for {{ store.query }}</h4>
+            <span class="ms-5" v-if="getSelectedServiceNames()"> <strong>Apartments with these services included:</strong> {{ getSelectedServiceNames() }}</span>
             <span class="ms-5" v-if="getSelectedServiceNames() && store.beds > 0 || store.rooms > 0 || store.radius > 1"><strong>Your requirements:</strong> </span>
             <span  v-if="store.beds > 0"> {{ ' ' + store.beds + ' beds -' }}</span>
-            <span  v-if="store.rooms > 0"> {{ ' ' + store.rooms + ' rooms -' }}</span>
-            <span  v-if="store.radius > 1"> {{ ' ' + store.radius + ' km' }}</span>
+            <span  v-if="store.rooms > 0"> {{ ' ' + store.rooms + ' rooms ' }}</span>
+            <span  v-if="store.radius > 1"> {{ ' ' + store.radius + ' - km' }}</span>
+        </div>  
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
                 <CardComponent :item="apartment" />
