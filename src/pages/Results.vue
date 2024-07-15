@@ -15,19 +15,19 @@
         <div class="d-flex flex-column align-items-center gap-3 mb-3">
             <div class=" d-flex justify-content-center">
                 <!-- services section -->
-                <div id="services" class="d-flex justify-content-center gap-3 flex-wrap">
+                <div  class="d-flex justify-content-center gap-3 flex-wrap">
                     <!-- <h2 class="text-center">Services</h2> -->
-                    <div class="d-flex flex-wrap flex-column" v-for="service in store.services" :key="service.id">
+                    <div id="services" class="d-flex flex-wrap flex-column" v-for="service in store.services" :key="service.id">
                         <input id="servcheck" type="checkbox" class="checkbox-custom me-2" :value="service.id"
                             v-model="store.selectedServices"
                             :style="{ backgroundImage: 'url(' + store.imgBasePath + service.icon + ')' }"> <br>
-                        <label for="servcheck">{{ service.name }}</label>
+                        <label id="serviceLabel" for="servcheck" class="text-center">{{ service.name }}</label>
                     </div>
                 </div>
 
             </div>
             <div id="filter" class="d-flex align-items-center justify-content-around flex-wrap container">
-                <div id="iduecounter" class="d-flex ">
+                <div id="counters" class="d-flex justify-content-center flex-wrap">
                     <!-- primo counter for beds -->
                     <div class="mx-4">
                         <h3 class="text-center my-4">Beds</h3>
@@ -82,7 +82,7 @@
 
 
         <h2 class="mt-5 ms-5 text-center">Your Results for apartments with: <br> {{ store.selectedServices + ' ' + store.beds + ' beds ' + store.rooms + ' rooms ' + store.radius + ' km' }}</h2>
-        <div class="d-flex justify-content-center flex-wrap ls-glass ">
+        <div class="d-flex justify-content-center flex-wrap">
             <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
                 <CardComponent :item="apartment" />
             </div>
@@ -177,6 +177,8 @@
 </script>
 
 <style lang="scss" scoped>
+
+
 
     .checkbox-custom {
         appearance: none;
@@ -365,5 +367,48 @@
         display: flex;
         align-items: center;
         margin-top: 20px;
+    }
+
+    @media screen and (max-width: 576px) {
+    
+        .btn-counter {
+            width: 40px;
+            aspect-ratio: 1 / 1;
+        }
+        #services{
+
+            width: 50px;
+        }
+
+        .checkbox-custom {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 50px;
+            aspect-ratio: 1;
+            background-size: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 50%;
+            /* Makes it round */
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            border: none;
+            outline: none;
+            box-shadow: 4px 4px 9px rgba(57, 57, 57, 0.4235294118),
+                0px 0px 0px rgba(36, 36, 36, 0.1607843137),
+                inset -4px -4px 4px rgba(68, 68, 68, 0.7019607843),
+                inset 0px 0px 0px rgba(52, 52, 52, 0.062745098);
+            border: none;
+            color: rgb(161, 161, 161);
+            transition: 500ms;
+        }
+
+        #serviceLabel {
+            font-size: 10px;
+            
+        }
+        
     }
 </style>

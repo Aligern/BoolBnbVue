@@ -1,7 +1,7 @@
 <template>
   <div id="search-bar" class="absolute">
     <div class="d-flex">
-      <input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="query"
+      <input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="store.query"
         @keyup.enter="handleSearch" @input="handleInput">
       <div class="input-group-prepend">
         <router-link id="btnSearch" :to="resultsRoute" class="btn btn-dark ms-2">
@@ -26,7 +26,7 @@
     data() {
       return {
         store,
-        query: '',
+  
         results: [],
         apiKey: '0jBqWMEnJXQa5y2e2pJLK0gXbe7CTMvK',
         apiBaseUrlTomTom: 'https://api.tomtom.com/search/2/search/',
@@ -150,6 +150,7 @@
     transform: translateX(-50%);
     transition: width 0.7s;
     //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    width: 600px
    ;
 
    #searchInput {
