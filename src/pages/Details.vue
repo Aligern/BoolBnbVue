@@ -80,8 +80,8 @@
                         <small class="text-danger" v-if="!isValidEmail(email) && message !== ''">Please enter a message</small>
                     </div>
                     <div class="d-flex justify-content-end">
+                        <span class="d-block align-content-center pe-4" id="message-sent"></span>
                         <button id="send-message" type="submit" :disabled="!isValidEmail(email) || !message"  class="btn draw-border mt-2"><i class="fa-solid fa-envelope-open-text"></i></button>
-                        <span id="message-sent" v-if="success">Your message was sent successfully!</span>
                     </div>
                 </form>
             </div>
@@ -129,12 +129,17 @@
             });
         },
         sendForm() {
+        const sendBtn= document.getElementById('send-message');
+        const sendMessage= document.getElementById('message-sent');
+        sendMessage.innerHTML='';
         this.success = false;
         const data = {
             name: this.name,
             email: this.email,
-            message: this.message
+            message: this.message,
+            // apartment_id: this.apartment.id
         }
+        sendBtn.classList.add("disabled");
         console.log('data_message:',data);
         axios.post(`${this.store.apiBaseUrl}/contacts`, data).then((res) => {
             console.log('risposta_chiamata_api:', res.data);
@@ -142,6 +147,9 @@
             this.name = '';
             this.address = '';
             this.message = '';
+            this.email = '';
+            sendBtn.classList.remove("disabled");
+            sendMessage.innerHTML= 'Your message was sent successfully!';
         }).catch((error) => {
             console.log('error.response.data:', error.response.data);
             this.errors = error.response.data.errors;
@@ -155,6 +163,10 @@
                      return emailRegex.test(email);
                  },
         },
+    isValidName(name) {
+        const nameRegex = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
+        return nameRegex.test(name);
+    },
 
         mounted() {
         this.getApartment();
