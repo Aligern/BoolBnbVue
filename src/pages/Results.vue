@@ -73,15 +73,16 @@
                         <br>
                         <input class="w-100" type="range" id="distance-range" min="1" max="25" v-model="store.radius"
                             @blur="fetchFilteredResults">
-
                     </div>
-
                 </div>
             </div>
-        </div>
-
-
-        <h5 class="mt-5 ms-5">Your Results for {{ store.query }} <span v-if="getSelectedServiceNames() || store.beds > 0 || store.rooms > 0 || store.radius > 1">with:</span> <br> <span v-if="getSelectedServiceNames()">{{ getSelectedServiceNames() }}</span> <span v-if="store.beds > 0 || store.rooms > 0"> and </span> <span v-if="store.beds > 0 || store.rooms > 0 || store.radius > 1">{{ ' ' + store.beds + ' beds >' + store.rooms + ' rooms >' + store.radius + 'km ' }}</span></h5>
+        </div> 
+        <h4 class="mt-5 ms-5">Your Results for {{ store.query }}</h4>  
+            <span class="ms-5" v-if="getSelectedServiceNames()"> <strong>With these services included:</strong> {{ getSelectedServiceNames() }}</span> <br>
+            <span class="ms-5" v-if="getSelectedServiceNames() && store.beds > 0 || store.rooms > 0 || store.radius > 1"><strong>Your requirements:</strong> </span>
+            <span  v-if="store.beds > 0"> {{ ' ' + store.beds + ' beds -' }}</span>
+            <span  v-if="store.rooms > 0"> {{ ' ' + store.rooms + ' rooms -' }}</span>
+            <span  v-if="store.radius > 1"> {{ ' ' + store.radius + ' km' }}</span>
         <div class="d-flex justify-content-center flex-wrap">
             <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
                 <CardComponent :item="apartment" />
@@ -168,7 +169,7 @@
             return this.store.services
             .filter(service => this.store.selectedServices.includes(service.id))
             .map(service => service.name)
-            .join('> ');
+            .join(' - ');
     }
         },
         mounted() {
