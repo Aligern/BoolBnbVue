@@ -11,12 +11,14 @@
       </div>
     </div>
   </div>
+  <CallToAction />
 </template>
 
 <script>
 import CardComponent from '@/components/CardComponent.vue';
 import JumbotronComponent from '@/components/JumbotronComponent.vue';
 import SearchBarComponent from '@/components/SearchBarComponent.vue';
+import CallToAction from '@/components/CallToAction.vue';
 import { store } from '@/store.js';
 
 export default {
@@ -24,7 +26,8 @@ export default {
   components: {
     CardComponent,
     JumbotronComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CallToAction
   },
   data() {
     return {
