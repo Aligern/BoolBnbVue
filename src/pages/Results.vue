@@ -81,8 +81,8 @@
         </div>
 
 
-        <h2 class="mt-5 ms-5 text-center">Your Results for apartments with: <br> {{ store.selectedServices + ' ' + store.beds + ' beds ' + store.rooms + ' rooms ' + store.radius + ' km' }}</h2>
-        <div class="d-flex justify-content-center flex-wrap ls-glass ">
+        <h5 class="mt-5 ms-5">Your Results for {{ store.query }} <span v-if="getSelectedServiceNames() || store.beds > 0 || store.rooms > 0 || store.radius > 1">with:</span> <br> <span v-if="getSelectedServiceNames()">{{ getSelectedServiceNames() }}</span> <span v-if="store.beds > 0 || store.rooms > 0"> and </span> <span v-if="store.beds > 0 || store.rooms > 0 || store.radius > 1">{{ ' ' + store.beds + ' beds >' + store.rooms + ' rooms >' + store.radius + 'km ' }}</span></h5>
+        <div class="d-flex justify-content-center flex-wrap">
             <div class="p-3" v-for="apartment in pippo" :key="apartment.slug">
                 <CardComponent :item="apartment" />
             </div>
@@ -163,7 +163,13 @@
             },
             updateResults(newResults) {
                 this.pippo = newResults;
-            }
+            },
+            getSelectedServiceNames() {
+            return this.store.services
+            .filter(service => this.store.selectedServices.includes(service.id))
+            .map(service => service.name)
+            .join('> ');
+    }
         },
         mounted() {
             this.getPippo();
