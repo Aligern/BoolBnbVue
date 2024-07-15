@@ -73,7 +73,7 @@
 
             #jumbo-title-1 {
                 position: absolute;
-                top: 59%;
+                top: 57%;
                 left: 20%;
                 font-size: 5rem;
                 font-weight: 200;
@@ -90,9 +90,29 @@
             }
         }
 
-        // #jumbo-title-2 {
-        //     transform: translate(0, 200px);
-        // }
+        @media screen and (max-width: 576px) {
+            #jumbo-title-1 {
+                position: absolute;
+                top: 62% !important;
+                left: 8% !important;
+                font-size: 2rem !important;
+                font-weight: 100 !important;
+                font-style: italic !important;
+                transform: translateX(0%) !important;
+           
+            }
+        
+            #jumbo-title-2 {
+                position: absolute;
+                top: 70% !important;
+                right: 13% !important;
+                font-size: 2rem !important;
+                font-weight: 200 !important;
+                font-style: italic !important;
+                transform: translateX(10%) !important;
+        
+            }
+        }
 
     }
 </style>

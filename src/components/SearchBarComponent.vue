@@ -3,17 +3,20 @@
     <div class="d-flex">
       <input id="searchInput" type="text" class="form-control" placeholder="Search" v-model="store.query"
         @keyup.enter="handleSearch" @input="handleInput">
+      <input id="searchInput-2" type="text" class="form-control" placeholder="Search" v-model="store.query"
+        @keyup.enter="handleSearch" @input="handleInput">
       <div class="input-group-prepend">
+
         <router-link id="btnSearch" :to="resultsRoute" class="btn btn-dark ms-2">
           <i class="fa-solid fa-magnifying-glass"></i>
         </router-link>
       </div>
-    </div>  
+    </div>
     <div id="resultsContainer" v-if="results.length > 0">
       <div v-for="(result, index) in results" :key="index" @click="selectAddress(result)">
         {{ result.address.freeformAddress }}
       </div>
-    </div>  
+    </div>
   </div>
 </template>
 
@@ -36,7 +39,7 @@
       handleScroll() {
         const scrollPosition = window.pageYOffset;
         const searchBar = document.querySelector('#search-bar'); // Seleziona la barra di ricerca
-
+        const mediaQuery = window.matchMedia("(max-width: 576px)"); // Definisci la media query
 
         if (searchBar) {
           if (scrollPosition > 0) {
@@ -54,6 +57,12 @@
             searchBar.style.width = '600px';
 
           }
+
+          if (mediaQuery.matches) {
+            searchBar.style.width = '50%';
+
+          }
+
         }
       },
 
@@ -149,33 +158,36 @@
     transform: translateX(-50%);
     transition: width 0.7s;
     //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    width: 600px
-   ;
+    width: 600px;
 
-   #searchInput {
-    padding: 10px;
-    border-radius: 20px;
-  }
-
-  #btnSearch{
-    width: 50px;
-    aspect-ratio: 1 / 1;
-    padding: 10px;
-    border-radius: 100%;
-    font-size: 19px;
-  }
-}
-
-    #resultsContainer {
-      background-color: white;
-      border-radius: 5px;
+    #searchInput {
       padding: 10px;
-      margin: 2px 72px 0px 18px;
-      
-
-      cursor: pointer;
-
+      border-radius: 20px;
     }
+
+    #searchInput-2 {
+      display: none;
+    }
+
+    #btnSearch {
+      width: 50px;
+      aspect-ratio: 1 / 1;
+      padding: 10px;
+      border-radius: 100%;
+      font-size: 19px;
+    }
+  }
+
+  #resultsContainer {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 2px 72px 0px 18px;
+
+
+    cursor: pointer;
+
+  }
 
   .absolute {
     position: absolute;
@@ -190,5 +202,21 @@
     left: 50%;
     z-index: 2000;
 
+  }
+
+
+  @media screen and (max-width: 576px) {
+    #search-bar {
+
+      width: 50%;
+
+      #searchInput {
+        display: none;
+      }
+
+      #searchInput-2 {
+        display: block;
+      }
+    }
   }
 </style>
